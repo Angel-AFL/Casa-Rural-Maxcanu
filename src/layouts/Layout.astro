@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+export interface MainLayoutProps {
+  title: string;
+}
+
+const { title = "Casa Rural Maxcanú" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/logo-casa-rural-icono-negativo.png"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="font-[montserrat]">
+    <header class="bg-palette-2">
+      <div class="md:flex justify-around items-center text-center">
+        <img
+          src="/logo-casa-rural-texto-negativo.png"
+          alt="logo"
+          width="84"
+          height="84"
+          class="m-auto md:m-0"
+        />
+        <nav>
+          <ul class="md:flex lg:gap-8 md:gap-4">
+            <li><a href="">Inicio</a></li>
+            <li><a href="">Hospedaje</a></li>
+            <li><a href="">Galería de arte</a></li>
+            <li><a href="">Jardín botánico</a></li>
+            <li><a href="">Renta de bicicletas</a></li>
+            <li><a href="">Recorrido virtual</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <slot />
+  </body>
+</html>

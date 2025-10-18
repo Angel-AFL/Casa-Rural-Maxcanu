@@ -1,1 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
+
+/* Extender o configurar el tema de Tailwind CSS */
+@theme {
+  /* Ejemplo de un color personalizado 'primary' */
+  --color-palette-1: #7f2e2c;
+  --color-palette-2: #a38613;
+  --color-palette-3: #c1ae10;
+}
