@@ -18,19 +18,72 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
       href="/logo-casa-rural-icono-negativo.png"
     />
     <title>{title}</title>
+
+    <style>
+      a {
+        position: relative;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+      }
+
+      a::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: white;
+
+        bottom: -2px;
+        left: 0;
+
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      a:hover {
+        color: white;
+      }
+
+      a:hover::after {
+        transform: scaleX(1);
+      }
+
+      header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 10;
+      }
+
+      body {
+        padding-top: 180px;
+      }
+
+      @media (min-width: 768px) {
+        body {
+          padding-top: 84px;
+        }
+      }
+    </style>
   </head>
-  <body class="font-[montserrat]">
+  <body class="font-[montserrat] font-medium">
     <header class="bg-palette-2">
-      <div class="md:flex justify-around items-center text-center">
-        <img
-          src="/logo-casa-rural-texto-negativo.png"
-          alt="logo"
-          width="84"
-          height="84"
-          class="m-auto md:m-0"
-        />
+      <div
+        class="md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
+      >
+        <a href="/">
+          <img
+            src="/logo-casa-rural-texto-negativo.png"
+            alt="logo"
+            width="84"
+            height="84"
+            class="m-auto lg:m-0"
+          />
+        </a>
+
         <nav>
-          <ul class="md:flex lg:gap-8 md:gap-4">
+          <ul class="md:flex md:items-center lg:gap-8 md:gap-4">
             <li><a href="/">Inicio</a></li>
             <li><a href="">Hospedaje</a></li>
             <li>
