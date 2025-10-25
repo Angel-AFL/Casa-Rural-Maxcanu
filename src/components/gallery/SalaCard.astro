@@ -1,0 +1,20 @@
+---
+export interface SalaCardProps {
+  href: string;
+  image: string;
+  name: string;
+}
+
+const { href, image, name } = Astro.props as SalaCardProps;
+---
+
+<a href={href}>
+  <div class="relative hover:scale-105 transition duration-300">
+    <img src={image} alt={name} width="450" height="300" class="rounded" />
+    <p
+      class="absolute inset-0 flex justify-center items-center font-bold text-white text-xl bg-black/15"
+    >
+      {name}
+    </p>
+  </div>
+</a>
