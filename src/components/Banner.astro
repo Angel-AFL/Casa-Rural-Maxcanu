@@ -1,8 +1,16 @@
-<section class="bg-blue-500 mb-8">
-  <div>
-    <img
-      src="https://placehold.co/1600X720"
-      alt="banner de la galería de arte"
-    />
-  </div>
+---
+interface BannerProps {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props as BannerProps;
+---
+
+<section>
+  <img
+    class="md:h-[500px] lg:h-[600px] h-[400px] w-full object-contain"
+    src={src}
+    alt={alt}
+  />
 </section>
