@@ -1,10 +1,10 @@
 ---
-interface BannerProps {
+export interface Props {
   src: string;
   alt: string;
 }
 
-const { src, alt } = Astro.props as BannerProps;
+const { src, alt } = Astro.props;
 ---
 
 <section>
