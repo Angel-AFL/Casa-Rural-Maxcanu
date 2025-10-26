@@ -1,11 +1,11 @@
 ---
-export interface SalaCardProps {
+export interface Props {
   href: string;
   image: string;
   name: string;
 }
 
-const { href, image, name } = Astro.props as SalaCardProps;
+const { href, image, name } = Astro.props;
 ---
 
 <a href={href}>
