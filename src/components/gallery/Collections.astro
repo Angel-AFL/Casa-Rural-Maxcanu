@@ -3,14 +3,14 @@ import { getCatSalas } from "../../pages/api/cat_sala";
 import { getHref } from "../../lib/utils";
 import SalaCard from "../gallery/SalaCard.astro";
 
-const cat_sala = await getCatSalas();
+const catSala = await getCatSalas();
 ---
 
 <section class="p-2 md:p-4 lg:p-8 grid place-items-center">
   <h2 class="text-3xl font-medium p-2 mb-4 tracking-widest">Salas de Arte</h2>
   <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2">
     {
-      cat_sala?.map((sala) => (
+      catSala?.map((sala) => (
         <SalaCard
           href={getHref(sala.nombre)}
           image={sala.imagen}
