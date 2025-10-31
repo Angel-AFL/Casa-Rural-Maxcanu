@@ -4,3 +4,13 @@ export interface CatSala {
   descripcion: string;
   imagen: string;
 }
+
+export interface CatGaleriaArte {
+  id: number;
+  sala: string;
+  nombre: string;
+  autor: string;
+  tipo: string;
+  imagen: string;
+  created_at: string;
+}
