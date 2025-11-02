@@ -22,13 +22,13 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
     <ClientRouter />
 
     <style>
-      a {
+      nav a {
         position: relative;
         text-decoration: none;
         transition: color 0.3s ease-in-out;
       }
 
-      a::after {
+      nav a::after {
         content: "";
         position: absolute;
         width: 100%;
@@ -43,11 +43,11 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
         transition: transform 0.3s ease-in-out;
       }
 
-      a:hover {
+      nav a:hover {
         color: white;
       }
 
-      a:hover::after {
+      nav a:hover::after {
         transform: scaleX(1);
       }
 
