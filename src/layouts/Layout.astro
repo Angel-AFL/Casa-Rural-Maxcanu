@@ -51,13 +51,6 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
         transform: scaleX(1);
       }
 
-      header {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 10;
-      }
-
       body {
         padding-top: 180px;
       }
@@ -70,7 +63,7 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
     </style>
   </head>
   <body class="font-[montserrat] font-medium">
-    <header class="bg-palette-2">
+    <header class="bg-palette-2 fixed top-0 w-full z-50">
       <div
         class="md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
       >
