@@ -9,8 +9,10 @@ const { href, image, name } = Astro.props;
 ---
 
 <a href={href}>
-  <div class="relative hover:scale-105 transition duration-300">
-    <img src={image} alt={name} width="450" height="300" class="rounded" />
+  <div
+    class="relative hover:scale-105 transition duration-300 w-auto h-[400px] overflow-hidden rounded"
+  >
+    <img src={image} alt={name} class="w-full h-full object-cover" />
     <p
       class="absolute inset-0 flex justify-center items-center font-bold text-white text-xl bg-black/15"
     >
