@@ -6,6 +6,7 @@ export interface Props {
 }
 
 const { title = "Casa Rural Maxcanú" } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -41,11 +42,13 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
         transition: transform 0.3s ease-in-out;
       }
 
-      nav a:hover {
+      nav a:hover,
+      nav a.active-link {
         color: #a38613;
       }
 
-      nav a:hover::after {
+      nav a:hover::after,
+      nav a.active-link::after {
         transform: scaleX(1);
       }
 
@@ -104,15 +107,55 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
 
         <nav>
           <ul class="md:flex md:items-center lg:gap-8 md:gap-4">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/">Nosotros</a></li>
-            <li><a href="">Hospedaje</a></li>
             <li>
-              <a href="/galeria-de-arte">Galería de arte</a>
+              <a href="/" class={currentPath === "/" ? "active-link" : ""}
+                >Inicio</a
+              >
             </li>
-            <li><a href="">Jardín botánico</a></li>
-            <li><a href="">Renta de bicicletas</a></li>
-            <li><a href="">Recorrido virtual</a></li>
+            <li>
+              <a
+                href="/nosotros"
+                class={currentPath === "/nosotros" ? "active-link" : ""}
+                >Nosotros</a
+              >
+            </li>
+            <li>
+              <a
+                href="/hospedaje"
+                class={currentPath === "/hospedaje" ? "active-link" : ""}
+                >Hospedaje</a
+              >
+            </li>
+            <li>
+              <a
+                href="/galeria-de-arte"
+                class={currentPath === "/galeria-de-arte" ? "active-link" : ""}
+                >Galería de arte</a
+              >
+            </li>
+            <li>
+              <a
+                href="/jardin-botanico"
+                class={currentPath === "/jardin-botanico" ? "active-link" : ""}
+                >Jardín botánico</a
+              >
+            </li>
+            <li>
+              <a
+                href="/renta-de-bicicletas"
+                class={currentPath === "/renta-de-bicicletas"
+                  ? "active-link"
+                  : ""}>Renta de bicicletas</a
+              >
+            </li>
+            <li>
+              <a
+                href="/recorrido-virtual"
+                class={currentPath === "/recorrido-virtual"
+                  ? "active-link"
+                  : ""}>Recorrido virtual</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
@@ -153,6 +196,16 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
             <li><a href="">Renta de bicicletas</a></li>
           </div>
         </ul>
+
+        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <div class="flex flex-col gap-2">
+            <li><span class="text-lg">Ayuda</span></li>
+            <li><a href="">Contacto</a></li>
+            <li><a href="">Preguntas frecuentes</a></li>
+            <li><a href="">Más servicios</a></li>
+          </div>
+        </ul>
+
         <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
           <div class="flex flex-col gap-2">
             <li><span class="text-lg">Políticas</span></li>
@@ -165,21 +218,39 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
         </ul>
         <ul class="pt-6 flex flex-col gap-4 flex-1 md:items-center">
           <li>
-            <span class="text-lg">Síguenos</span>
+            <span class="text-lg">Redes Sociales</span>
           </li>
           <div class="flex gap-4">
             <a href="https://wa.me/+529999062536
             " target="_blank"
-              ><img src="whatsapp-icon.png" alt="" width="48" height="48" /></a
+              ><img
+                src="whatsapp-icon.png"
+                alt=""
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              /></a
             >
             <a
               href="https://www.facebook.com/share/17ZH6uVrJm/?mibextid=wwXIfr"
               target="_blank"
             >
-              <img src="facebook-icon.png" alt="" width="48" height="48" />
+              <img
+                src="facebook-icon.png"
+                alt=""
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              />
             </a>
             <a href="">
-              <img src="instagram-icon.png" alt="" width="48" height="48" />
+              <img
+                src="instagram-icon.png"
+                alt=""
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              />
             </a>
           </div>
         </ul>
