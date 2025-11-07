@@ -1,0 +1,26 @@
+---
+import Button from "../components/Button.astro";
+
+
+const { 
+  title = "Casa Rural de Maxcanú", 
+  subtitle = "La Casa ideal para el descanso, la relajación, la meditación y el esparcimiento", 
+  imageUrl = "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/casa%20rural.jpg " 
+} = Astro.props;
+---
+
+<section id="inicio" class="h-screen bg-cover bg-center flex items-center justify-center text-center relative"
+  style={`background-image: url('${imageUrl}');`}>
+  <div class="bg-black/50 absolute inset-0"></div>
+  
+  <div class="relative z-1 text-white px-4">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">{title}</h2>
+    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+    
+    <div class="flex items-center justify-center">
+      <slot /> 
+   <Button label="Conocenos"/>
+    </div>
+  </div>
+</section>
+
