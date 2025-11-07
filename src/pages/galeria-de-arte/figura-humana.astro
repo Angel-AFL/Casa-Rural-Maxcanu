@@ -1,5 +1,26 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ArtCard from "../../components/gallery/ArtCard.astro";
+import Hero from "../../components/Hero.astro";
+import { getFiguraHumana } from "../api/cat_galeria_arte";
+
+const catFiguraHumana = await getFiguraHumana();
 ---
 
-<Layout title="Figura Humana" />
+<Layout title="Figura Humana">
+  <Hero />
+  <section class="grid place-items-center p-2 md:p-4 lg:p-8">
+    <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
+      {
+        catFiguraHumana?.map((art) => (
+          <ArtCard
+            img={art.imagen}
+            name={art.nombre}
+            author={art.autor}
+            type={art.tipo}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Layout>
