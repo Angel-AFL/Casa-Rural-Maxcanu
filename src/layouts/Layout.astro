@@ -6,6 +6,7 @@ export interface Props {
 }
 
 const { title = "Casa Rural Maxcanú" } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -22,40 +23,60 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
     <ClientRouter />
 
     <style>
-      a {
+      nav a {
         position: relative;
         text-decoration: none;
         transition: color 0.3s ease-in-out;
       }
 
-      a::after {
+      nav a::after {
         content: "";
         position: absolute;
         width: 100%;
         height: 1px;
-        background-color: white;
-
+        background-color: #a38613;
         bottom: -2px;
         left: 0;
-
         transform: scaleX(0);
         transform-origin: bottom left;
         transition: transform 0.3s ease-in-out;
       }
 
-      a:hover {
-        color: white;
+      nav a:hover,
+      nav a.active-link {
+        color: #a38613;
       }
 
-      a:hover::after {
+      nav a:hover::after,
+      nav a.active-link::after {
         transform: scaleX(1);
       }
 
-      header {
-        position: fixed;
+      footer ul li a {
+        position: relative;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+      }
+
+      footer ul li a::after {
+        content: "";
+        position: absolute;
         width: 100%;
-        top: 0;
-        z-index: 10;
+        height: 1px;
+        background-color: white;
+        bottom: -2px;
+        left: 0;
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      footer ul li a:hover {
+        color: white;
+      }
+
+      footer ul li a:hover::after {
+        transform: scaleX(1);
       }
 
       body {
@@ -70,13 +91,13 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
     </style>
   </head>
   <body class="font-[montserrat] font-medium">
-    <header class="bg-palette-2">
+    <header class="bg-palette-1 fixed top-0 w-full z-50 text-white">
       <div
         class="md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
       >
         <a href="/">
           <img
-            src="/logo-casa-rural-texto-negativo.png"
+            src="/logo-casa-rural-variante.png"
             alt="logo"
             width="84"
             height="84"
@@ -89,15 +110,153 @@ const { title = "Casa Rural Maxcanú" } = Astro.props;
             <li><a href="/">Inicio</a></li>
             <li><a href="/hospedaje">Hospedaje</a></li>
             <li>
-              <a href="/galeria-de-arte">Galería de arte</a>
+              <a href="/" class={currentPath === "/" ? "active-link" : ""}
+                >Inicio</a
+              >
             </li>
-            <li><a href="">Jardín botánico</a></li>
-            <li><a href="">Renta de bicicletas</a></li>
-            <li><a href="">Recorrido virtual</a></li>
+            <li>
+              <a
+                href="/nosotros"
+                class={currentPath === "/nosotros" ? "active-link" : ""}
+                >Nosotros</a
+              >
+            </li>
+            <li>
+              <a
+                href="/hospedaje"
+                class={currentPath === "/hospedaje" ? "active-link" : ""}
+                >Hospedaje</a
+              >
+            </li>
+            <li>
+              <a
+                href="/galeria-de-arte"
+                class={currentPath === "/galeria-de-arte" ? "active-link" : ""}
+                >Galería de arte</a
+              >
+            </li>
+            <li>
+              <a
+                href="/jardin-botanico"
+                class={currentPath === "/jardin-botanico" ? "active-link" : ""}
+                >Jardín botánico</a
+              >
+            </li>
+            <li>
+              <a
+                href="/renta-de-bicicletas"
+                class={currentPath === "/renta-de-bicicletas"
+                  ? "active-link"
+                  : ""}>Renta de bicicletas</a
+              >
+            </li>
+            <li>
+              <a
+                href="/recorrido-virtual"
+                class={currentPath === "/recorrido-virtual"
+                  ? "active-link"
+                  : ""}>Recorrido virtual</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
     </header>
     <slot />
+    <footer class="bg-palette-2 p-2 md:p-4 lg:p-8">
+      <div class="flex flex-col md:flex-row justify-evenly md:gap-8 lg:gap-0">
+        <ul class="flex flex-col gap-2 flex-1 items-center">
+          <div class="flex flex-col gap-2">
+            <li>
+              <img
+                src="/logo-casa-rural-texto-negativo.png"
+                alt=""
+                width="100"
+                height="100"
+              />
+            </li>
+            <li><span class="text-lg">Casa Rural Maxcanú</span></li>
+            <li>
+              <span
+                ><a
+                  href="https://maps.app.goo.gl/QbSrKrBu61NDQguR9"
+                  target="_blank"
+                  >Dirección: 97800, C. 25 84, Centro, Maxcanú, Yucatán.</a
+                ></span
+              >
+            </li>
+            <li><span><a href="">Correo: casarural@gmail.com</a></span></li>
+            <li><span><a href="">Teléfono: +529999062536</a></span></li>
+          </div>
+        </ul>
+
+        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <div class="flex flex-col gap-2">
+            <li><span class="text-lg">Acerca de</span></li>
+            <li><a href="">Nosotros</a></li>
+            <li><a href="">Hospedaje</a></li>
+            <li><a href="">Renta de bicicletas</a></li>
+          </div>
+        </ul>
+
+        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <div class="flex flex-col gap-2">
+            <li><span class="text-lg">Ayuda</span></li>
+            <li><a href="">Contacto</a></li>
+            <li><a href="">Preguntas frecuentes</a></li>
+            <li><a href="">Más servicios</a></li>
+          </div>
+        </ul>
+
+        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <div class="flex flex-col gap-2">
+            <li><span class="text-lg">Políticas</span></li>
+            <li><a href="">Términos y condiciones</a></li>
+            <li><a href="">Política de privacidad</a></li>
+            <li><a href="">Política de promociones</a></li>
+            <li><a href="">Política de pagos</a></li>
+            <li><a href="">Política de envíos</a></li>
+          </div>
+        </ul>
+        <ul class="pt-6 flex flex-col gap-4 flex-1 md:items-center">
+          <li>
+            <span class="text-lg">Redes Sociales</span>
+          </li>
+          <div class="flex gap-4">
+            <a href="https://wa.me/+529999062536
+            " target="_blank"
+              ><img
+                src="/whatsapp-icon.png"
+                alt=""
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              /></a
+            >
+            <a
+              href="https://www.facebook.com/share/17ZH6uVrJm/?mibextid=wwXIfr"
+              target="_blank"
+            >
+              <img
+                src="/facebook-icon.png"
+                alt=""
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              />
+            </a>
+            <a href="">
+              <img
+                src="/instagram-icon.png"
+                alt=""
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              />
+            </a>
+          </div>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>

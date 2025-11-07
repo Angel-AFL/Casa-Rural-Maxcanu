@@ -1,0 +1,97 @@
+---
+import Habitacion from './RoomItem.astro';
+
+
+const habitaciones = [
+  {
+    nombre: "OXKINTOK",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png",
+    descripcion: "La habitación Oxkintok de la Casa Rural Maxcanú está en la planta baja y cuenta con cama matrimonial, hamaca, ventilador, aire acondicionado, mesa de trabajo, ropero y acceso a un jardín lateral. Los espacios comunes incluyen sala, cocina, comedor, biblioteca y un huerto-jardín con iluminación, bancas, fogata y fuente."
+  },
+  {
+    nombre: "DOÑA CARMEN",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Carmen.png",
+    descripcion: "texto de ejempl"
+  },
+  {
+    nombre: "UXMAL",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Uxmal.png",
+    descripcion: "texto de ejemplo"
+  },
+  
+  {
+    nombre: "CELESTÚN",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Celestun.png",
+    descripcion: "texto de ejemplo"
+  },{
+    nombre: "CABAÑAS: AVES TROPICALES",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Aves-Tropicales.png",
+    descripcion: "texto de ejemplo"
+  },
+  {
+    nombre: "CABAÑAS: PITAHAYA-DRAGON FRUIT",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Pitahaya-Dragon%20Fruit.png",
+    descripcion: "texto de ejemplo"
+  }
+];
+---
+
+<section class="bg-white py-16 text-stone-800">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-8">
+      Nuestras Habitaciones
+    </h2>
+
+    <!-- Carrusel automático -->
+    <div class="relative overflow-hidden">
+      <div class="flex animate-scroll gap-6">
+        {habitaciones.map(h => (
+          <div class="flex-shrink-0 w-80">
+            <Habitacion {...h} />
+          </div>
+        ))}
+        {/* Duplicamos las cards para el loop */}
+        {habitaciones.map(h => (
+          <div class="flex-shrink-0 w-80">
+            <Habitacion {...h} />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="mt-6 text-lg max-w-2xl mx-auto leading-relaxed">
+      Cada habitación tiene su encanto, con detalles únicos que combinan confort moderno y esencia yucateca.
+    </p>
+  </div>
+</section>
+
+<style>
+/* Carrusel horizontal automático */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+/* Cards */
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.card-with-modal img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 1rem;
+  transition: transform 0.3s;
+}
+
+.card-with-modal img:hover {
+  transform: scale(1.05);
+}
+</style>
