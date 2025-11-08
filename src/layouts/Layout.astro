@@ -80,7 +80,7 @@ const currentPath = Astro.url.pathname;
       }
     </style>
   </head>
-  <body class="font-[montserrat] font-medium pt-[180px] md:pt-0 lg:pt-[84px]">
+  <body class="font-[montserrat] font-medium pt-[180px] md:pt-0 lg:pt-[80px]">
     <header class="bg-palette-1 fixed top-0 w-full z-50 text-white">
       <div
         class="md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
@@ -181,29 +181,36 @@ const currentPath = Astro.url.pathname;
         <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
           <div class="flex flex-col gap-2">
             <li><span class="text-lg">Acerca de</span></li>
-            <li><a href="">Nosotros</a></li>
-            <li><a href="">Hospedaje</a></li>
-            <li><a href="">Renta de bicicletas</a></li>
+            <li><a href="/nosotros">Nosotros</a></li>
+            <li><a href="/hospedaje">Hospedaje</a></li>
+            <li><a href="/galeria-de-arte">Galería de arte</a></li>
+            <li><a href="/renta-de-bicicletas">Renta de bicicletas</a></li>
+            <li><a href="/recorrido-virtual">Recorrido virtual</a></li>
           </div>
         </ul>
 
         <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
           <div class="flex flex-col gap-2">
             <li><span class="text-lg">Ayuda</span></li>
-            <li><a href="">Contacto</a></li>
-            <li><a href="">Preguntas frecuentes</a></li>
-            <li><a href="">Más servicios</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li>
+            <li><a href="/mas-servicios">Más servicios</a></li>
           </div>
         </ul>
 
         <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
           <div class="flex flex-col gap-2">
             <li><span class="text-lg">Políticas</span></li>
-            <li><a href="">Términos y condiciones</a></li>
-            <li><a href="">Política de privacidad</a></li>
-            <li><a href="">Política de promociones</a></li>
-            <li><a href="">Política de pagos</a></li>
-            <li><a href="">Política de envíos</a></li>
+            <li>
+              <a href="/politicas/terminos-y-condiciones"
+                >Términos y condiciones</a
+              >
+            </li>
+            <li>
+              <a href="/politicas/politica-de-privacidad"
+                >Política de privacidad</a
+              >
+            </li>
           </div>
         </ul>
         <ul class="pt-6 flex flex-col gap-4 flex-1 md:items-center">

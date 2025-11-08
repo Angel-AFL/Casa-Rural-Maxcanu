@@ -1,0 +1,89 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-container">
+  <h2 class="text-center text-3xl mb-8">Preguntas Frecuentes</h2>
+  {
+    items.map((item) => (
+      <details class="faq-item">
+        <summary class="faq-question">{item.question}</summary>
+
+        <div class="faq-answer">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    margin-bottom: 100px;
+  }
+
+  .faq-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .faq-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-question {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-question::marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: "+";
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #888;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: "−";
+    transform: rotate(180deg);
+  }
+
+  .faq-item[open] summary {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .faq-answer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    color: #333;
+    line-height: 1.6;
+  }
+</style>
