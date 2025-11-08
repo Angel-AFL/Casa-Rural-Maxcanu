@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+// ... otros imports
+
+// 1. Importa tu nuevo componente
+import FaqAccordion from "../components/FaqAccordion.astro";
+
+// 2. Define tu lista de preguntas y respuestas
+const faqItems = [
+  {
+    question: "¿Cuál es el horario de check-in y check-out?",
+    answer:
+      "El check-in es a partir de las 15:00 y el check-out es antes de las 12:00. Si necesitas flexibilidad, contáctanos.",
+  },
+  {
+    question: "¿Se admiten mascotas?",
+    answer:
+      "¡Sí! Somos 'pet-friendly'. Aceptamos mascotas bien educadas con un pequeño suplemento. Por favor, avísanos al reservar.",
+  },
+  {
+    question: "¿La galería de arte tiene un costo extra?",
+    answer:
+      "No, el acceso a todas las salas de arte y jardines está incluido en tu estancia. La galería está abierta de 10:00 a 18:00.",
+  },
+  {
+    question: "¿Hay Wi-Fi en las habitaciones?",
+    answer:
+      "Sí, ofrecemos conexión Wi-Fi gratuita de alta velocidad en todas las habitaciones y áreas comunes de la casa.",
+  },
+];
+---
+
+<Layout title="Mi Casa Rural">
+  <section class="mt-24 lg:mt-8">
+    <FaqAccordion items={faqItems} />
+  </section>
+</Layout>
