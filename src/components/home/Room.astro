@@ -6,32 +6,39 @@ const habitaciones = [
   {
     nombre: "OXKINTOK",
     imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png",
-    descripcion: "La habitación Oxkintok de la Casa Rural Maxcanú está en la planta baja y cuenta con cama matrimonial, hamaca, ventilador, aire acondicionado, mesa de trabajo, ropero y acceso a un jardín lateral. Los espacios comunes incluyen sala, cocina, comedor, biblioteca y un huerto-jardín con iluminación, bancas, fogata y fuente."
+    descripcion: "La Habitación Oxkintok, ubicada en la planta baja de Casa Rural Maxcanú, ofrece una cama matrimonial, hamaca, aire acondicionado, ventilador y mesa de trabajo. Tiene acceso directo a un jardín lateral y comparte un baño con jacuzzi con la habitación Doña Carmen.",
+    descripcion_2:" Disfruta de amplios espacios comunes —sala, cocina, biblioteca y palapas de descanso— y una pantalla con apps de entretenimiento. La decoración incluye 18 obras inspiradas en los mitos y leyendas del Mayab."
   },
   {
     nombre: "DOÑA CARMEN",
     imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Carmen.png",
-    descripcion: "texto de ejempl"
+    descripcion: "La Habitación Doña Carmen se encuentra en la planta baja de Casa Rural Maxcanú. Dispone de cama matrimonial, hamaca, aire acondicionado, ventilador, mesa de trabajo y ropero. Su pantalla incluye apps como Netflix y YouTube, ideal para relajarse tras un día tranquilo.",
+    descripcion_2:"Decorada con 17 obras de arte bajo la temática Retratos, comparte el baño con jacuzzi con la habitación Oxkintok y tiene acceso a los espacios comunes: sala, cocina, biblioteca y un hermoso huerto-jardín con área de fogata y palapas."
   },
   {
     nombre: "UXMAL",
     imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Uxmal.png",
-    descripcion: "texto de ejemplo"
+    descripcion: "La Habitación Uxmal, ubicada en la planta alta de Casa Rural Maxcanú, ofrece un ambiente fresco y acogedor con cama matrimonial, hamaca, aire acondicionado, ventilador, clóset y mesa de trabajo.",
+    descripcion_2:"Su pantalla cuenta con apps como Netflix y YouTube para disfrutar del descanso. Decorada con 22 obras inspiradas en plantas, flores y frutos, comparte el baño con la habitación Celestún y tiene acceso a todos los espacios comunes de la casa: sala, cocina, biblioteca y un hermoso huerto-jardín con palapas y fogata."
   },
   
   {
     nombre: "CELESTÚN",
     imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Celestun.png",
-    descripcion: "texto de ejemplo"
-  },{
+    descripcion: "La Habitación Celestún se ubica en la planta alta de Casa Rural Maxcanú. Ofrece una cama matrimonial, hamaca, aire acondicionado, ventilador, clóset y mesa de trabajo, además de tres ventanas que llenan el espacio de luz natural.",
+    descripcion_2:"Cuenta con pantalla y acceso a apps como Netflix y YouTube. Su decoración incluye 13 obras artísticas infantiles de Lol Saasil, que aportan un toque único y alegre.Comparte el baño de la planta alta con la habitación Uxmal y tiene acceso a todos los espacios comunes de la casa: sala, cocina, biblioteca, palapas y un agradable huerto-jardín con área de fogata."
+},{
     nombre: "CABAÑAS: AVES TROPICALES",
     imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Aves-Tropicales.png",
-    descripcion: "texto de ejemplo"
+    descripcion: "Disfruta de dos camas matrimoniales, hamaca grande, aire acondicionado, ventilador de techo, frigobar, clóset, mesa de trabajo y baño privado. Relájate en su terraza con hamacas y sala, rodeada de tranquilidad. Incluye pantalla con Netflix, YouTube y más.",
+    descripcion_2:"Decorada con 20 obras inspiradas en aves tropicales, creando un ambiente lleno de color y naturaleza. Además, tendrás acceso a todas las áreas comunes de la casa: sala, cocina, biblioteca, palapas y jardín con área de fogata."
+    
   },
   {
     nombre: "CABAÑAS: PITAHAYA-DRAGON FRUIT",
     imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Pitahaya-Dragon%20Fruit.png",
-    descripcion: "texto de ejemplo"
+    descripcion: "Cabaña Pitahaya — Dragon Fruit: nueva en Casa Rural Maxcanú, Cuenta con dos camas matrimoniales, hamaca grande, aire acondicionado, ventilador de techo, frigobar, mesa de trabajo, clóset y baño privado.",
+    descripcion_2:"Disfruta su terraza con hamacas y sala, perfecta para descansar, Pantalla con Netflix, YouTube y otras apps, Decorada con 18 obras inspiradas en la pitahaya, creando un ambiente colorido y moderno, Incluye acceso a áreas comunes"
   }
 ];
 ---
@@ -41,24 +48,28 @@ const habitaciones = [
     <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-8">
       Nuestras Habitaciones
     </h2>
+  </div>
 
-    <!-- Carrusel automático -->
-    <div class="relative overflow-hidden">
-      <div class="flex animate-scroll gap-6">
-        {habitaciones.map(h => (
-          <div class="flex-shrink-0 w-80">
-            <Habitacion {...h} />
-          </div>
-        ))}
-        {/* Duplicamos las cards para el loop */}
-        {habitaciones.map(h => (
-          <div class="flex-shrink-0 w-80">
-            <Habitacion {...h} />
-          </div>
-        ))}
-      </div>
+  <!-- Carrusel FULL WIDTH -->
+  <div class="relative overflow-hidden w-full">
+    <div class="flex animate-scroll gap-6 px-4">
+      {habitaciones.map(h => (
+        <div class="flex-shrink-0 w-80 card-with-modal">
+          <Habitacion {...h} />
+          
+        </div>
+      ))}
+
+      {/* Duplicamos para loop infinito */}
+      {habitaciones.map(h => (
+        <div class="flex-shrink-0 w-80 card-with-modal">
+          <Habitacion {...h} />
+        </div>
+      ))}
     </div>
+  </div>
 
+  <div class="max-w-6xl mx-auto px-4 text-center">
     <p class="mt-6 text-lg max-w-2xl mx-auto leading-relaxed">
       Cada habitación tiene su encanto, con detalles únicos que combinan confort moderno y esencia yucateca.
     </p>
@@ -66,7 +77,6 @@ const habitaciones = [
 </section>
 
 <style>
-/* Carrusel horizontal automático */
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -78,17 +88,12 @@ const habitaciones = [
   animation: scroll 20s linear infinite;
 }
 
-/* Cards */
-.flex-shrink-0 {
-  flex-shrink: 0;
-}
-
 .card-with-modal img {
   width: 100%;
-  max-width: 320px;
+  max-width: 820px;
   height: auto;
   border-radius: 1rem;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .card-with-modal img:hover {
