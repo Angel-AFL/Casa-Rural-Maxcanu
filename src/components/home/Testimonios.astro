@@ -1,0 +1,101 @@
+---
+const testimonios = [
+  {
+    texto: "El lugar es espectacular, rodeado de naturaleza y con espacios acogedores. Pasé un fin de semana increíble y sin duda regresaré pronto. La atención personalizada y el ambiente cálido hicieron toda la diferencia.",
+    autor: "María López"
+  },
+  {
+    texto: "Una experiencia maravillosa. Las habitaciones tienen un estilo rústico muy elegante, y todo está impecable. Me encantó poder descansar en un sitio tan tranquilo.",
+    autor: "Carlos Pérez"
+  },
+  {
+    texto: "El sitio es perfecto para desconectarse. La decoración, la limpieza y el trato fueron excepcionales. Lo recomiendo a todas las personas que buscan paz y comodidad.",
+    autor: "Ana Martínez"
+  },
+    {
+        texto: "Me encantó la combinación de lo rústico con lo moderno. La casa tiene mucho encanto y los alrededores son ideales para pasear y relajarse. Definitivamente volveré.",
+        autor: "Luis García"
+    },
+    {
+        texto: "Un lugar lleno de historia y cultura. Cada rincón tiene su propia historia, y el ambiente es muy acogedor. La atención del personal fue excelente.",
+        autor: "Sofía Ramírez"
+    },
+    {
+        texto: "La Casa Rural Maxcanú superó todas mis expectativas. La tranquilidad del lugar, la belleza de los jardines y la comodidad de las habitaciones hicieron que mi estancia fuera inolvidable.",
+        autor: "Jorge Hernández"
+    },{
+        texto: "Un refugio perfecto para escapar del bullicio de la ciudad. La casa es hermosa y el entorno natural es impresionante. Me sentí renovada después de mi estancia.",
+        autor: "Elena Torres"
+    }
+];
+---
+
+
+<section class="w-full py-16  text-palette-5 relative overflow-hidden">
+  <h2 class="text-center text-3xl font-bold mb-10">Testimonios</h2>
+
+  <!-- Contenedor del carrusel -->
+  <div id="carousel" class="flex w-full overflow-x-hidden snap-x snap-mandatory scroll-smooth">
+    {testimonios.map((t) => (
+      <article class="min-w-full max-w-full px-6 md:px-20 flex flex-col items-center text-center snap-center">
+        
+        <div class="bg-palette-2 p-10 rounded-2xl shadow-xl max-w-3xl mx-auto border border-neutral-700 items-center">
+          <p class="text-lg leading-relaxed mb-6 opacity-90 text-palette-5">
+            "{t.texto}"
+          </p>
+          <p class="font-semibold bg-palette-4 text-palette-5 rounded-2xl">— {t.autor}</p>
+        </div>
+
+
+        
+      </article>
+    ))}
+  </div>
+
+  <!-- Botón anterior -->
+  <button
+    id="prev"
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-palette-3 hover:bg-palette-1 p-3 rounded-full shadow-lg border border-neutral-700"
+  >
+    ‹
+  </button>
+
+  <!-- Botón siguiente -->
+  <button
+    id="next"
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-palette-3 hover:bg-palette-1 p-3 rounded-full shadow-lg border border-neutral-700"
+  >
+    ›
+  </button>
+
+</section>
+
+<script>
+  const carousel = document.getElementById("carousel");
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
+
+  if (carousel && prev && next) {
+    let index = 0;
+    const total = carousel.children.length;
+
+    function updateSlide() {
+      carousel?.scrollTo({
+        left: index * carousel.clientWidth,
+        behavior: "smooth",
+      });
+    }
+
+    next.onclick = () => {
+      index = (index + 1) % total;
+      updateSlide();
+    };
+
+    prev.onclick = () => {
+      index = (index - 1 + total) % total;
+      updateSlide();
+    };
+
+    window.addEventListener("resize", updateSlide);
+  }
+</script>
