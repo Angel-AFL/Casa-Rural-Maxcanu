@@ -1,6 +1,6 @@
-import type { CatSala } from '../../types/global';
+import type { CatCabanaHabitacion } from '../../types/global';
 
-export async function getCatCabanaHabitacion(): Promise<CatSala[]> {
+export async function getCatCabanaHabitacion(): Promise<CatCabanaHabitacion[]> {
   try {
     const res = await fetch(
       'https://jrrwlqhzxlfcsbaanzzq.supabase.co/rest/v1/cat_cabana_habitacion?select=nombre',
@@ -12,7 +12,7 @@ export async function getCatCabanaHabitacion(): Promise<CatSala[]> {
       }
     );
     if (!res.ok) throw new Error(`Error fetching: ${res.statusText}`);
-    const data = (await res.json()) as CatSala[];
+    const data = (await res.json()) as CatCabanaHabitacion[];
     return data;
   } catch (error) {
     console.error('Error fetching cabañas:', error);
