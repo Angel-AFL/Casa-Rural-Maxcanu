@@ -1,0 +1,85 @@
+---
+const testimonios = [
+  {
+    texto: "El lugar es espectacular, rodeado de naturaleza y con espacios acogedores. Pasé un fin de semana increíble y sin duda regresaré pronto. La atención personalizada y el ambiente cálido hicieron toda la diferencia.",
+    autor: "María López"
+  },
+  {
+    texto: "Una experiencia maravillosa. Las habitaciones tienen un estilo rústico muy elegante, y todo está impecable. Me encantó poder descansar en un sitio tan tranquilo.",
+    autor: "Carlos Pérez"
+  },
+  {
+    texto: "El sitio es perfecto para desconectarse. La decoración, la limpieza y el trato fueron excepcionales. Lo recomiendo a todas las personas que buscan paz y comodidad.",
+    autor: "Ana Martínez"
+  },
+    {
+        texto: "Me encantó la combinación de lo rústico con lo moderno. La casa tiene mucho encanto y los alrededores son ideales para pasear y relajarse. Definitivamente volveré.",
+        autor: "Luis García"
+    },
+    {
+        texto: "Un lugar lleno de historia y cultura. Cada rincón tiene su propia historia, y el ambiente es muy acogedor. La atención del personal fue excelente.",
+        autor: "Sofía Ramírez"
+    },
+    {
+        texto: "La Casa Rural Maxcanú superó todas mis expectativas. La tranquilidad del lugar, la belleza de los jardines y la comodidad de las habitaciones hicieron que mi estancia fuera inolvidable.",
+        autor: "Jorge Hernández"
+    },{
+        texto: "Un refugio perfecto para escapar del bullicio de la ciudad. La casa es hermosa y el entorno natural es impresionante. Me sentí renovada después de mi estancia.",
+        autor: "Elena Torres"
+    }
+];
+---
+
+<section class="w-full py-16 bg-palette-">
+  <h2 class="text-center text-3xl md:text-4xl font-bold text-palette-5 mb-12 tracking-wide bg-palette-4 py-4">
+    Testimonios de Nuestros Visitantes
+  </h2>
+
+  
+  <div 
+    id="carousel"
+    class="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory scroll-smooth no-scrollbar"
+  >
+    {testimonios.map((t) => (
+      <article
+        class="min-w-[300px] md:min-w-[380px] max-w-md text-palette-5
+               p-8 rounded-2xl shadow-lg snap-center border border-neutral-700
+               hover:shadow-xl transition-shadow duration-300"
+      >
+        <p class="text-base leading-relaxed opacity-90">
+          “{t.texto}”
+        </p>
+        <p class="mt-6 font-semibold text-right text-palette-5">
+          — {t.autor}
+        </p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* oculta la barra */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.getElementById("carousel");
+    if (!carousel) return;
+
+    let autoScroll = setInterval(() => {
+      carousel.scrollBy({
+        left: 320,
+        behavior: "smooth",
+      });
+    }, 3500);
+
+    carousel.addEventListener("mousedown", () => clearInterval(autoScroll));
+    carousel.addEventListener("touchstart", () => clearInterval(autoScroll));
+  });
+</script>
