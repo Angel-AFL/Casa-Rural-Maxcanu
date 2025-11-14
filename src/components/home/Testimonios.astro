@@ -30,72 +30,56 @@ const testimonios = [
 ];
 ---
 
+<section class="w-full py-16 bg-palette-">
+  <h2 class="text-center text-3xl md:text-4xl font-bold text-palette-5 mb-12 tracking-wide bg-palette-4 py-4">
+    Testimonios de Nuestros Visitantes
+  </h2>
 
-<section class="w-full py-16  text-palette-5 relative overflow-hidden">
-  <h2 class="text-center text-3xl font-bold mb-10">Testimonios</h2>
-
-  <!-- Contenedor del carrusel -->
-  <div id="carousel" class="flex w-full overflow-x-hidden snap-x snap-mandatory scroll-smooth">
+  
+  <div 
+    id="carousel"
+    class="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory scroll-smooth no-scrollbar"
+  >
     {testimonios.map((t) => (
-      <article class="min-w-full max-w-full px-6 md:px-20 flex flex-col items-center text-center snap-center">
-        
-        <div class="bg-palette-2 p-10 rounded-2xl shadow-xl max-w-3xl mx-auto border border-neutral-700 items-center">
-          <p class="text-lg leading-relaxed mb-6 opacity-90 text-palette-5">
-            "{t.texto}"
-          </p>
-          <p class="font-semibold bg-palette-4 text-palette-5 rounded-2xl">— {t.autor}</p>
-        </div>
-
-
-        
+      <article
+        class="min-w-[300px] md:min-w-[380px] max-w-md text-palette-5
+               p-8 rounded-2xl shadow-lg snap-center border border-neutral-700
+               hover:shadow-xl transition-shadow duration-300"
+      >
+        <p class="text-base leading-relaxed opacity-90">
+          “{t.texto}”
+        </p>
+        <p class="mt-6 font-semibold text-right text-palette-5">
+          — {t.autor}
+        </p>
       </article>
     ))}
   </div>
-
-  <!-- Botón anterior -->
-  <button
-    id="prev"
-    class="absolute left-4 top-1/2 -translate-y-1/2 bg-palette-3 hover:bg-palette-1 p-3 rounded-full shadow-lg border border-neutral-700"
-  >
-    ‹
-  </button>
-
-  <!-- Botón siguiente -->
-  <button
-    id="next"
-    class="absolute right-4 top-1/2 -translate-y-1/2 bg-palette-3 hover:bg-palette-1 p-3 rounded-full shadow-lg border border-neutral-700"
-  >
-    ›
-  </button>
-
 </section>
 
+<style>
+  /* oculta la barra */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
 <script>
-  const carousel = document.getElementById("carousel");
-  const prev = document.getElementById("prev");
-  const next = document.getElementById("next");
+  window.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.getElementById("carousel");
+    if (!carousel) return;
 
-  if (carousel && prev && next) {
-    let index = 0;
-    const total = carousel.children.length;
-
-    function updateSlide() {
-      carousel?.scrollTo({
-        left: index * carousel.clientWidth,
+    let autoScroll = setInterval(() => {
+      carousel.scrollBy({
+        left: 320,
         behavior: "smooth",
       });
-    }
+    }, 3500);
 
-    next.onclick = () => {
-      index = (index + 1) % total;
-      updateSlide();
-    };
-
-    prev.onclick = () => {
-      index = (index - 1 + total) % total;
-      updateSlide();
-    };
-
-    window.addEventListener("resize", updateSlide);
-  }
+    carousel.addEventListener("mousedown", () => clearInterval(autoScroll));
+    carousel.addEventListener("touchstart", () => clearInterval(autoScroll));
+  });
 </script>
