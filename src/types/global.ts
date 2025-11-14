@@ -9,6 +9,7 @@ export interface CatSala {
 export interface ImgCabanaHabitacion {
   imagen: string;
 }
+<<<<<<< HEAD
 
 //nombres de cabañas/habitaciones
 export interface CatCabanaHabitacion {
@@ -32,6 +33,8 @@ export interface CatGaleriaArte {
   imagen: string;
   created_at: string;
 }
+=======
+>>>>>>> f2bc65ff639b953b9d910953caa905f172d031f4
 
 
 //registro hospedaje
@@ -44,6 +47,7 @@ export interface HospedajePayload {
   fecha_entrada: string; 
   fecha_salida: string;
 }
+<<<<<<< HEAD
 
 export interface HospedajeResponse {
   folio: string;
@@ -75,3 +79,14 @@ export interface DevolucionBiciResponse {
   estatus_nuevo: string;
   fecha_devolucion_actualizada: string; 
 }
+=======
+export interface CatGaleriaArte {
+  id: number;
+  sala: string;
+  nombre: string;
+  autor: string;
+  tipo: string;
+  imagen: string;
+  created_at: string;
+}
+>>>>>>> f2bc65ff639b953b9d910953caa905f172d031f4
