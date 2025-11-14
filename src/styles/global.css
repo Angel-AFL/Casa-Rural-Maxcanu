@@ -4,8 +4,13 @@
 /* Extender o configurar el tema de Tailwind CSS */
 @theme {
   /* Ejemplo de un color personalizado 'primary' */
-  --color-palette-1: #7f2e2c;
-  --color-palette-2: #a38613;
-  --color-palette-3: #c1ae10;
-  --color-palette-4: #f8f5f0;
+  --color-palette-1: #7f2e2c; /*<-principal*/
+  --color-palette-2: #a38613; /*<-principal*/
+  --color-palette-3: #c1ae10; /*<-principal*/
+  --color-palette-4: #f8f4ed;
+  --color-palette-5: #3a2e2a;
+  --color-palette-6: #b45a53;
+  --color-palette-7: #b45a53;
+  --color-palette-8: #335a65;
+  --color-palette-9: #b8cbd1;
 }
