@@ -4,6 +4,32 @@ import Hero from "../components/Hero.astro";
 import Room from "../components/home/Room.astro";
 import Button from "../components/Button.astro";
 import MapaCasa from "../components/home/mapaCasa.astro";
+import ImageWithText from "../components/ImageWithText.astro";
+import Testimonios from "../components/home/Testimonios.astro";
+import FaqAccordion from "../components/FaqAccordion.astro";
+
+const faqItems = [
+  {
+    question: "¿Cuál es el horario de check-in y check-out?",
+    answer:
+      "El check-in es a partir de las 15:00 y el check-out es antes de las 12:00. Si necesitas flexibilidad, contáctanos.",
+  },
+  {
+    question: "¿Se admiten mascotas?",
+    answer:
+      "¡Sí! Somos 'pet-friendly'. Aceptamos mascotas bien educadas con un pequeño suplemento. Por favor, avísanos al reservar.",
+  },
+  {
+    question: "¿La galería de arte tiene un costo extra?",
+    answer:
+      "No, el acceso a todas las salas de arte y jardines está incluido en tu estancia. La galería está abierta de 10:00 a 18:00.",
+  },
+  {
+    question: "¿Hay Wi-Fi en las habitaciones?",
+    answer:
+      "Sí, ofrecemos conexión Wi-Fi gratuita de alta velocidad en todas las habitaciones y áreas comunes de la casa.",
+  },
+];
 
 ---
 
@@ -12,8 +38,37 @@ import MapaCasa from "../components/home/mapaCasa.astro";
       <Hero>
       <Button label="Conocenos" />
       </Hero>
-   <Room/>
-   <MapaCasa/>
+       <h2 class="text-3xl md:text-4xl text-center my-4 font-bold tracking-widest text-palette-2 bg-palette-4 py-6">
+    Nuestros Atractivos
+       </h2>
+       <ImageWithText
+      heading='"JARDÍN BOTÁNICO"'
+      subheading="En la casa rural MAXCANÚ se alberga cerca de 100 especies vegetales."
+      text="El Jardín Botánico “Don Adolfo y Doña Carmen” fue, en su origen, el huerto familiar, o el solar, o el traspatio, de una vivienda rural que ha pasado por tres generaciones. Recientemente se le consideró como el amplio huerto-jardín de la “Casa Rural Maxcanú”, se considera un jardín botánico y, particularmente, como un jardín etnobotánico, dado que la gran mayoría de las plantas que la integran tienen importancia en la cultura maya.."
+      imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/flores.jpg "
+      imageSide="left"
+      />
+      <Room/>
+      
+      <ImageWithText
+      heading='"HABITACIONES TEMÁTICAS"'
+      subheading=" Preservamos y compartimos la cultura yucateca pronoviendola con tematicas en las habitaciones y cabañas"
+      text="En la Casa Rural Maxcanú, cada habitación y cabaña ha sido diseñada para ofrecer comodidad, tranquilidad y un toque artístico único. Todas cuentan con cama matrimonial, hamaca, ventilador, aire acondicionado, mesa de trabajo, clóset o ropero y pantalla con aplicaciones de entretenimiento como Netflix y YouTube, Cada espacio tiene una personalidad propia reflejada en su decoración artística, con colecciones temáticas que van desde mitos mayas y retratos, hasta flores, plantas y aves tropicales."
+      imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png"
+      imageSide="right"
+      />
+      <MapaCasa/>
+      <ImageWithText
+      heading='"HISTORIA"'
+      subheading="Cada sitio es un pedazo de historia yucateca"
+      text="Este lugar es, en su totalidad, un pedazo de historia, cuyo encanto se manifiesta desde su cocina tradicional, que evoca la típica casa del Yucatán más antiguo, hasta su decoración, que resalta vivamente la cultura yucateca y otras influencias dejadas por personas internas y externas. Además, su jardín botánico alberga plantas locales con usos tradicionales de gran importancia para la herencia maya. En esencia, cada rincón de la casa tiene una historia que contar."
+      imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/cocina-maya.jpg "
+      imageSide="left"
+      />
+      
+     
+      <Testimonios/>
    
-   
+      <FaqAccordion items={faqItems}/>
+
 </Layout>
