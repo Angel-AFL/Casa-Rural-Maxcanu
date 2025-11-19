@@ -1,0 +1,64 @@
+---
+
+const { 
+  title = "Descubre los secretos de Maxcanú y la Ruta Puuc", 
+  subtitle = "Explora grutas milenarias, haciendas históricas y la riqueza cultural de la región.", 
+  imageUrl = "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/casa-rural.png" 
+} = Astro.props;
+---
+
+<section
+  id="inicio"
+  class="min-h-[70vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[70px]"
+  style={`background-image: url('${imageUrl}');`}
+>
+  <div class="bg-black/50 absolute inset-0"></div>
+
+  <div class="relative z-[2] text-white px-4">
+    <h2 class="text-4xl md:text-5xl font-bold mb-2">{title}</h2>
+    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+
+    <div class="flex items-center justify-center gap-4 mt-6 flex-wrap">
+    
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+
+  <!-- Botón Explorar -->
+    <a 
+    href="#" 
+    class="px-6 py-3 rounded-xl bg-yellow-400 text-black font-bold shadow-lg hover:bg-yellow-300 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+     >
+     Explorar
+     </a>
+
+  <!-- Botón Haciendas -->
+    <a 
+    href="#" 
+    class="px-6 py-3 rounded-xl bg-emerald-500 text-white font-bold shadow-lg hover:bg-emerald-400 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+    >
+     Haciendas
+    </a>
+
+  <!-- Botón Grutas -->
+    <a 
+    href="#" 
+    class="px-6 py-3 rounded-xl bg-blue-500 text-white font-bold shadow-lg hover:bg-blue-400 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+    >
+     Grutas
+    </a>
+
+  <!-- Botón Contacto -->
+    <a 
+    href="#" 
+    class="px-6 py-3 rounded-xl bg-orange-500 text-white font-bold shadow-lg hover:bg-orange-400 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+    >
+     Contacto
+    </a>
+
+</div>
+
+
+      <slot />
+    </div>
+  </div>
+</section>
+
