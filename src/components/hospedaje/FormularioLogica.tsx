@@ -1,17 +1,13 @@
 import { useState } from 'react';
-// Importamos el servicio que llama a Supabase
 import { insertHospedaje } from '../../pages/api/sp_insertar_hospedaje';
 
-// Función para la fecha mínima
 function getLocalDatetimeString() {
   const now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   return now.toISOString().slice(0, 16);
 }
 
-// Este es tu "Hook" personalizado. ¡Toda la lógica vive aquí!
 export function useFormularioLogica() {
-  // 1. Todos los 'useState' se mudan aquí
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [correo, setCorreo] = useState('');
@@ -24,17 +20,54 @@ export function useFormularioLogica() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [minDate] = useState(getLocalDatetimeString());
+  const validarCampos = (): boolean => {
+    if (nombre.trim().length < 3) {
+      setError("El nombre debe tener al menos 3 letras.");
+      return false;
+    }
 
-  // 2. El 'handleSubmit' también se muda aquí
+    if (apellido.trim().length < 2) {
+      setError("El apellido debe tener al menos 2 letras.");
+      return false;
+    }
+
+    if (!correo.includes('@') || !correo.includes('.com')) {
+      setError("El correo debe ser válido y usar Gmail (ej: usuario@gmail.com).");
+      return false;
+    }
+
+    const telefonoRegex = /^\d{10}$/;
+    if (!telefonoRegex.test(telefono)) {
+      setError("El teléfono debe tener exactamente 10 números.");
+      return false;
+    }
+
+    if (fechaEntrada && fechaSalida && fechaEntrada >= fechaSalida) {
+        setError("La fecha de salida debe ser posterior a la fecha de entrada.");
+        return false;
+    }
+    
+    if (!habitacion) {
+        setError("Debes seleccionar una habitación o cabaña.");
+        return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     setError(null);
     setIsSuccess(false);
+
+    if (!validarCampos()) {
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // 3. La llamada al servicio (con 7 argumentos)
       const reserva = await insertHospedaje(
         nombre,
         apellido,
@@ -49,9 +82,7 @@ export function useFormularioLogica() {
         throw new Error('La respuesta del servidor fue nula.');
       }
 
-      // ¡Éxito!
       setIsSuccess(true);
-      // Limpiamos los campos
       setNombre('');
       setApellido('');
       setCorreo('');
@@ -67,30 +98,18 @@ export function useFormularioLogica() {
     }
   };
 
-  // 4. El hook "devuelve" todo lo que la vista necesita
   return {
-    // Estados
-    nombre,
-    apellido,
-    correo,
-    telefono,
-    habitacion,
-    fechaEntrada,
-    fechaSalida,
+    nombre, setNombre,
+    apellido, setApellido,
+    correo, setCorreo,
+    telefono, setTelefono,
+    habitacion, setHabitacion,
+    fechaEntrada, setFechaEntrada,
+    fechaSalida, setFechaSalida,
     minDate,
-    // Estado de la UI
     error,
     isSuccess,
     isSubmitting,
-    // Setters (para los 'onChange')
-    setNombre,
-    setApellido,
-    setCorreo,
-    setTelefono,
-    setHabitacion,
-    setFechaEntrada,
-    setFechaSalida,
-    // Funciones
     handleSubmit,
   };
 }
