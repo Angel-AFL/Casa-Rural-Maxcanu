@@ -41,7 +41,10 @@ export interface HospedajeResponse {
   folio: string;
   nombre: string;
   apellido: string;
-  fecha_entrada: string; 
+  correo: string;             
+  telefono: string;
+  habitacion_cabana: string; 
+  fecha_entrada: string;
   fecha_salida: string;
 }
 
@@ -54,6 +57,9 @@ export interface RentaBiciPayload {
 
 export interface RentaBiciResponse {
   folio_generado: string;
+  nombre: string;
+  apellido: string;
+  telefono: string;
 }
 
 // devolucion de bicicletas
@@ -76,4 +82,13 @@ export interface CatGaleriaArte {
   tipo: string;
   imagen: string;
   created_at: string;
+}
+
+export interface CabanaHabitacion {
+  id: number;
+  nombre: string;
+  tipo: string;
+  descripcion: string;
+  interior: string;
+  imagen: string;
 }
