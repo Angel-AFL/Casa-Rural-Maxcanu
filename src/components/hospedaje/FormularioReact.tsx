@@ -30,7 +30,7 @@ export default function FormularioReact({ cabanas }: Props) {
     >
       <div className="bg-white rounded-2xl shadow-2xl border border-gray-800 flex flex-col md:flex-row w-full max-w-6xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
         
-        <div className="md:w-1/3 bg-[#7F2E2C] flex flex-col justify-center items-center p-6 sm:p-8 text-white">
+        <div className="md:w-1/3 bg-[#A38613] flex flex-col justify-center items-center p-6 sm:p-8 text-white">
           <img
             src="/logo-casa-rural-icono-negativo.png"
             alt="Logo Casa Rural"
@@ -133,7 +133,7 @@ export default function FormularioReact({ cabanas }: Props) {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="col-span-1 md:col-span-2 mt-4 bg-[#7F2E2C] text-white font-semibold py-3 rounded-md w-full disabled:opacity-50"
+              className="col-span-1 md:col-span-2 mt-4 bg-[#A38613] text-white font-semibold py-3 rounded-md w-full disabled:opacity-50"
             >
               {isSubmitting ? 'Registrando...' : 'Registrar'}
             </button>
