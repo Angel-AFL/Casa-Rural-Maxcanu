@@ -1,45 +1,76 @@
 ---
-import { getImgCabanaHabitacion } from "../../pages/api/img_cabana_habitacion";
-import type { ImgCabanaHabitacion } from "../../types/global";
+import { getCabanaHabitacion } from "../../pages/api/cabana_habitacion";
+import type { CabanaHabitacion } from "../../types/global";
 
-let imagenes: ImgCabanaHabitacion[] = [];
+let habitaciones: CabanaHabitacion[] = [];
 
 try {
-  imagenes = await getImgCabanaHabitacion();
+  habitaciones = await getCabanaHabitacion();
 } catch (error) {
-  console.error("Error fetching imagenes:", error);
+  console.error("Error al cargar el carrusel:", error);
 }
 
-const urls = imagenes.map((h) => h.imagen);
+const urls = habitaciones.map((h) => h.imagen);
+const count = urls.length;
+const displayUrls = [...urls, ...urls]; 
+const totalCount = displayUrls.length; 
+const animationDuration = count * 10; // segundos por imgns
+const imageWidthPercent = 100 / totalCount;
+const totalSliderWidth = totalCount * 100;
 ---
 
-<div class="relative w-full h-screen overflow-hidden">
-  <div class="flex w-[600%] animate-slide" style="animation: slide 30s infinite linear;">
-    {urls.map((src, i) => (
-      <img
-        src={src}
-        alt={`Imagen ${i + 1}`}
-        class="w-full h-screen object-cover flex-shrink-0"
-      />
+<div class="relative w-full h-screen overflow-hidden bg-gray-900">
+  <div 
+    class="flex h-full animate-slide"
+    style={{
+      width: `${totalSliderWidth}%`,
+      animationDuration: `${animationDuration}s` 
+    }}
+  >
+    {displayUrls.map((src, index) => (
+      <div class="relative h-full flex-shrink-0" style={`width: ${imageWidthPercent}%;`}>
+        <img
+          src={encodeURI(src)}
+          alt={`Habitación ${index}`}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/30"></div>
+      </div>
     ))}
   </div>
-  <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center text-white p-4">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Hospedaje</h2>
-    <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md">Registra tu hospedaje aquí</p>
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 z-10 pointer-events-none">
+    <div class="pointer-events-auto">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-xl tracking-wide">
+        Hospedaje
+      </h2>
+      <p class="text-lg md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-light">
+        Registra tu hospedaje aquí
+      </p>
 
-    <button class="bg-[#A38613] text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
-      onclick="document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' });">Registrarse</button>
+      <button 
+        class="bg-[#A38613] hover:bg-[#8c7310] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-300 text-lg cursor-pointer"
+        onclick="document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });"
+      >
+        Registrarse
+      </button>
+    </div>
   </div>
+
 </div>
 
 <style>
   @keyframes slide {
-    0% { transform: translateX(0%); }
-    16.6% { transform: translateX(-100%); }
-    33.2% { transform: translateX(-200%); }
-    49.8% { transform: translateX(-300%); }
-    66.4% { transform: translateX(-400%); }
-    83% { transform: translateX(-500%); }
-    100% { transform: translateX(0%); }
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-slide {
+    animation-name: slide;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 </style>
