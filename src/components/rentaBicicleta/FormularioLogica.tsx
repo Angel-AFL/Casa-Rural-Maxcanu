@@ -1,69 +1,86 @@
-// 🟡 Archivo: src/components/rentaBicicleta/FormularioLogica.tsx
-
 import { useState } from 'react';
-// Importamos el servicio que ya creamos
 import { insertarRentaBicicleta } from '../../pages/api/sp_insertar_renta_bicicleta';
-// Importamos el tipo de respuesta
 import type { RentaBiciResponse } from '../../types/global';
 
-/**
- * Este es el "Custom Hook" que contiene TODA la lógica
- * para el formulario de rentar bicicletas.
- */
+async function sendAdminEmailBici(renta: RentaBiciResponse) {
+  const res = await fetch('/api/send-email-admin-bici', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(renta),
+  });
+
+  if (!res.ok) {
+    throw new Error('Error al notificar al administrador');
+  }
+}
+
 export function useRentaBiciLogic() {
-  
-  // 1. Estados para los campos del formulario
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [telefono, setTelefono] = useState('');
 
-  // 2. Estados para manejar la UI (mensajes, carga, etc.)
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [folioGenerado, setFolioGenerado] = useState<string | null>(null);
 
-  // 3. Función que se ejecuta al enviar el formulario
+  const validarCampos = (): boolean => {
+    if (nombre.trim().length < 3) {
+      setError('El nombre debe tener al menos 3 letras.');
+      return false;
+    }
+
+    if (apellido.trim().length < 2) {
+      setError('El apellido debe tener al menos 2 letras.');
+      return false;
+    }
+
+    const telefonoRegex = /^\d{10}$/;
+    if (!telefonoRegex.test(telefono)) {
+      setError('El teléfono debe tener exactamente 10 números.');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Evita que la página se recargue
-    
-    // Limpia estados anteriores
+    e.preventDefault();
+
     setError(null);
     setIsSuccess(false);
     setFolioGenerado(null);
-    setIsSubmitting(true); // Bloquea el botón
+
+    if (!validarCampos()) return;
+
+    setIsSubmitting(true);
 
     try {
-      // 4. Llama a la función de servicio con los datos del state
-      const reserva = await insertarRentaBicicleta(
-        nombre,
-        apellido,
+      const renta = await insertarRentaBicicleta(
+        nombre.trim(),
+        apellido.trim(),
         telefono
       );
 
-      if (!reserva || !reserva.folio_generado) {
-        throw new Error('La respuesta del servidor fue nula o no incluyó un folio.');
+      if (!renta || !renta.folio_generado) {
+        throw new Error('La respuesta del servidor fue inválida.');
       }
 
-      // 5. ¡Éxito!
-      setIsSuccess(true);
-      setFolioGenerado(reserva.folio_generado); // Guarda el folio para mostrarlo
+      await sendAdminEmailBici(renta);
 
-      // Limpia los campos del formulario
+      setIsSuccess(true);
+      setFolioGenerado(renta.folio_generado);
+
       setNombre('');
       setApellido('');
       setTelefono('');
-
     } catch (err) {
-      // 6. Manejo de errores
       setError((err as Error).message);
     } finally {
-      // 7. Vuelve a activar el botón
       setIsSubmitting(false);
     }
   };
 
-  // 8. Devuelve todo lo que la VISTA necesita
   return {
     nombre,
     setNombre,
