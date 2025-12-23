@@ -14,3 +14,18 @@
   --color-palette-8: #335a65;
   --color-palette-9: #b8cbd1;
 }
+
+@layer utilities {
+  @keyframes slide {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-slide {
+    animation: slide 18s linear infinite;
+  }
+}
