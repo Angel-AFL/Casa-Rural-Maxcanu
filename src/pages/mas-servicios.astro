@@ -1,10 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ImageWithText from "../components/ImageWithText.astro";
 import Hero from "../components/atractivos/Hero.astro";
+import Cards from "../components/atractivos/Cards.astro";
 ---
+
 <Layout title="Más Servicios">
   <Hero
-    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/casa-rural.png"
+    title="Descubre los secretos de Maxcanú y la Ruta Puuc"
+    subtitle="Explora grutas milenarias, haciendas históricas y la riqueza cultural de la región."
+    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/entrada_maxcanu.png"
   />
-
+  
+  <Cards />
+</Layout>
