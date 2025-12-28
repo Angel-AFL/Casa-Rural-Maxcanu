@@ -2,20 +2,20 @@
 import Layout from "../../layouts/Layout.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
-import { getMitosYLeyendasDelMayab } from "../api/cat_galeria_arte";
+import { getVarios } from "../api/cat_galeria_arte";
 
-const catMitosYLeyendasDelMayab = await getMitosYLeyendasDelMayab();
+const catVarios = await getVarios();
 ---
 
-<Layout title="Mitos y Leyendas del Mayab">
+<Layout title="Varios">
   <Hero
-    title="Mitos y Leyendas del Mayab"
+    title="Varios"
     subtitle="Pinturas, esculturas y dibujos de distintos artístas y artesanos del sureste"
-    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/mitos%20y%20leyendas%20del%20mayab.png"
+    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/pasillo%20de%20la%20planta%20baja.png"
   />
   <section class="grid place-items-center p-2 md:p-4 lg:p-8">
     <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
-      {catMitosYLeyendasDelMayab?.map((art) => <ArtCard {...art} />)}
+      {catVarios?.map((art) => <ArtCard {...art} />)}
     </div>
   </section>
 </Layout>

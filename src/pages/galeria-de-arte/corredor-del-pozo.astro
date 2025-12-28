@@ -2,19 +2,19 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
-import { getRetratos } from "../api/cat_galeria_arte";
-const catRetratos = await getRetratos();
+import { getCorredorDelPozo } from "../api/cat_galeria_arte";
+const catCorredorDelPozo = await getCorredorDelPozo();
 ---
 
-<Layout title="Retratos">
+<Layout title="Corredor del pozo">
   <Hero
-    title="Retratos"
+    title="Corredor del pozo"
     subtitle="Pinturas, esculturas y dibujos de distintos artístas y artesanos del sureste"
-    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/retratos.png"
+    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/corredor.png"
   />
   <section class="grid place-items-center p-2 md:p-4 lg:p-8">
     <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
-      {catRetratos?.map((art) => <ArtCard {...art} />)}
+      {catCorredorDelPozo?.map((art) => <ArtCard {...art} />)}
     </div>
   </section>
 </Layout>
