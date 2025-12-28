@@ -1,0 +1,134 @@
+---
+export interface Props {
+  nombre: string;
+  autor: string;
+  técnica: string;
+  categoría: string;
+  dimensiones: string;
+  año: string;
+  procedencia: string;
+  uso: string;
+  imagen: string;
+}
+
+const {
+  nombre = "Sin nombre",
+  autor = "Sin autor",
+  técnica = "No disponible",
+  categoría = "Sin categoría",
+  dimensiones = "No disponible",
+  año = "Sin año",
+  procedencia = "Desconocido",
+  uso = "Sin uso",
+  imagen,
+} = Astro.props;
+---
+
+<!-- Cards -->
+<div class="card-with-modal shadow-lg rounded-xl">
+  <div class="overflow-hidden rounded-t-xl">
+    <img
+      src={imagen}
+      alt={nombre}
+      class="w-full h-96 hover:scale-105 transition duration-300 open-modal-btn cursor-pointer"
+    />
+  </div>
+  <div class="flex flex-col justify-start items-start gap-1.5 p-4">
+    <h3 class="font-bold">{nombre}</h3>
+    <h3 class="text-sm">{autor}</h3>
+    <button
+      id="openModal"
+      type="submit"
+      class="open-modal-btn bg-palette-2 px-4 py-1 rounded-2xl cursor-pointer text-white hover:text-black"
+    >
+      Ver más
+    </button>
+  </div>
+  <!-- Fin Cards -->
+
+  <!-- Ventana Modal -->
+  <dialog
+    class="art-card-dialog p-6 rounded-lg shadow-xl w-11/12 max-w-lg m-auto"
+  >
+    <div class="flex flex-col gap-4">
+      <img
+        src={imagen}
+        alt={imagen}
+        class="w-full h-auto max-h-[50vh] object-contain rounded-lg"
+      />
+      <h3 class="text-2xl font-bold">{nombre}</h3>
+      <h3 class="text-lg"><span class="font-bold">Autor:</span> {autor}</h3>
+      <h3 class="text-lg"><span class="font-bold">Técnica:</span> {técnica}</h3>
+      <h3 class="text-lg">
+        <span class="font-bold">Categoría:</span>
+        {categoría}
+      </h3>
+      <h3 class="text-lg">
+        <span class="font-bold">Dimensiones:</span>
+        {dimensiones}
+      </h3>
+      <h3 class="text-lg"><span class="font-bold">Año:</span> {año}</h3>
+      <h3 class="text-lg">
+        <span class="font-bold">Procedencia:</span>
+        {procedencia}
+      </h3>
+      <h3 class="text-lg"><span class="font-bold">Uso:</span> {uso}</h3>
+
+      <button
+        type="button"
+        class="close-modal-btn mt-4 bg-palette-1 hover:bg-red-700 text-white px-4 py-1 rounded-2xl cursor-pointer self-end"
+      >
+        Cerrar
+      </button>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  function setupModals() {
+    const cards = document.querySelectorAll(".card-with-modal");
+
+    cards.forEach((card) => {
+      if (card.hasAttribute("data-modal-setup")) {
+        return;
+      }
+
+      const openButtons = card.querySelectorAll(".open-modal-btn");
+      const closeButton = card.querySelector(".close-modal-btn");
+      const dialog = card.querySelector(
+        ".art-card-dialog"
+      ) as HTMLDialogElement;
+
+      if (openButtons.length > 0 && dialog && closeButton) {
+        openButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            dialog.showModal();
+          });
+        });
+
+        closeButton.addEventListener("click", () => {
+          dialog.close();
+        });
+
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) {
+            dialog.close();
+          }
+        });
+
+        card.setAttribute("data-modal-setup", "true");
+      }
+    });
+  }
+
+  setupModals();
+
+  document.addEventListener("astro:page-load", setupModals);
+</script>
+<style>
+  .art-card-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+  }
+</style>
+<!-- Fin Vetana Modal -->
