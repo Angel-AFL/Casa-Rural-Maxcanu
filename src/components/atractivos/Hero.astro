@@ -19,30 +19,31 @@ const {
 
     <div class="flex items-center justify-center gap-4 mt-6 flex-wrap">
       <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <!-- Enlaces con clase 'nav-link' para el JavaScript -->
         <a 
           href="#arqueologia" 
-          class="px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-700 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
         >
           Arqueología e historia
         </a>
 
         <a 
           href="#naturaleza" 
-          class="px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-700 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
         >
           Naturaleza y aventura
         </a>
 
         <a 
           href="#cultura" 
-          class="px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-700 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
         >
           Cultura y Tradición
         </a>
 
         <a 
           href="#pueblos" 
-          class="px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-700 hover:shadow-xl transition transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
         >
           Pueblos y haciendas cercanos
         </a>
@@ -54,7 +55,7 @@ const {
 
 <button
   id="scrollToTopBtn"
-  class="fixed bottom-8 right-8 w-14 h-14 bg-emerald-500 text-white rounded-full shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-emerald-600 hover:scale-110 active:scale-95 z-50 group"
+  class="fixed bottom-8 right-8 w-14 h-14 bg-yellow-700 text-white rounded-full shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-yellow-800 hover:scale-110 active:scale-95 z-50 group"
   aria-label="Volver al inicio lentamente"
 >
   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,36 +64,94 @@ const {
 </button>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  function smoothScrollTo(targetPosition: number, duration: number = 1000): void {
+    const startPosition: number = window.pageYOffset;
+    const distance: number = targetPosition - startPosition;
+    let startTime: number | null = null;
     
-    if (!scrollToTopBtn) return;
-    
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 300) {
-        scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-        scrollToTopBtn.classList.add('opacity-100', 'visible');
-      } else {
-        scrollToTopBtn.classList.remove('opacity-100', 'visible');
-        scrollToTopBtn.classList.add('opacity-0', 'invisible');
+    function animation(currentTime: number): void {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed: number = currentTime - startTime;
+      const progress: number = Math.min(timeElapsed / duration, 1);
+      
+      const easeOutCubic = (t: number): number => 1 - Math.pow(1 - t, 3);
+      const easedProgress: number = easeOutCubic(progress);
+      
+      window.scrollTo(0, startPosition + (distance * easedProgress));
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
       }
+    }
+    
+    requestAnimationFrame(animation);
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopBtn: HTMLElement | null = document.getElementById('scrollToTopBtn');
+    
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+          scrollToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+          scrollToTopBtn.classList.remove('opacity-100', 'visible');
+          scrollToTopBtn.classList.add('opacity-0', 'invisible');
+        }
+      });
+      
+      scrollToTopBtn.addEventListener('click', function(this: HTMLElement) {
+        smoothScrollTo(0, 1000);
+      });
+    }
+    
+    const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach((link: HTMLAnchorElement) => {
+      link.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
+        e.preventDefault(); 
+        
+        const targetId: string = this.getAttribute('href')?.substring(1) || '';
+        const targetElement: HTMLElement | null = document.getElementById(targetId);
+        
+        if (targetElement) {
+          this.classList.add('active');
+          setTimeout(() => this.classList.remove('active'), 300);
+          
+          const offset: number = 80;
+          const targetPosition: number = targetElement.offsetTop - offset;
+          
+          smoothScrollTo(targetPosition, 1200);
+        }
+      });
     });
     
-    scrollToTopBtn.addEventListener('click', function() {
-      document.documentElement.style.scrollBehavior = 'smooth';
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      setTimeout(() => {
-        document.documentElement.style.scrollBehavior = '';
-      }, 1000);
+    const allHashLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href^="#"]');
+    
+    allHashLinks.forEach((anchor: HTMLAnchorElement) => {
+      if (!anchor.classList.contains('nav-link')) {
+        anchor.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
+          const href: string | null = this.getAttribute('href');
+          if (href && href !== '#') {
+            e.preventDefault();
+            const targetId: string = href.substring(1);
+            const targetElement: HTMLElement | null = document.getElementById(targetId);
+            
+            if (targetElement) {
+              const offset: number = 80;
+              const targetPosition: number = targetElement.offsetTop - offset;
+              smoothScrollTo(targetPosition, 1200);
+            }
+          }
+        });
+      }
     });
   });
 </script>
 
 <style>
-  body {
+  html {
     scroll-behavior: smooth;
   }
   
@@ -110,5 +169,14 @@ const {
   
   #scrollToTopBtn.visible {
     transform: translateY(0);
+  }
+  
+  .nav-link.active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
