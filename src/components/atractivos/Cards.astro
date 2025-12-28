@@ -1,0 +1,223 @@
+---
+// Cards.astro - Contiene TODAS las secciones de tarjetas
+import Card from "./Card.astro";
+
+// Datos de atractivos por categoría
+const atractivos = {
+  arqueologia: [
+    {
+      id: 1,
+      title: "Zona Arqueológica de Oxkintok",
+      description: "Ciudad maya ocupada desde el siglo I hasta el XVI. Destaca el laberinto ceremonial subterráneo Satunsat y los conjuntos arquitectónicos de los linajes gobernantes, es ideal para visitar durante los equinoccios",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/20220810_za_oxkintok_head.jpg",
+      link: "https://inah.gob.mx/zonas/zona-arqueologica-de-oxkintok",
+      tags: ["Arqueología", "Equinoccios", "Maya"]
+    },
+    {
+      id: 2,
+      title: "Iglesia de San Miguel Arcángel",
+      description: "Construida a fines del siglo XVII, conserva un altar mayor con retablo de cedro tallado con relieves dorados. Su campanario de cuatro arcos con cinco campanas regulaba la vida diaria en Maxcanú.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/Iglesia_San_Miguel_Arcangel.jpg",
+      link: "#",
+      tags: ["Arqueología", "Iglesia", "Paraíso"]
+    },
+    {
+      id: 3,
+      title: "Juego de Pelota Maya",
+      description: "Vestigios del antiguo juego ceremonial ubicado en las faldas del Puuc, donde actualmente se encuentra la Universidad Tecnológica del Poniente. Formaba parte de un importante centro ceremonial maya.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/pelota_maya.jpg",
+      link: "#",
+      tags: ["Deporte Ancestral", "Vestigios"]
+    }
+  ],
+  
+  naturaleza: [
+    {
+      id: 4,
+      title: "Grutas de Maxcanú",
+      description: "Numerosas grutas en el inicio de la zona Puuc, fueron refugio de antiguos mayas, fuente de agua pura para ceremonias y barro para vasijas. Se recomienda visitar las Grutas del Aguacate y de la Reina por su fácil acceso.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/maxcanu_grutas.jpg",
+      link: "#",
+      tags: ["Aventura", "Espeleología", "Guía"]
+    },
+    {
+      id: 5,
+      title: "Cerro de las Tres Cruces",
+      description: "Cerro (Puuc) con capilla erigida como santuario de la Santa Cruz en su cima, las tres cruces fueron elaboradas con maderos de un árbol que estaba justo en el sitio. Ofrece vista panorámica del paisaje urbano desde la cima.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/cerro_tres_cruces.jpg",
+      link: "#",
+      tags: ["Mirador", "Vistas", "Capilla"]
+    },
+    {
+      id: 6,
+      title: "Cenote X-Corralcot",
+      description: "Cenote ubicado a 20 kilómetros al norte de Maxcanú, para llegar se pasa por ex haciendas y ranchos, pudiendo observar flora y fauna local. Se requiere guía para acceder y extremar cuidados al meterse en él.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/cenote.png",
+      link: "#",
+      tags: ["Cenote", "Naturaleza", "Guía"]
+    }
+  ],
+  
+  cultura: [
+    {
+      id: 7,
+      title: "Fiesta de San Miguel Arcángel",
+      description: "Fiesta patronal del 7 al 29 de septiembre. Vaquerías, gremios, toros, procesiones y bailes tradicionales.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/fiesta_san_arcangel.jpg",
+      link: "#",
+      tags: ["Fiesta", "Tradición", "Septiembre"]
+    },
+    {
+      id: 8,
+      title: "Janal Pixan (Hanal Pixán)",
+      description: "Celebración de Finados que se realiza desde el 31 de octubre hasta el 2 de noviembre. Altares, comida tradicional y recorrido nocturno de leyendas.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/hanal_pixan.jpg",
+      link: "#",
+      tags: ["Tradición", "Día de Muertos", "Cultura Maya"]
+    },
+    {
+      id: 9,
+      title: "Museo de Maxcanú",
+      description: "Centro Cultural que alberga la riqueza arqueológica e histórica de la región. Antigua escuela Montessori.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/palacio_maxcanu.jpg",
+      link: "#",
+      tags: ["Museo", "Historia", "Cultura"]
+    }
+  ],
+  
+  pueblos: [
+    {
+      id: 10,
+      title: "Hacienda Santa Rosa",
+      description: "Ex hacienda henequenera convertida en hotel exclusivo. Cuenta con jardín botánico de 9,200 m² y restaurante.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/hacienda_santa_rosa.jpg",
+      link: "#",
+      tags: ["Hacienda", "Lujo", "Jardín Botánico"]
+    },
+    {
+      id: 11,
+      title: "Pueblo Fantasma 'San Juan'",
+      description: "Ex hacienda henequenera abandonada a 6km de Maxcanú. Ideal para fotografía y exploración urbana.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/pueblo_fantasma.jpg",
+      link: "#",
+      tags: ["Abandonado", "Fotografía", "Aventura"]
+    },
+    {
+      id: 12,
+      title: "Chan Chocholá ('El Castillo')",
+      description: "Hacienda con casa principal que parece castillo medieval. A poca distancia de Maxcanú en bici o caminando.",
+      image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/chan_chochola.jpg",
+      link: "#",
+      tags: ["Arquitectura", "Hacienda", "Cercano"]
+    }
+  ]
+};
+
+// Configuración de colores
+const colorClasses = {
+  'arqueologia': {
+    bg: 'from-white to-emerald-50',
+    border: 'border-emerald-100',
+    text: 'text-emerald-800',
+    badge: 'bg-emerald-100 text-emerald-700'
+  },
+  'naturaleza': {
+    bg: 'from-white to-blue-50',
+    border: 'border-blue-100',
+    text: 'text-blue-800',
+    badge: 'bg-blue-100 text-blue-700'
+  },
+  'cultura': {
+    bg: 'from-white to-yellow-50',
+    border: 'border-yellow-100',
+    text: 'text-yellow-800',
+    badge: 'bg-yellow-100 text-yellow-700'
+  },
+  'pueblos': {
+    bg: 'from-white to-orange-50',
+    border: 'border-orange-100',
+    text: 'text-orange-800',
+    badge: 'bg-orange-100 text-orange-700'
+  }
+};
+---
+
+<!-- Sección Arqueología e Historia -->
+<section id="arqueologia" class={`py-16 bg-gradient-to-b ${colorClasses.arqueologia.bg}`}>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold ${colorClasses.arqueologia.text} mb-4">
+        Arqueología e Historia
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Sumérgete en el pasado maya y colonial de Maxcanú. Descubre antiguas ciudades, juegos rituales y el rico patrimonio histórico.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {atractivos.arqueologia.map((item) => (
+        <Card item={item} colorClass={colorClasses.arqueologia} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Sección Naturaleza y Aventura -->
+<section id="naturaleza" class={`py-16 bg-gradient-to-b ${colorClasses.naturaleza.bg}`}>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold ${colorClasses.naturaleza.text} mb-4">
+        Naturaleza y Aventura
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Explora el lado salvaje de Maxcanú. Desde cuevas milenarias hasta miradores espectaculares y cenotes sagrados.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {atractivos.naturaleza.map((item) => (
+        <Card item={item} colorClass={colorClasses.naturaleza} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Sección Cultura y Tradición -->
+<section id="cultura" class={`py-16 bg-gradient-to-b ${colorClasses.cultura.bg}`}>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold ${colorClasses.cultura.text} mb-4">
+        Cultura y Tradición
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Vive las tradiciones vivas de Maxcanú. Festividades, rituales ancestrales y expresiones culturales que perduran.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {atractivos.cultura.map((item) => (
+        <Card item={item} colorClass={colorClasses.cultura} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Sección Pueblos y Haciendas Cercanas -->
+<section id="pueblos" class={`py-16 bg-gradient-to-b ${colorClasses.pueblos.bg}`}>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold ${colorClasses.pueblos.text} mb-4">
+        Pueblos y Haciendas Cercanas
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Descubre el legado henequenero y los pueblos con encanto que rodean Maxcanú. Historia, arquitectura y experiencias únicas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {atractivos.pueblos.map((item) => (
+        <Card item={item} colorClass={colorClasses.pueblos} />
+      ))}
+    </div>
+  </div>
+</section>
