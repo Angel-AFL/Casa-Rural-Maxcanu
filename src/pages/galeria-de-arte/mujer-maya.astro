@@ -2,9 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
-import { getMujerMaya } from "../api/cat_galeria_arte";
+import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catMujerMaya = await getMujerMaya();
+const catMujerMaya = await getArtsBySala("Mujer maya");
 ---
 
 <Layout title="Mujer Maya">

@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
-import { getPitahaysDragonFruit } from "../api/cat_galeria_arte";
-const catPitahayasDragonFruit = await getPitahaysDragonFruit();
+import { getArtsBySala } from "../api/cat_galeria_arte";
+const catPitahayasDragonFruit = await getArtsBySala("Pitahayas-Dragon fruit");
 ---
 
 <Layout title="Pitahayas-Dragon fruit">

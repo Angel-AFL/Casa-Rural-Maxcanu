@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
-import { getPasilloDeLaPLantaBaja } from "../api/cat_galeria_arte";
-const catPasilloDeLaPlantaBaja = await getPasilloDeLaPLantaBaja();
+import { getArtsBySala } from "../api/cat_galeria_arte";
+const catPasilloDeLaPlantaBaja = await getArtsBySala("Pasillo de planta baja");
 ---
 
 <Layout title="Pasillo de la planta baja">

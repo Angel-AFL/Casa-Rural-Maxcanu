@@ -2,9 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
-import { getCocina } from "../api/cat_galeria_arte";
+import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catCocina = await getCocina();
+const catCocina = await getArtsBySala("Cocina");
 ---
 
 <Layout title="Cocina">

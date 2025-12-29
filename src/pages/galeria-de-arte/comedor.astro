@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
-import { getComedor } from "../api/cat_galeria_arte";
-const catComedor = await getComedor();
+import { getArtsBySala } from "../api/cat_galeria_arte";
+const catComedor = await getArtsBySala("Comedor");
 ---
 
 <Layout title="Comedor">

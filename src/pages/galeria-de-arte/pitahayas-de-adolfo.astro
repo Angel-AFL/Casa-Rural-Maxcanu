@@ -2,9 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
-import { getPitahayasDeAdolfo } from "../api/cat_galeria_arte";
+import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catPitahayasDeAdolfo = await getPitahayasDeAdolfo();
+const catPitahayasDeAdolfo = await getArtsBySala("Pitahayas de Adolfo");
 ---
 
 <Layout title="Pitahayas de Adolfo">
