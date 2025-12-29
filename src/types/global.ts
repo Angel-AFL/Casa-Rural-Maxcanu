@@ -20,6 +20,20 @@ export interface HospedajePayload {
   fecha_entrada: string;
   fecha_salida: string;
 }
+
+export interface CatCabanaHabitacion {
+  nombre: string;
+}
+
+export interface CabanaHabitacion {
+  id: number;
+  nombre: string;
+  tipo: string;
+  descripcion: string;
+  interior: string;
+  imagen: string;
+}
+
 export interface CatGaleriaArte {
   id: number;
   sala: string;
@@ -32,4 +46,41 @@ export interface CatGaleriaArte {
   procedencia: string;
   uso: string;
   imagen: string;
+}
+
+export interface HospedajeResponse {
+  folio: string;
+  nombre: string;
+  apellido: string;
+  correo: string;
+  telefono: string;
+  habitacion_cabana: string;
+  fecha_entrada: string;
+  fecha_salida: string;
+}
+
+//bicicleta renta
+export interface RentaBiciPayload {
+  nombre: string;
+  apellido: string;
+  telefono: string;
+}
+
+export interface RentaBiciResponse {
+  folio_generado: string;
+  nombre: string;
+  apellido: string;
+  telefono: string;
+}
+
+// devolucion de bicicletas
+export interface DevolucionBiciPayload {
+  folio: string;
+}
+
+export interface DevolucionBiciResponse {
+  folio_actualizado: string;
+  nombre_cliente: string;
+  estatus_nuevo: string;
+  fecha_devolucion_actualizada: string;
 }
