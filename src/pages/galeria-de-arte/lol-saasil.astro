@@ -2,9 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
-import { getLolSaasil } from "../api/cat_galeria_arte";
+import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catLolSaasil = await getLolSaasil();
+const catLolSaasil = await getArtsBySala("Lol Saasil");
 ---
 
 <Layout title="Lol Saasil">

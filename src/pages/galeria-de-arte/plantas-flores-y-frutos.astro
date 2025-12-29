@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
-import { getPlantasFloresYFrutos } from "../api/cat_galeria_arte";
-const catPlantasFloresYFrutos = await getPlantasFloresYFrutos();
+import { getArtsBySala } from "../api/cat_galeria_arte";
+const catPlantasFloresYFrutos = await getArtsBySala("Plantas, flores y frutos");
 ---
 
 <Layout title="Plantas flores y frutos">

@@ -2,9 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
-import { getAvesTropicales } from "../api/cat_galeria_arte";
+import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catAvesTropicales = await getAvesTropicales();
+const catAvesTropicales = await getArtsBySala("Aves tropicales");
 ---
 
 <Layout title="Aves Tropicales">
