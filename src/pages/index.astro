@@ -8,6 +8,7 @@ import ImageWithText from "../components/ImageWithText.astro";
 import Testimonios from "../components/home/Testimonios.astro";
 import FaqAccordion from "../components/FaqAccordion.astro";
 import Anuncio from "../components/home/Anuncio.astro";
+import BannerHero from "../components/home/BannerHero.astro";
 const faqItems = [
   {
     question: "¿Cuál es el horario de check-in y check-out?",
@@ -35,10 +36,10 @@ const faqItems = [
 
 <Layout title="Casa Rural Maxcanú">
       
-      <Hero>
-      <Button label="Mas informacion" href="/nosotros"/>
-      </Hero>
-       <h2 class="text-3xl md:text-4xl text-center my-4 font-bold tracking-widest text-palette-2 bg-palette-4 py-6">
+     <BannerHero> 
+      <Button label="Sobre nosotros" href="/../nosotros"/>
+     </BannerHero>
+       <h2 class="text-3xl md:text-4xl text-center my-2 font-bold tracking-widest text-palette-2 bg-palette-4 py-6">
     Nuestros Atractivos
        </h2>
        <ImageWithText
@@ -79,5 +80,6 @@ const faqItems = [
       <Testimonios/>
    
       <FaqAccordion items={faqItems}/>
+      
 
 </Layout>
