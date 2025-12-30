@@ -30,26 +30,24 @@ const testimonios = [
 ];
 ---
 
-<section class="w-full py-16 bg-palette-">
-  <h2 class="text-center text-3xl md:text-4xl font-bold text-palette-5 mb-12 tracking-wide bg-palette-4 py-4">
+<section class="w-full py-10 sm:py-12 md:py-16 ">
+  <h2 class="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-palette-5 
+             mb-8 sm:mb-10 md:mb-12 tracking-wide bg-palette-4 py-3 sm:py-4">
     Testimonios de Nuestros Visitantes
   </h2>
-
   
   <div 
     id="carousel"
-    class="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory scroll-smooth no-scrollbar"
-  >
+    class="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto px-4 sm:px-6 pb-4 sm:pb-6 
+           snap-x snap-mandatory scroll-smooth no-scrollbar">
     {testimonios.map((t) => (
       <article
-        class="min-w-[300px] md:min-w-[380px] max-w-md text-palette-5
-               p-8 rounded-2xl shadow-lg snap-center border border-neutral-700
-               hover:shadow-xl transition-shadow duration-300"
-      >
-        <p class="text-base leading-relaxed opacity-90">
+        class="min-w-[240px] sm:min-w-[280px] md:min-w-[340px] lg:min-w-[380px] max-w-mdtext-palette-5 p-5 sm:p-6 md:p-8
+          rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl snap-center border border-neutral-700 transition-shadow duration-300">
+        <p class="text-sm sm:text-base leading-relaxed opacity-90">
           “{t.texto}”
         </p>
-        <p class="mt-6 font-semibold text-right text-palette-5">
+        <p class="mt-4 sm:mt-6 font-semibold text-right">
           — {t.autor}
         </p>
       </article>
