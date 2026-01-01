@@ -8,42 +8,41 @@ const {
 
 <section
   id="inicio"
-  class="min-h-[100vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[250px]"
+  class="min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[200px]"
   style={`background-image: url('${imageUrl}');`}
 >
   <div class="bg-black/50 absolute inset-0"></div>
 
-  <div class="relative z-[2] text-white px-4">
+  <div class="relative z-[2] text-white px-4 w-full">
     <h2 class="text-4xl md:text-5xl font-bold mb-2">{title}</h2>
     <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
 
-    <div class="flex items-center justify-center gap-4 mt-6 flex-wrap">
-      <div class="flex flex-wrap justify-center gap-4 mt-8">
-        <!-- Enlaces con clase 'nav-link' para el JavaScript -->
+    <div class="flex flex-col items-center justify-center mt-6">
+      <div class="flex flex-row flex-wrap justify-center gap-3 md:gap-4 mt-8 w-full max-w-4xl mx-auto">
         <a 
           href="#arqueologia" 
-          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
         >
           Arqueología e historia
         </a>
 
         <a 
           href="#naturaleza" 
-          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
         >
           Naturaleza y aventura
         </a>
 
         <a 
           href="#cultura" 
-          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
         >
           Cultura y Tradición
         </a>
 
         <a 
           href="#pueblos" 
-          class="nav-link px-6 py-3 rounded-xl bg-yellow-700 text-white font-bold shadow-lg hover:bg-yellow-800 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
         >
           Pueblos y haciendas cercanos
         </a>
@@ -55,7 +54,7 @@ const {
 
 <button
   id="scrollToTopBtn"
-  class="fixed bottom-8 right-8 w-14 h-14 bg-yellow-700 text-white rounded-full shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-yellow-800 hover:scale-110 active:scale-95 z-50 group"
+  class="fixed bottom-8 right-8 w-14 h-14 bg-white/10 backdrop-blur-lg text-white rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:scale-110 active:scale-95 z-50 group border border-white/20 hover:border-white/40"
   aria-label="Volver al inicio lentamente"
 >
   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -178,5 +177,6 @@ const {
   
   .nav-link {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
   }
 </style>
