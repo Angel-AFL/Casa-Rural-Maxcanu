@@ -1,8 +1,11 @@
 ---
 export interface Props {
   heading?: string;
+  headingColor?: string;
   subheading?: string;
+  subheadingColor?: string;
   text?: string;
+  textColor?: string;
   imageUrl?: string;
   imageSide?: "left" | "right";
   bgColor?: string;
@@ -10,8 +13,11 @@ export interface Props {
 
 const {
   heading,
+  headingColor = "text-white",
   subheading,
+  subheadingColor = "text-white",
   text,
+  textColor = "text-white",
   imageUrl,
   imageSide = "left",
   bgColor = "bg-palette-2",
@@ -30,9 +36,9 @@ const {
   </div>
   <div class={`md:w-1/2 text-white ${bgColor}`}>
     <div class="flex flex-col h-full gap-4 p-8 justify-center items-center">
-      <h2 class="text-2xl font-semibold">{heading}</h2>
-      <h3 class="text-sm font-medium">{subheading}</h3>
-      <p>{text}</p>
+      <h2 class={`text-2xl font-semibold ${headingColor}`}>{heading}</h2>
+      <h3 class={`text-sm font-medium ${subheadingColor}`}>{subheading}</h3>
+      <p class={textColor}>{text}</p>
     </div>
   </div>
 </section>
