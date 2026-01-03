@@ -1,15 +1,12 @@
 import type { CatCabanaHabitacion } from '../../types/global';
-// 1. ¡Importamos nuestro nuevo Hook de lógica!
-import { useFormularioLogica } from './FormularioLogica.tsx'; // Ajustado al nombre de tu archivo
+import { useFormularioLogica } from './FormularioLogica';
 
 interface Props {
   cabanas: CatCabanaHabitacion[];
 }
 
-// ¡Mira qué limpio queda el componente!
 export default function FormularioReact({ cabanas }: Props) {
   
-  // 2. ¡Toda la lógica ahora vive en UNA sola línea!
   const {
     nombre, setNombre,
     apellido, setApellido,
@@ -23,49 +20,43 @@ export default function FormularioReact({ cabanas }: Props) {
     isSuccess,
     isSubmitting,
     handleSubmit
-  } = useFormularioLogica(); // Ajustado al nombre de tu archivo
+  } = useFormularioLogica();
 
-  // 3. El resto del archivo es SÓLO la vista (JSX)
   return (
     <section
       id="formulario"
       className="min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: '#7F2E2C' }}
+      style={{ backgroundColor: '#F8F4ED' }} 
     >
-      <div className="bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-6xl overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-2xl border border-gray-800 flex flex-col md:flex-row w-full max-w-6xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
         
-        {/* Columna izquierda */}
-        <div className="md:w-1/3 bg-[#F9F9F9] flex flex-col justify-center items-center p-6 sm:p-8">
+        <div className="md:w-1/3 bg-[#A38613] flex flex-col justify-center items-center p-6 sm:p-8 text-white">
           <img
             src="/logo-casa-rural-icono-negativo.png"
             alt="Logo Casa Rural"
-            className="h-20 w-20 mb-4 object-contain"
+            className="h-20 w-20 mb-4 object-contain filter brightness-0 invert" 
           />
-          <h2 className="text-3xl font-bold text-gray-800 text-center">Registro</h2>
-          <p className="text-gray-500 text-center mt-2 text-sm sm:text-base">
-            Completa tu información para reservar tu estancia.
+          <h2 className="text-3xl font-bold text-center">Solicitud</h2>
+          <p className="text-center mt-2 text-sm sm:text-base text-gray-100">
+            Completa tu información para solicitar y reservar tu estancia.
           </p>
         </div>
 
-        {/* Columna derecha */}
         <div className="md:w-2/3 p-6 sm:p-8">
           
-          {/* El 'form' usa el 'handleSubmit' del hook */}
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
-            {/* Los mensajes usan 'isSuccess' y 'error' del hook */}
             {isSuccess && (
-              <div className="col-span-1 md:col-span-2 p-3 bg-green-100 text-green-800 rounded-md text-center">
+              <div className="col-span-1 md:col-span-2 p-3 bg-green-100 text-green-800 rounded-md text-center border border-green-200">
                 ¡Registro exitoso!
               </div>
             )}
             {error && (
-              <div className="col-span-1 md:col-span-2 p-3 bg-red-100 text-red-800 rounded-md text-center">
+              <div className="col-span-1 md:col-span-2 p-3 bg-red-100 text-red-800 rounded-md text-center border border-red-200">
                 Error: {error}
               </div>
             )}
 
-            {/* Los inputs usan los 'value' y 'onChange' del hook */}
             <input
               type="text"
               placeholder="Nombre"
@@ -84,7 +75,7 @@ export default function FormularioReact({ cabanas }: Props) {
             />
             <input
               type="email"
-              placeholder="Correo"
+              placeholder="Correo (ej: usuario@gmail.com)"
               value={correo}
               onChange={(e) => setCorreo(e.target.value)}
               required
@@ -92,9 +83,12 @@ export default function FormularioReact({ cabanas }: Props) {
             />
             <input
               type="tel"
-              placeholder="Teléfono"
+              placeholder="Teléfono (10 dígitos)"
               value={telefono}
-              onChange={(e) => setTelefono(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                setTelefono(val);
+              }}
               required
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C1AE10]"
             />
@@ -138,8 +132,8 @@ export default function FormularioReact({ cabanas }: Props) {
 
             <button
               type="submit"
-              disabled={isSubmitting} // Usa 'isSubmitting' del hook
-              className="col-span-1 md:col-span-2 mt-4 bg-[#C1AE10] hover:bg-[#a38613] text-black font-semibold py-3 rounded-md transition-colors w-full disabled:opacity-50"
+              disabled={isSubmitting}
+              className="col-span-1 md:col-span-2 mt-4 bg-[#A38613] text-white font-semibold py-3 rounded-md w-full disabled:opacity-50"
             >
               {isSubmitting ? 'Registrando...' : 'Registrar'}
             </button>

@@ -82,5 +82,14 @@ export interface DevolucionBiciResponse {
   folio_actualizado: string;
   nombre_cliente: string;
   estatus_nuevo: string;
-  fecha_devolucion_actualizada: string;
+  fecha_devolucion_actualizada: string; 
+}
+
+export interface CabanaHabitacion {
+  id: number;
+  nombre: string;
+  tipo: string;
+  descripcion: string;
+  interior: string;
+  imagen: string;
 }
