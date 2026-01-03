@@ -8,6 +8,7 @@ import Testimonios from "../components/home/Testimonios.astro";
 import FaqAccordion from "../components/FaqAccordion.astro";
 import Anuncio from "../components/home/Anuncio.astro";
 import BannerHero from "../components/home/BannerHero.astro";
+import Destacados from "../components/home/Destacados.astro";
 const faqItems = [
   {
     question: "¿Cuál es el horario de check-in y check-out?",
@@ -35,18 +36,19 @@ const faqItems = [
 
 <Layout title="Casa Rural Maxcanú">
       
-     <BannerHero> 
-      <Button label="Sobre nosotros" href="/../nosotros"/>
-     </BannerHero>
-       <h2 class="text-3xl md:text-4xl text-center my-2 font-bold tracking-widest text-palette-2 bg-palette-4 py-6">
-    Nuestros Atractivos
+     <BannerHero/> 
+       <h2 class="text-3xl md:text-4xl text-center my-8 font-bold tracking-widest text-palette-2 bg-palette-4 py-6 mt-12">
+       Bienvenidos a <br> CASA RURAL MAXCANÚ
        </h2>
-       <ImageWithText
-      heading='"JARDÍN BOTÁNICO"'
-      subheading="En la casa rural MAXCANÚ se alberga cerca de 100 especies vegetales."
-      text="El Jardín Botánico “Don Adolfo y Doña Carmen” fue, en su origen, el huerto familiar, o el solar, o el traspatio, de una vivienda rural que ha pasado por tres generaciones. Recientemente se le consideró como el amplio huerto-jardín de la “Casa Rural Maxcanú”, se considera un jardín botánico y, particularmente, como un jardín etnobotánico, dado que la gran mayoría de las plantas que la integran tienen importancia en la cultura maya.."
-      imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/flores.jpg "
-      imageSide="left"
+      <Destacados>
+       <Button label="Mas de Nosotros" href="/../nosotros"/>
+      </Destacados>
+      <ImageWithText
+      heading='"HISTORIA"'
+      subheading="En los pueblos magicos cada sitio es son pedazos de historia yucateca"
+      text="Este lugar es, en su totalidad, un pedazo de historia, cuyo encanto se manifiesta desde su cocina tradicional, que evoca la típica casa del Yucatán más antiguo, hasta su decoración, que resalta vivamente la cultura yucateca y otras influencias dejadas por personas internas y externas. Además, su jardín botánico alberga plantas locales con usos tradicionales de gran importancia para la herencia maya. En esencia, cada rincón de la casa tiene una historia que contar."
+      imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/historia.png"
+      imageSide="right"
       />
       
       <Room>
@@ -59,6 +61,7 @@ const faqItems = [
       imageSide="right"
       />
       <Anuncio/>
+       <MapaCasa/>
       <ImageWithText
       heading='"GALERIA DE ARTE"'
       subheading="El arte y la cultura son pilares fundamentales de Casa Rural Maxcanú"
@@ -66,14 +69,8 @@ const faqItems = [
       imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png"
       imageSide="left"
       />
-      <MapaCasa/>
-      <ImageWithText
-      heading='"HISTORIA"'
-      subheading="En los pueblos magicos cada sitio es son pedazos de historia yucateca"
-      text="Este lugar es, en su totalidad, un pedazo de historia, cuyo encanto se manifiesta desde su cocina tradicional, que evoca la típica casa del Yucatán más antiguo, hasta su decoración, que resalta vivamente la cultura yucateca y otras influencias dejadas por personas internas y externas. Además, su jardín botánico alberga plantas locales con usos tradicionales de gran importancia para la herencia maya. En esencia, cada rincón de la casa tiene una historia que contar."
-      imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/historia.png"
-      imageSide="right"
-      />
+     
+      
       
      
       <Testimonios/>
