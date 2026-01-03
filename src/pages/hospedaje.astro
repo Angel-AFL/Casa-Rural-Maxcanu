@@ -2,22 +2,20 @@
 import Layout from "../layouts/Layout.astro";
 import Carrusel from "../components/hospedaje/Carrusel.astro";
 import FormularioReact from "../components/hospedaje/FormularioReact.tsx";
-
-// 1. SÓLO importamos lo que necesita la VISTA
+import HabitacionesCabanas from "../components/hospedaje/HabitacionesCabanas.astro";
 import { getCatCabanaHabitacion } from './api/nombre_cabana_habitacion';
 
-// 2. ¡TODA LA LÓGICA 'POST' SE FUE!
-//    Ya no hay 'if (Astro.request.method === 'POST')'
 
-// 3. Cargamos las cabañas para pasárselas a React
 const cabanas = await getCatCabanaHabitacion();
 ---
 
 <Layout title="Hospedaje">
   <div class="bg-[#7F2E2C]">
+    <!-- carrusel -->
     <Carrusel />
-
+    <!-- cards -->
+   <HabitacionesCabanas />
+    <!-- formulario -->
     <FormularioReact cabanas={cabanas} client:load />
-    
   </div>
 </Layout>

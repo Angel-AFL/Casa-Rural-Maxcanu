@@ -1,10 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ArtCard from "../../components/gallery/ArtCard.astro";
+import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
-import { getMitosYLeyendasDelMayab } from "../api/cat_galeria_arte";
+import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catMitosYLeyendasDelMayab = await getMitosYLeyendasDelMayab();
+const catMitosYLeyendasDelMayab = await getArtsBySala(
+  "Mitos y leyendas del Mayab"
+);
 ---
 
 <Layout title="Mitos y Leyendas del Mayab">
@@ -15,16 +17,7 @@ const catMitosYLeyendasDelMayab = await getMitosYLeyendasDelMayab();
   />
   <section class="grid place-items-center p-2 md:p-4 lg:p-8">
     <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
-      {
-        catMitosYLeyendasDelMayab?.map((art) => (
-          <ArtCard
-            img={art.imagen}
-            name={art.nombre}
-            author={art.autor}
-            type={art.tipo}
-          />
-        ))
-      }
+      {catMitosYLeyendasDelMayab?.map((art) => <ArtCard {...art} />)}
     </div>
   </section>
 </Layout>

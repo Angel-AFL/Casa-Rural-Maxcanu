@@ -1,11 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// 1. Importa el componente de React para la bici
+import InicioRentaBici from "../components/rentaBicicleta/InicioBici.astro";
 import FormularioBici from "../components/rentaBicicleta/FormularioBici.tsx";
 ---
 
 <Layout title="Renta de Bicicletas">
-  <div class="bg-[#7F2E2C]">
+
+  <!-- INICIO -->
+  <InicioRentaBici />
+
+  <!-- FORMULARIO -->
+  <section id="formulario-bici">
     <FormularioBici client:load />
-  </div>
+  </section>
+
 </Layout>
