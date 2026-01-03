@@ -1,4 +1,4 @@
----
+;0p\=---
 const testimonios = [
   {
     texto: "El lugar es espectacular, rodeado de naturaleza y con espacios acogedores. Pasé un fin de semana increíble y sin duda regresaré pronto. La atención personalizada y el ambiente cálido hicieron toda la diferencia.",
@@ -29,73 +29,104 @@ const testimonios = [
     }
 ];
 ---
+<section class="w-full py-12 md:py-16">
 
-<section class="w-full py-10 sm:py-12 md:py-16 ">
   <h2 class="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-palette-5 
-             mb-8 sm:mb-10 md:mb-12 tracking-wide bg-palette-4 py-3 sm:py-4">
+             mb-10 tracking-wide bg-palette-4 py-4">
     Testimonios de Nuestros Visitantes
   </h2>
-  
-  <div 
-    id="carousel"
-    class="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto px-4 sm:px-6 pb-4 sm:pb-6 
-           snap-x snap-mandatory scroll-smooth no-scrollbar">
-    {testimonios.map((t) => (
-      <article
-        class="min-w-[240px] sm:min-w-[280px] md:min-w-[340px] lg:min-w-[380px] max-w-mdtext-palette-5 p-5 sm:p-6 md:p-8
-          rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl snap-center border border-neutral-700 transition-shadow duration-300">
-        <p class="text-sm sm:text-base leading-relaxed opacity-90">
-          “{t.texto}”
-        </p>
-        <p class="mt-4 sm:mt-6 font-semibold text-right">
-          — {t.autor}
-        </p>
-      </article>
-    ))}
+
+  <div class="relative max-w-[92rem] mx-auto px-8 sm:px-12 lg:px-16">
+
+    <!-- Flecha izquierda -->
+    <button id="prevBtn"
+  class="absolute left-4 top-1/2 -translate-y-1/2 z-20
+         w-11 h-11 rounded-full bg-white/70 backdrop-blur
+         text-neutral-700 shadow-lg
+         hover:bg-white hover:scale-105 transition
+         flex items-center justify-center">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path d="M15 18l-6-6 6-6"/>
+  </svg>
+</button>
+
+    <!-- Carrusel -->
+    <div id="carousel"
+      class="flex gap-8 overflow-hidden py-6">
+
+      {testimonios.map((t) => (
+        <article
+          class="flex-shrink-0 w-[260px] lg:w-[280px] xl:w-[300px]
+                 text-palette-5 p-7 rounded-2xl border border-neutral-700
+                 shadow-md hover:shadow-xl transition-all duration-300">
+          <p class="text-sm sm:text-base leading-relaxed opacity-90">
+            “{t.texto}”
+          </p>
+          <p class="mt-6 font-semibold text-right">
+            — {t.autor}
+          </p>
+        </article>
+      ))}
+
+    </div>
+
+    <!-- Flecha derecha -->
+    <button id="nextBtn"
+  class="absolute right-4 top-1/2 -translate-y-1/2 z-20
+         w-11 h-11 rounded-full bg-white/70 backdrop-blur
+         text-neutral-700 shadow-lg
+         hover:bg-white hover:scale-105 transition
+         flex items-center justify-center">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path d="M9 6l6 6-6 6"/>
+  </svg>
+</button>
+
   </div>
+
 </section>
-
-<style>
-  /* oculta la barra */
-  .no-scrollbar {
-    scrollbar-width: none;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-</style>
-
 <script is:inline>
-  window.addEventListener("DOMContentLoaded", () => {
-    const carousel = document.getElementById("carousel");
-    if (!carousel) return;
+  const carousel = document.getElementById("carousel");
+  const next = document.getElementById("nextBtn");
+  const prev = document.getElementById("prevBtn");
 
-    const cardWidth = carousel.firstElementChild.offsetWidth + 24; // ancho + gap
-    let isResetting = false;
+  const gap = 32;
+  const cardWidth = carousel.querySelector("article").offsetWidth + gap;
 
-    // Duplicamos los elementos para efecto infinito
-    const items = Array.from(carousel.children);
-    items.forEach(item => {
-      carousel.appendChild(item.cloneNode(true));
-    });
+  let autoScroll;
 
-    setInterval(() => {
-      if (isResetting) return;
+  function startAutoScroll() {
+    autoScroll = setInterval(moveNext, 3800);
+  }
 
-      carousel.scrollBy({
-        left: cardWidth,
-        behavior: "smooth",
-      });
+  function stopAutoScroll() {
+    clearInterval(autoScroll);
+  }
 
-      // Si llegamos al final, regresamos al inicio sin animación
-      if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-        isResetting = true;
+  function moveNext() {
+    carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
 
-        setTimeout(() => {
-          carousel.scrollLeft = 0;
-          isResetting = false;
-        }, 600); // debe coincidir con el smooth scroll
-      }
-    }, 3000);
+    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - cardWidth) {
+      setTimeout(() => carousel.scrollLeft = 0, 700);
+    }
+  }
+
+  function movePrev() {
+    carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+  }
+
+  next.addEventListener("click", () => {
+    stopAutoScroll();
+    moveNext();
+    startAutoScroll();
   });
+
+  prev.addEventListener("click", () => {
+    stopAutoScroll();
+    movePrev();
+    startAutoScroll();
+  });
+
+  startAutoScroll();
 </script>
+
