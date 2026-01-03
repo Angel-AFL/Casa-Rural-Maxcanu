@@ -1,0 +1,30 @@
+---
+import { getCabanaHabitacion } from "../../pages/api/cabana_habitacion";
+import type { CabanaHabitacion } from "../../types/global";
+import CabanaCards from "./CabanaCards.astro";
+
+let cabanas: CabanaHabitacion[] = [];
+
+try {
+  console.log("⏳ [DEBUG] Cargando cabañas desde Supabase...");
+
+  cabanas = await getCabanaHabitacion();
+
+  console.log("✅ [DEBUG] Cabañas recibidas:", cabanas);
+  console.log("📦 [DEBUG] Total cabañas:", cabanas.length);
+} catch (error) {
+  console.error("❌ [DEBUG] Error al cargar cabañas:", error);
+}
+---
+
+<section class="bg-white">
+  {cabanas.length === 0 && (
+    <p class="p-6 text-red-600 font-semibold">
+      ❌ No se cargaron cabañas
+    </p>
+  )}
+
+  {cabanas.length > 0 && (
+    <CabanaCards cabanas={cabanas} />
+  )}
+</section>

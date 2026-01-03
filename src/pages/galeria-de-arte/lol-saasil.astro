@@ -4,18 +4,18 @@ import ArtCard from "../../components/galería/ArtCard.astro";
 import Hero from "../../components/Hero.astro";
 import { getArtsBySala } from "../api/cat_galeria_arte";
 
-const catMujerMaya = await getArtsBySala("Mujer maya");
+const catLolSaasil = await getArtsBySala("Lol Saasil");
 ---
 
-<Layout title="Mujer Maya">
+<Layout title="Lol Saasil">
   <Hero
-    title="Mujer Maya"
+    title="Lol Saasil"
     subtitle="Pinturas, esculturas y dibujos de distintos artístas y artesanos del sureste"
-    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/mujer%20maya.png"
+    imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/lol%20saasil.png"
   />
   <section class="grid place-items-center p-2 md:p-4 lg:p-8">
     <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
-      {catMujerMaya?.map((art) => <ArtCard {...art} />)}
+      {catLolSaasil?.map((art) => <ArtCard {...art} />)}
     </div>
   </section>
 </Layout>
