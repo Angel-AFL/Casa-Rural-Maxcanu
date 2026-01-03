@@ -1,0 +1,182 @@
+---
+const { 
+  title = "Descubre los secretos de Maxcanú y la Ruta Puuc", 
+  subtitle = "Explora grutas milenarias, haciendas históricas y la riqueza cultural de la región.", 
+  imageUrl = "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/entrada_maxcanu.png" 
+} = Astro.props;
+---
+
+<section
+  id="inicio"
+  class="min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[200px]"
+  style={`background-image: url('${imageUrl}');`}
+>
+  <div class="bg-black/50 absolute inset-0"></div>
+
+  <div class="relative z-[2] text-white px-4 w-full">
+    <h2 class="text-4xl md:text-5xl font-bold mb-2">{title}</h2>
+    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+
+    <div class="flex flex-col items-center justify-center mt-6">
+      <div class="flex flex-row flex-wrap justify-center gap-3 md:gap-4 mt-8 w-full max-w-4xl mx-auto">
+        <a 
+          href="#arqueologia" 
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
+        >
+          Arqueología e historia
+        </a>
+
+        <a 
+          href="#naturaleza" 
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
+        >
+          Naturaleza y aventura
+        </a>
+
+        <a 
+          href="#cultura" 
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
+        >
+          Cultura y Tradición
+        </a>
+
+        <a 
+          href="#pueblos" 
+          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
+        >
+          Pueblos y haciendas cercanos
+        </a>
+      </div>
+      <slot />
+    </div>
+  </div>
+</section>
+
+<button
+  id="scrollToTopBtn"
+  class="fixed bottom-8 right-8 w-14 h-14 bg-white/10 backdrop-blur-lg text-white rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:scale-110 active:scale-95 z-50 group border border-white/20 hover:border-white/40"
+  aria-label="Volver al inicio lentamente"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+</button>
+
+<script>
+  function smoothScrollTo(targetPosition: number, duration: number = 1000): void {
+    const startPosition: number = window.pageYOffset;
+    const distance: number = targetPosition - startPosition;
+    let startTime: number | null = null;
+    
+    function animation(currentTime: number): void {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed: number = currentTime - startTime;
+      const progress: number = Math.min(timeElapsed / duration, 1);
+      
+      const easeOutCubic = (t: number): number => 1 - Math.pow(1 - t, 3);
+      const easedProgress: number = easeOutCubic(progress);
+      
+      window.scrollTo(0, startPosition + (distance * easedProgress));
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+    
+    requestAnimationFrame(animation);
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopBtn: HTMLElement | null = document.getElementById('scrollToTopBtn');
+    
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+          scrollToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+          scrollToTopBtn.classList.remove('opacity-100', 'visible');
+          scrollToTopBtn.classList.add('opacity-0', 'invisible');
+        }
+      });
+      
+      scrollToTopBtn.addEventListener('click', function(this: HTMLElement) {
+        smoothScrollTo(0, 1000);
+      });
+    }
+    
+    const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach((link: HTMLAnchorElement) => {
+      link.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
+        e.preventDefault(); 
+        
+        const targetId: string = this.getAttribute('href')?.substring(1) || '';
+        const targetElement: HTMLElement | null = document.getElementById(targetId);
+        
+        if (targetElement) {
+          this.classList.add('active');
+          setTimeout(() => this.classList.remove('active'), 300);
+          
+          const offset: number = 80;
+          const targetPosition: number = targetElement.offsetTop - offset;
+          
+          smoothScrollTo(targetPosition, 1200);
+        }
+      });
+    });
+    
+    const allHashLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href^="#"]');
+    
+    allHashLinks.forEach((anchor: HTMLAnchorElement) => {
+      if (!anchor.classList.contains('nav-link')) {
+        anchor.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
+          const href: string | null = this.getAttribute('href');
+          if (href && href !== '#') {
+            e.preventDefault();
+            const targetId: string = href.substring(1);
+            const targetElement: HTMLElement | null = document.getElementById(targetId);
+            
+            if (targetElement) {
+              const offset: number = 80;
+              const targetPosition: number = targetElement.offsetTop - offset;
+              smoothScrollTo(targetPosition, 1200);
+            }
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  section:target {
+    scroll-margin-top: 80px;
+  }
+  
+  #scrollToTopBtn {
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.4s ease,
+                visibility 0.4s ease,
+                background-color 0.3s ease;
+  }
+  
+  #scrollToTopBtn.visible {
+    transform: translateY(0);
+  }
+  
+  .nav-link.active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+  }
+</style>

@@ -10,7 +10,6 @@ export interface ImgCabanaHabitacion {
   imagen: string;
 }
 
-
 //registro hospedaje
 export interface HospedajePayload {
   nombre: string;
@@ -18,7 +17,7 @@ export interface HospedajePayload {
   correo: string;
   telefono: string;
   habitacion_cabana: string;
-  fecha_entrada: string; 
+  fecha_entrada: string;
   fecha_salida: string;
 }
 
@@ -26,24 +25,36 @@ export interface CatCabanaHabitacion {
   nombre: string;
 }
 
+export interface CabanaHabitacion {
+  id: number;
+  nombre: string;
+  tipo: string;
+  descripcion: string;
+  interior: string;
+  imagen: string;
+}
+
 export interface CatGaleriaArte {
   id: number;
   sala: string;
   nombre: string;
   autor: string;
-  tipo: string;
+  técnica: string;
+  categoría: string;
+  dimensiones: string;
+  año: string;
+  procedencia: string;
+  uso: string;
   imagen: string;
-  created_at: string;
 }
-
 
 export interface HospedajeResponse {
   folio: string;
   nombre: string;
   apellido: string;
-  correo: string;             
+  correo: string;
   telefono: string;
-  habitacion_cabana: string; 
+  habitacion_cabana: string;
   fecha_entrada: string;
   fecha_salida: string;
 }
@@ -72,16 +83,6 @@ export interface DevolucionBiciResponse {
   nombre_cliente: string;
   estatus_nuevo: string;
   fecha_devolucion_actualizada: string; 
-}
-
-export interface CatGaleriaArte {
-  id: number;
-  sala: string;
-  nombre: string;
-  autor: string;
-  tipo: string;
-  imagen: string;
-  created_at: string;
 }
 
 export interface CabanaHabitacion {
