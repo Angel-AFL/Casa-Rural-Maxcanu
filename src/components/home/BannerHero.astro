@@ -1,0 +1,28 @@
+---
+const {
+
+  videoUrl = "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/videos/video1.mp4",
+} = Astro.props;
+---
+
+<section class="relative w-full overflow-hidden lg:aspect-auto aspect-[3/4] sm:aspect-[16/9]">
+
+  <!-- Video Background -->
+<video
+  class="absolute inset-0 w-full h-full object-cover
+         sm:object-cover lg:relative lg:h-auto lg:w-full"
+  src={videoUrl}
+  autoplay
+  muted
+  loop
+  playsinline
+></video>
+<div class="flex items-center justify-center gap-4 m-10">
+    <slot/>
+</div>
+
+
+
+  
+
+</section>
