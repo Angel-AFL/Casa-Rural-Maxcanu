@@ -1,0 +1,33 @@
+---
+const imagenHero =
+  "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/casa-rural.png";
+---
+
+<section class="relative w-full h-screen overflow-hidden bg-gray-900">
+
+  <img
+    src={imagenHero}
+    alt="Renta de bicicletas"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 z-10">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-xl tracking-wide">
+      Renta de Bicicletas
+    </h1>
+
+    <p class="text-lg md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-light">
+      Inicia tu recorrido registrando tu renta y disfruta la experiencia
+    </p>
+
+    <button
+      class="bg-[#A38613] hover:bg-[#8c7310] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-300 text-lg"
+      onclick="document.getElementById('formulario-bici').scrollIntoView({ behavior: 'smooth' });"
+    >
+      Rentar ahora
+    </button>
+  </div>
+
+</section>
