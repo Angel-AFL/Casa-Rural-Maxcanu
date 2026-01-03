@@ -1,8 +1,7 @@
 ---
-import Button from './Button.astro';
 
 const { 
-  title = "Casa Rural de Maxcanú", 
+  title = "Casa Rural MAXCANÚ", 
   subtitle = "La Casa ideal para el descanso, la relajación, la meditación y el esparcimiento", 
   imageUrl = "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/casa-rural.png" 
 } = Astro.props;
@@ -19,7 +18,7 @@ const {
     <h2 class="text-4xl md:text-5xl font-bold mb-4">{title}</h2>
     <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
 
-    <div class="flex items-center justify-center gap-4">
+    <div class="flex items-center justify-center gap-4 mt-7">
       <slot>
     </div>
   </div>

@@ -1,0 +1,47 @@
+<div class="w-full bg-palette-4 text-palette-2 py-3 overflow-hidden shadow-lg border-y">
+
+  <div class="marquee">
+    <div class="marquee__inner">
+      <span>⭐ relaje la mente y cuerpo</span>
+      <span>🌿 Conoce nuestros jardines y galería de arte</span>
+      <span>📍 Estamos en Maxcanú, Yucatán</span>
+      <span>🏨 Habitaciones especiales disponibles</span>
+      <span>🚲 Renta de bicicletas para explorar</span>
+      <span>📲 Síguenos en nuestras redes</span>
+      <span>✨ Haz tu reservación ahora</span>
+
+      <!-- duplicado interno -->
+      <span>⭐ Conozca la cultural local</span>
+      <span>🌿 Conoce nuestros jardines y galería de arte</span>
+      <span>📍 Estamos en Maxcanú, Yucatán</span>
+      <span>🏨 Habitaciones especiales disponibles</span>
+      <span>🚲 Renta de bicicletas para explorar</span>
+      <span>📲 Síguenos en nuestras redes</span>
+      <span>✨ Haz tu reservación ahora</span>
+    </div>
+  </div>
+
+</div>
+
+
+<style>
+.marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee__inner {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: scroll 28s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+</style>

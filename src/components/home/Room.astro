@@ -36,16 +36,16 @@ const habitaciones = [
   },
   {
     nombre: "CABAÑAS: PITAHAYA-DRAGON FRUIT",
-    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Pitahaya-Dragon%20Fruit.png",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/PitahayaDragonFruit.png",
     descripcion: "Cabaña Pitahaya — Dragon Fruit: nueva en Casa Rural Maxcanú, Cuenta con dos camas matrimoniales, hamaca grande, aire acondicionado, ventilador de techo, frigobar, mesa de trabajo, clóset y baño privado.",
     descripcion_2:"Disfruta su terraza con hamacas y sala, perfecta para descansar, Pantalla con Netflix, YouTube y otras apps, Decorada con 18 obras inspiradas en la pitahaya, creando un ambiente colorido y moderno, Incluye acceso a áreas comunes"
   }
 ];
 ---
 
-<section class="bg-white py-16 text-stone-800">
+<section class="bg-palette-4 py-16 text-stone-800 sm:py-12 md:py-16">
   <div class="max-w-6xl mx-auto px-4 text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-8">
+    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-8 ">
       Nuestras Habitaciones
     </h2>
   </div>
@@ -62,17 +62,21 @@ const habitaciones = [
 
       {/* Duplicamos para loop infinito */}
       {habitaciones.map(h => (
-        <div class="flex-shrink-0 w-80 card-with-modal">
+        <div class="flex-shrink-0 w-[260px] sm:w-[300px] md:w-[340px] lg:w-[380px] card-with-modal">
           <Habitacion {...h} />
         </div>
       ))}
     </div>
   </div>
 
-  <div class="max-w-6xl mx-auto px-4 text-center">
-    <p class="mt-6 text-lg max-w-2xl mx-auto leading-relaxed">
-      Cada habitación tiene su encanto, con detalles únicos que combinan confort moderno y esencia yucateca.
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+    <p class="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto leading-relaxed">
+      Cada habitación tiene su encanto, con detalles únicos que combinan comfort moderno y esencia yucateca.
     </p>
+  </div>
+  <div class="flex items-center justify-center gap-4 mt-8">
+      <slot>
+    </div>
   </div>
 </section>
 
