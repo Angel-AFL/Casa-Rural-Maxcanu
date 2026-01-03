@@ -118,9 +118,24 @@ const currentPath = Astro.url.pathname;
             </li>
             <li>
               <a
+                href="/renta-de-bicicletas"
+                class={currentPath === "/renta-de-bicicletas"
+                  ? "active-link"
+                  : ""}>Renta de bicicletas</a
+              >
+            </li>
+            <li>
+              <a
                 href="/galeria-de-arte"
                 class={currentPath === "/galeria-de-arte" ? "active-link" : ""}
                 >Galería de arte</a
+              >
+            </li>
+            <li>
+              <a
+                href="/galeria-virtual"
+                class={currentPath === "/galeria-virtual" ? "active-link" : ""}
+                >Galería virtual</a
               >
             </li>
             <li>
@@ -130,29 +145,13 @@ const currentPath = Astro.url.pathname;
                 >Jardín botánico</a
               >
             </li>
-            <li>
-              <a
-                href="/renta-de-bicicletas"
-                class={currentPath === "/renta-de-bicicletas"
-                  ? "active-link"
-                  : ""}>Renta de bicicletas</a
-              >
-            </li>
-            <li>
-              <a
-                href="/recorrido-virtual"
-                class={currentPath === "/recorrido-virtual"
-                  ? "active-link"
-                  : ""}>Recorrido virtual</a
-              >
-            </li>
           </ul>
         </nav>
       </div>
     </header>
     <slot />
     <footer class="bg-palette-2 p-2 md:p-4 lg:p-8">
-      <div class="flex flex-col md:flex-row justify-evenly md:gap-8 lg:gap-0">
+      <div class="flex flex-col md:flex-row justify-evenly md:gap-8 lg:gap-1">
         <ul class="flex flex-col gap-2 flex-1 items-center">
           <div class="flex flex-col gap-2">
             <li>
@@ -183,9 +182,9 @@ const currentPath = Astro.url.pathname;
             <li><span class="text-lg">Acerca de</span></li>
             <li><a href="/nosotros">Nosotros</a></li>
             <li><a href="/hospedaje">Hospedaje</a></li>
-            <li><a href="/galeria-de-arte">Galería de arte</a></li>
             <li><a href="/renta-de-bicicletas">Renta de bicicletas</a></li>
-            <li><a href="/recorrido-virtual">Recorrido virtual</a></li>
+            <li><a href="/galeria-de-arte">Galería de arte</a></li>
+            <li><a href="/galeria-virtual">Galería virtual</a></li>
           </div>
         </ul>
 
@@ -216,12 +215,12 @@ const currentPath = Astro.url.pathname;
           <li>
             <span class="text-lg">Redes Sociales</span>
           </li>
-          <div class="flex gap-4">
+          <div class="flex gap-4 md:w-36 lg:w-48">
             <a href="https://wa.me/+529999062536
             " target="_blank"
               ><img
                 src="/whatsapp-icon.png"
-                alt=""
+                alt="ícono de whatsapp"
                 width="38"
                 height="38"
                 class="hover:invert transition-all duration-300"
@@ -233,16 +232,28 @@ const currentPath = Astro.url.pathname;
             >
               <img
                 src="/facebook-icon.png"
-                alt=""
+                alt="ícono de facebook"
                 width="38"
                 height="38"
                 class="hover:invert transition-all duration-300"
               />
             </a>
-            <a href="">
+            <a
+              href="https://www.instagram.com/casarural.maxcanu"
+              target="_blank"
+            >
               <img
                 src="/instagram-icon.png"
-                alt=""
+                alt="ícono de instagram"
+                width="38"
+                height="38"
+                class="hover:invert transition-all duration-300"
+              />
+            </a>
+            <a href="https://www.tiktok.com/@casarural.maxcanu" target="_blank">
+              <img
+                src="/tiktok-icon.png"
+                alt="ícono de tiktok"
                 width="38"
                 height="38"
                 class="hover:invert transition-all duration-300"
