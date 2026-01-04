@@ -12,8 +12,11 @@
   --color-palette-6: #e8ddc8;
   --color-palette-7: #5b7c5a;
   --color-palette-8: #335a65;
-  --color-palette-9: #b8cbd1;
+  --color-palette-9: #047857;
   --color-palette-10: #10b981;
+  --color-palette-11: #f1efe8;
+  --color-palette-12: #dde8d5;
+  --color-palette-13: #efe1b8;
 }
 
 @layer utilities {
