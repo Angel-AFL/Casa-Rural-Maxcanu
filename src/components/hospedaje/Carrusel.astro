@@ -44,15 +44,18 @@ const totalSliderWidth = totalCount * 100;
         Hospedaje
       </h2>
       <p class="text-lg md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-light">
-        Registra tu hospedaje aquí
+        Solicita tu hospedaje aquí
       </p>
 
-      <button 
-        class="bg-[#A38613] hover:bg-[#8c7310] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-300 text-lg cursor-pointer"
-        onclick="document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });"
-      >
-        Registrarse
-      </button>
+      <button
+  id="btn-registrarse"
+  class="bg-[#A38613] hover:bg-[#8c7310] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-300 text-lg cursor-pointer"
+>
+  Registrarse
+</button>
+
+
+
     </div>
   </div>
 
@@ -74,3 +77,23 @@ const totalSliderWidth = totalCount * 100;
     animation-iteration-count: infinite;
   }
 </style>
+
+<script>
+  const initScrollButton = () => {
+    const btn = document.getElementById("btn-registrarse");
+    const target = document.getElementById("catalogo");
+
+    if (!btn || !target) return;
+
+    if (btn.dataset.ready) return;
+    btn.dataset.ready = "true";
+
+    btn.addEventListener("click", () => {
+      target.scrollIntoView({ behavior: "smooth" });
+    });
+  };
+
+  initScrollButton();
+
+  document.addEventListener("astro:page-load", initScrollButton);
+</script>
