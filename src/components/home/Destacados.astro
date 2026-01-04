@@ -1,0 +1,73 @@
+---
+const features = [
+  {
+    title: "Cocina equipada",
+    image: "/images/casa/cocina.png",
+  },
+  {
+    title: "biblioteca",
+    image: "/images/casa/biblioteca.png",
+  },
+  {
+    title: "Estacionamiento",
+    image: "/images/casa/estacionamiento.png",
+  },
+  {
+    title: "Área de fogata",
+    image: "/images/casa/fogata.png",
+  },
+  {
+    title: "renta de bicicletas",
+    image: "/images/casa/bicicletas.png",
+  },
+  {
+    title: "baños privados",
+    image: "/images/casa/jardin_botanico.png",
+  },
+  {
+    title: "streaming e internet",
+    image: "/images/casa/banos_privados.png",
+  },
+  {
+    title: "arte por todas partes",
+    image: "/images/casa/galeria_arte.png",
+  }
+  
+
+];
+---
+
+<section class="w-full py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    
+    <h2 class="text-3xl md:text-4xl font-semibold tracking-wide mb-2">
+        Lo que ofrecemos 
+    </h2>
+    <p class="text-gray-500 mb-14">
+      Comodidades pensadas para tu descanso y disfrute
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 p-8">
+      {features.map((item) => (
+        <div class="group cursor-pointer">
+          
+          <div class="w-full aspect-square flex items-center justify-center mb-5">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="text-sm tracking-widest font-medium text-gray-800">
+            {item.title.toUpperCase()}
+          </h3>
+
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="flex items-center justify-center gap-4 m-14">
+    <slot/>
+</div>
+</section>
