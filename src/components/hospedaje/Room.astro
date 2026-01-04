@@ -1,0 +1,101 @@
+---
+import Habitacion from './RoomItem.astro';
+
+
+const habitaciones = [
+  {
+    nombre: "OXKINTOK",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png",
+    descripcion: "La Habitación Oxkintok, ubicada en la planta baja de Casa Rural Maxcanú, ofrece una cama matrimonial, hamaca, aire acondicionado, ventilador y mesa de trabajo. Tiene acceso directo a un jardín lateral y comparte un baño con jacuzzi con la habitación Doña Carmen.",
+    descripcion_2:" Disfruta de amplios espacios comunes —sala, cocina, biblioteca y palapas de descanso— y una pantalla con apps de entretenimiento. La decoración incluye 18 obras inspiradas en los mitos y leyendas del Mayab."
+  },
+  {
+    nombre: "DOÑA CARMEN",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Carmen.png",
+    descripcion: "La Habitación Doña Carmen se encuentra en la planta baja de Casa Rural Maxcanú. Dispone de cama matrimonial, hamaca, aire acondicionado, ventilador, mesa de trabajo y ropero. Su pantalla incluye apps como Netflix y YouTube, ideal para relajarse tras un día tranquilo.",
+    descripcion_2:"Decorada con 17 obras de arte bajo la temática Retratos, comparte el baño con jacuzzi con la habitación Oxkintok y tiene acceso a los espacios comunes: sala, cocina, biblioteca y un hermoso huerto-jardín con área de fogata y palapas."
+  },
+  {
+    nombre: "UXMAL",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Uxmal.png",
+    descripcion: "La Habitación Uxmal, ubicada en la planta alta de Casa Rural Maxcanú, ofrece un ambiente fresco y acogedor con cama matrimonial, hamaca, aire acondicionado, ventilador, clóset y mesa de trabajo.",
+    descripcion_2:"Su pantalla cuenta con apps como Netflix y YouTube para disfrutar del descanso. Decorada con 22 obras inspiradas en plantas, flores y frutos, comparte el baño con la habitación Celestún y tiene acceso a todos los espacios comunes de la casa: sala, cocina, biblioteca y un hermoso huerto-jardín con palapas y fogata."
+  },
+  
+  {
+    nombre: "CELESTÚN",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Celestun.png",
+    descripcion: "La Habitación Celestún se ubica en la planta alta de Casa Rural Maxcanú. Ofrece una cama matrimonial, hamaca, aire acondicionado, ventilador, clóset y mesa de trabajo, además de tres ventanas que llenan el espacio de luz natural.",
+    descripcion_2:"Cuenta con pantalla y acceso a apps como Netflix y YouTube. Su decoración incluye 13 obras artísticas infantiles de Lol Saasil, que aportan un toque único y alegre.Comparte el baño de la planta alta con la habitación Uxmal y tiene acceso a todos los espacios comunes de la casa: sala, cocina, biblioteca, palapas y un agradable huerto-jardín con área de fogata."
+},{
+    nombre: "CABAÑAS: AVES TROPICALES",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Aves-Tropicales.png",
+    descripcion: "Disfruta de dos camas matrimoniales, hamaca grande, aire acondicionado, ventilador de techo, frigobar, clóset, mesa de trabajo y baño privado. Relájate en su terraza con hamacas y sala, rodeada de tranquilidad. Incluye pantalla con Netflix, YouTube y más.",
+    descripcion_2:"Decorada con 20 obras inspiradas en aves tropicales, creando un ambiente lleno de color y naturaleza. Además, tendrás acceso a todas las áreas comunes de la casa: sala, cocina, biblioteca, palapas y jardín con área de fogata."
+    
+  },
+  {
+    nombre: "CABAÑAS: PITAHAYA-DRAGON FRUIT",
+    imagen: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/PitahayaDragonFruit.png",
+    descripcion: "Cabaña Pitahaya — Dragon Fruit: nueva en Casa Rural Maxcanú, Cuenta con dos camas matrimoniales, hamaca grande, aire acondicionado, ventilador de techo, frigobar, mesa de trabajo, clóset y baño privado.",
+    descripcion_2:"Disfruta su terraza con hamacas y sala, perfecta para descansar, Pantalla con Netflix, YouTube y otras apps, Decorada con 18 obras inspiradas en la pitahaya, creando un ambiente colorido y moderno, Incluye acceso a áreas comunes"
+  }
+];
+---
+
+<section class="bg-palette-4 py-16 text-stone-800 sm:py-12 md:py-16">
+
+  <!-- Carrusel FULL WIDTH -->
+  <div class="relative overflow-hidden w-full">
+    <div class="flex animate-scroll gap-6 px-4">
+      {habitaciones.map(h => (
+        <div class="flex-shrink-0 w-80 card-with-modal">
+          <Habitacion {...h} />
+          
+        </div>
+      ))}
+
+      {/* Duplicamos para loop infinito */}
+      {habitaciones.map(h => (
+        <div class="flex-shrink-0 w-[260px] sm:w-[300px] md:w-[340px] lg:w-[380px] card-with-modal">
+          <Habitacion {...h} />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+    <p class="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg max-w-xl md:max-w-2xl mx-auto leading-relaxed">
+      Cada habitación tiene su encanto, con detalles únicos que combinan comfort moderno y esencia yucateca.
+    </p>
+  </div>
+  <div class="flex items-center justify-center gap-4 mt-8">
+      <slot>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+.card-with-modal img {
+  width: 100%;
+  max-width: 820px;
+  height: auto;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card-with-modal img:hover {
+  transform: scale(1.05);
+}
+</style>

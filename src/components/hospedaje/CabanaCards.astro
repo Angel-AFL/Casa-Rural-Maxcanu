@@ -4,127 +4,110 @@ import type { CabanaHabitacion } from "../../types/global";
 const { cabanas } = Astro.props;
 ---
 
-<section id="catalogo" class="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-  {cabanas.map((cabana: CabanaHabitacion) => (
-    <article class="w-full max-w-sm rounded-xl shadow-lg overflow-hidden bg-gray-100">
-      
-      <!-- IMAGEN -->
-      <img
-        src={encodeURI(cabana.imagen)}
-        alt={cabana.nombre}
-        class="h-56 w-full object-cover"
-      />
+<section class="mt-20">
+  <div class="max-w-6xl mx-auto px-4 text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700">
+      Nuestras Habitaciones
+    </h2>
+  </div>
 
-      <!-- CARD INFO -->
-      <div class="p-4 text-black flex flex-col gap-3">
-        <h3 class="text-xl font-bold">
-          {cabana.nombre}
-        </h3>
+  <section
+    id="catalogo"
+    class="max-w-7xl mx-auto p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+  >
+    {cabanas.map((cabana: CabanaHabitacion) => (
+      <article class="rounded-xl shadow-lg overflow-hidden bg-gray-100 text-black">
 
-        <button
-          data-open={`modal-${cabana.id}`}
-          class="bg-[#C1AE10] hover:bg-[#a9990d] text-white font-semibold px-5 py-2 rounded-full transition duration-300 shadow-md self-start"
-        >
-          Ver detalles
-        </button>
-      </div>
+        <!-- IMAGEN -->
+        <div class="overflow-hidden">
+          <img
+            src={encodeURI(cabana.imagen)}
+            alt={cabana.nombre}
+            class="h-56 w-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </div>
 
-      <!-- MODAL -->
-      <dialog
-        id={`modal-${cabana.id}`}
-        class="rounded-xl p-0 w-11/12 max-w-xl shadow-2xl backdrop:bg-black/60"
-      >
-        <!-- CONTENEDOR INTERNO -->
-        <div class="bg-white rounded-xl p-6 flex flex-col gap-4 text-black">
-
-          <h3 class="text-2xl font-bold text-center">
+        <!-- CONTENIDO -->
+        <div class="p-5">
+          <h3 class="text-xl font-bold mb-2">
             {cabana.nombre}
           </h3>
 
-          <div class="text-sm text-gray-700 space-y-3">
-            <p>
-              <span class="font-semibold text-black block mb-1">
-                Descripción
-              </span>
-              {cabana.descripcion}
+          <!-- BLOQUE DESPLEGABLE -->
+          <div
+            class="detalle overflow-hidden transition-all duration-500 ease-in-out max-h-20 opacity-80"
+            data-detalle={cabana.id}
+          >
+            <p class="text-gray-700 leading-relaxed">
+              <strong>Descripción:</strong> {cabana.descripcion}
             </p>
 
-            <p>
-              <span class="font-semibold text-black block mb-1">
-                Interior
-              </span>
-              {cabana.interior}
+            <p class="text-gray-700 leading-relaxed mt-2">
+              <strong>Interior:</strong> {cabana.interior}
             </p>
           </div>
 
-          <div class="flex justify-end pt-4">
-            <button
-              class="bg-[#7F2E2C] hover:bg-[#6b2624] text-white px-4 py-2 rounded transition"
-              data-close
-            >
-              Cerrar
-            </button>
-          </div>
-
+          <!-- VER MÁS -->
+          <a
+            href="#"
+            class="ver-mas mt-3 inline-block text-[#7F2E2C] font-semibold underline underline-offset-4"
+            data-id={cabana.id}
+          >
+            Ver más
+          </a>
         </div>
-      </dialog>
-    </article>
-  ))}
+      </article>
+    ))}
+  </section>
 </section>
 
 <script>
-  document.querySelectorAll("[data-open]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-open");
-      if (!id) return;
+  const initVerMas = () => {
+    const botones = document.querySelectorAll(".ver-mas");
+    const detalles = document.querySelectorAll(".detalle");
 
-      const modal = document.getElementById(id);
-      if (modal instanceof HTMLDialogElement) {
-        modal.showModal();
-      }
-    });
-  });
+    botones.forEach((btn) => {
+      const boton = btn instanceof HTMLElement ? btn : null;
+      if (!boton) return;
 
-  document.querySelectorAll("[data-close]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const dialog = btn.closest("dialog");
-      if (dialog instanceof HTMLDialogElement) {
-        dialog.close();
-      }
+      if (boton.dataset.ready) return;
+      boton.dataset.ready = "true";
+
+      boton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const id = boton.dataset.id;
+        if (!id) return;
+
+        const actual = document.querySelector(`[data-detalle="${id}"]`);
+
+        detalles.forEach((det) => {
+          if (det !== actual) {
+            det.classList.remove("open");
+          }
+        });
+
+        if (actual instanceof HTMLElement) {
+          const abierto = actual.classList.toggle("open");
+          boton.textContent = abierto ? "Ver menos" : "Ver más";
+        }
+      });
     });
-  });
+  };
+
+  initVerMas();
+  document.addEventListener("astro:page-load", initVerMas);
 </script>
 
 <style>
-  dialog {
-    border: none;
+  /* estado cerrado: solo se asoma el texto */
+  .detalle {
+    max-height: 5rem;
   }
 
-  dialog[open] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* estado abierto */
+  .detalle.open {
+    max-height: 500px;
+    opacity: 1;
   }
-
-  dialog::backdrop {
-    background: rgba(0, 0, 0, 0.6);
-  }
-
-  dialog {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  border: none;
-}
-
-dialog[open] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.6);
-}
-
 </style>
