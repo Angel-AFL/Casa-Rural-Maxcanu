@@ -2,46 +2,46 @@
 const features = [
   {
     title: "Cocina equipada",
-    image: "/images/casa/cocina.png",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/cocina-maya.jpg",
   },
   {
     title: "biblioteca",
-    image: "/images/casa/biblioteca.png",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/biblioteca-estudio.png",
   },
   {
     title: "Estacionamiento",
-    image: "/images/casa/estacionamiento.png",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/estacionamiento.png",
   },
   {
-    title: "Área de fogata",
-    image: "/images/casa/fogata.png",
+    title: "habitaciones con tematicas",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png",
   },
   {
-    title: "renta de bicicletas",
-    image: "/images/casa/bicicletas.png",
+    title: "comedor al aire libre",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/comedor-2.png",
   },
   {
-    title: "baños privados",
-    image: "/images/casa/jardin_botanico.png",
+    title: "area de lavandería",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/lavadero.png",
   },
   {
-    title: "streaming e internet",
-    image: "/images/casa/banos_privados.png",
+    title: "jardin botanico",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/flores.jpg",
   },
   {
-    title: "arte por todas partes",
-    image: "/images/casa/galeria_arte.png",
+    title: "pinturas y esculturas",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/sala.png",
   }
   
 
 ];
 ---
 
-<section class="w-full py-20 bg-white">
+<section class="w-full py-4 bg-white">
   <div class="max-w-7xl mx-auto px-4 text-center">
     
     <h2 class="text-3xl md:text-4xl font-semibold tracking-wide mb-2">
-        Lo que ofrecemos 
+      Lo que ofrecemos 
     </h2>
     <p class="text-gray-500 mb-14">
       Comodidades pensadas para tu descanso y disfrute
@@ -50,12 +50,13 @@ const features = [
     <div class="grid grid-cols-2 md:grid-cols-4 gap-10 p-8">
       {features.map((item) => (
         <div class="group cursor-pointer">
-          
-          <div class="w-full aspect-square flex items-center justify-center mb-5">
+
+          <!-- CONTENEDOR DE TAMAÑO FIJO -->
+          <div class="w-full h-36 md:h-40 flex items-center justify-center mb-5 overflow-hidden rounded-xl bg-gray-50">
             <img
               src={item.image}
               alt={item.title}
-              class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
 
@@ -67,7 +68,8 @@ const features = [
       ))}
     </div>
   </div>
+
   <div class="flex items-center justify-center gap-4 m-14">
     <slot/>
-</div>
+  </div>
 </section>
