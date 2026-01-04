@@ -24,9 +24,9 @@ export const POST: APIRoute = async ({ request }) => {
 
     page.drawRectangle({
       x: 0,
-      y: height - 60,
-      width,
-      height: 60,
+      y: height - 150,
+      width: width,
+      height: 150,
       color: colorBrand,
     });
 
@@ -39,16 +39,16 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const logoUrl =
-      'https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/logo-casa-rural-horizontal-original.jpg';
+      'https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/logo-casa-rural-horizontal-variante.png';
 
     const logoBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
-    const logoImage = await pdfDoc.embedJpg(logoBytes);
+    const logoImage = await pdfDoc.embedPng(logoBytes);
 
     page.drawImage(logoImage, {
-      x: 40,
-      y: height - 170,
-      width: width - 80,
-      height: 140,
+      x: 70,
+      y: height - 140,
+      width: width - 140,
+      height: 120,
     });
 
     page.drawText('Comprobante de Renta de Bicicleta', {
