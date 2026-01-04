@@ -14,6 +14,28 @@ async function sendAdminEmailBici(renta: RentaBiciResponse) {
   }
 }
 
+async function descargarPdfBici(renta: RentaBiciResponse) {
+  const res = await fetch('/api/generate-pdf-bici', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(renta),
+  });
+
+  if (!res.ok) {
+    throw new Error('No se pudo generar el PDF');
+  }
+
+  const blob = await res.blob();
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Renta_Bicicleta_${renta.folio_generado}.pdf`;
+  a.click();
+
+  window.URL.revokeObjectURL(url);
+}
+
 export function useRentaBiciLogic() {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
@@ -22,7 +44,6 @@ export function useRentaBiciLogic() {
   const [error, setError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [folioGenerado, setFolioGenerado] = useState<string | null>(null);
 
   const validarCampos = (): boolean => {
     if (nombre.trim().length < 3) {
@@ -43,33 +64,28 @@ export function useRentaBiciLogic() {
 
     return true;
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setError(null);
     setIsSuccess(false);
-    setFolioGenerado(null);
-
-    if (!validarCampos()) return;
-
     setIsSubmitting(true);
 
     try {
       const renta = await insertarRentaBicicleta(
-        nombre.trim(),
-        apellido.trim(),
+        nombre,
+        apellido,
         telefono
       );
 
-      if (!renta || !renta.folio_generado) {
-        throw new Error('La respuesta del servidor fue inválida.');
+      if (!renta) {
+        throw new Error('Respuesta invalida del servidor');
       }
 
       await sendAdminEmailBici(renta);
+      await descargarPdfBici(renta);
 
       setIsSuccess(true);
-      setFolioGenerado(renta.folio_generado);
 
       setNombre('');
       setApellido('');
@@ -91,7 +107,6 @@ export function useRentaBiciLogic() {
     error,
     isSuccess,
     isSubmitting,
-    folioGenerado,
     handleSubmit,
   };
 }
