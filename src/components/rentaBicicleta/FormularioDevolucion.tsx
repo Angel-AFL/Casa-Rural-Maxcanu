@@ -27,14 +27,18 @@ export default function FormularioDevolucion() {
         </div>
       )}
 
+      <div>
+        <label className="mb-1 font-semibold text-gray-700">
+          Ingresa tu folio
+        </label>
       <input
         type="text"
-        placeholder="Ingresa tu folio (ej: BICI001)"
+        placeholder="ejemplo: BICI0001"
         value={folio}
         onChange={(e) => setFolio(e.target.value)}
         required
         className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C1AE10]"
-      />
+      /></div>
       <button
         type="submit"
         disabled={isSubmitting}
