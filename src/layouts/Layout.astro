@@ -79,11 +79,58 @@ const currentPath = Astro.url.pathname;
         transform: scaleX(1);
       }
     </style>
+    <script>
+      function setupMobileMenu() {
+        const $mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const $closeMenuBtn = document.getElementById("closeMenuBtn");
+        const $mobileMenu = document.getElementById("mobileMenu");
+        const $menuLinks = document.querySelectorAll("#mobileMenu a");
+        const $body = document.body;
+
+        // Función para abrir/cerrar con bloqueo de scroll
+        const toggleMenu = () => {
+          // Si el menú tiene la clase 'translate-x-full', significa que está CERRADO y se va a ABRIR
+          const isOpening = $mobileMenu?.classList.contains("translate-x-full");
+
+          $mobileMenu?.classList.toggle("translate-x-full");
+
+          if (isOpening) {
+            $body.classList.add("overflow-hidden");
+          } else {
+            $body.classList.remove("overflow-hidden");
+          }
+        };
+
+        // Función específica para cerrar (útil para los enlaces)
+        const closeMenu = () => {
+          $mobileMenu?.classList.add("translate-x-full");
+          $body.classList.remove("overflow-hidden");
+        };
+
+        $mobileMenuBtn?.addEventListener("click", toggleMenu);
+        $closeMenuBtn?.addEventListener("click", toggleMenu);
+
+        // Al hacer clic en cualquier enlace, cerramos el menú y devolvemos el scroll
+        $menuLinks.forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+      }
+
+      // Se ejecuta en la carga inicial y después de cada transición de página en Astro
+      document.addEventListener("astro:page-load", setupMobileMenu);
+
+      // Limpieza preventiva por si se desmonta el componente (opcional pero recomendado)
+      document.addEventListener("astro:before-swap", () => {
+        document.body.classList.remove("overflow-hidden");
+      });
+    </script>
   </head>
-  <body class="font-[montserrat] font-medium pt-[180px] md:pt-0 lg:pt-[80px]">
+  <body
+    class="font-[montserrat] font-medium pt-[84px] md:pt-[70px] lg:pt-[84px]"
+  >
     <header class="bg-palette-1 fixed top-0 w-full z-50 text-white">
       <div
-        class="md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
+        class="flex md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
       >
         <a href="/">
           <img
@@ -91,11 +138,10 @@ const currentPath = Astro.url.pathname;
             alt="logo"
             width="84"
             height="84"
-            class="m-auto lg:m-0"
           />
         </a>
 
-        <nav>
+        <nav class="md:block hidden">
           <ul class="md:flex md:items-center lg:gap-8 md:gap-4">
             <li>
               <a href="/" class={currentPath === "/" ? "active-link" : ""}
@@ -147,6 +193,79 @@ const currentPath = Astro.url.pathname;
             </li>
           </ul>
         </nav>
+        <!--Menú Móvil-->
+        <div id="mobileMenuBtn" class="md:hidden">
+          <img
+            src="/MaterialSymbolsMenu.svg"
+            alt="menú móvil"
+            width="36"
+            height="36"
+          />
+        </div>
+        <div
+          id="mobileMenu"
+          class="fixed inset-0 bg-palette-1 z-[60] flex flex-col items-center justify-center transition-transform duration-300 translate-x-full md:hidden"
+        >
+          <button
+            id="closeMenuBtn"
+            class="absolute top-6 right-8 text-white text-4xl">&times;</button
+          >
+
+          <ul class="flex flex-col gap-8 text-center text-xl text-white">
+            <li>
+              <a href="/" class={currentPath === "/" ? "text-[#a38613]" : ""}
+                >Inicio</a
+              >
+            </li>
+            <li>
+              <a
+                href="/nosotros"
+                class={currentPath === "/nosotros" ? "text-[#a38613]" : ""}
+                >Nosotros</a
+              >
+            </li>
+            <li>
+              <a
+                href="/hospedaje"
+                class={currentPath === "/hospedaje" ? "text-[#a38613]" : ""}
+                >Hospedaje</a
+              >
+            </li>
+            <li>
+              <a
+                href="/renta-de-bicicletas"
+                class={currentPath === "/renta-de-bicicletas"
+                  ? "text-[#a38613]"
+                  : ""}>Renta de bicicletas</a
+              >
+            </li>
+            <li>
+              <a
+                href="/galeria-de-arte"
+                class={currentPath === "/galeria-de-arte"
+                  ? "text-[#a38613]"
+                  : ""}>Galería de arte</a
+              >
+            </li>
+            <li>
+              <a
+                href="/galeria-virtual"
+                class={currentPath === "/galeria-virtual"
+                  ? "text-[#a38613]"
+                  : ""}>Galería virtual</a
+              >
+            </li>
+            <li>
+              <a
+                href="/jardin-botanico"
+                class={currentPath === "/jardin-botanico"
+                  ? "text-[#a38613]"
+                  : ""}>Jardín botánico</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!--Fin Menú Móvil-->
       </div>
     </header>
     <slot />
