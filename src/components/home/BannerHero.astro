@@ -5,27 +5,29 @@ const {
 } = Astro.props;
 ---
 
-<section
-  class="relative w-full overflow-hidden"
-  aria-label="Presentación principal del sitio"
+<section 
+  class="relative w-full overflow-hidden" 
+  role="banner" 
+  aria-label="Video de presentación de la página"
 >
-
-  <!-- Contenido visible para SEO y accesibilidad -->
-  <h1 class="sr-only">
-    Bienvenido a nuestro sitio web — Experiencias únicas e innovación digital
-  </h1>
-
+  <!-- Poster opcional mientras carga el video -->
   <video
-    class="absolute inset-0 w-full h-full object-cover
-           lg:relative lg:h-screen"
+    class="w-full h-full object-cover"
     src={videoUrl}
     autoplay
     muted
     loop
     playsinline
-    preload="metadata"
-    aria-hidden="true"
-  ></video>
+    
+  >
+    <track 
+      kind="captions" 
+      src="/ruta/a/captions.vtt" 
+      srclang="es" 
+      label="Español" 
+    />
+    Tu navegador no soporta videos HTML5.
+  </video>
 
+  
 </section>
-s
