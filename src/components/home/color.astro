@@ -1,0 +1,65 @@
+---
+const colors = [
+
+  // 🟥 Vinos / tierra profunda
+  "--color-palette-1",
+  "--color-palette-2",
+  "--color-palette-3",    
+  "--color-palette-4",
+  "--color-palette-5",
+  "--color-palette-6",
+  "--color-palette-7",
+  "--color-palette-8",
+  "--color-palette-9",
+  "--color-palette-10",
+  "--color-palette-11",
+  "--color-palette-12",
+  // 🟦 Azules / océano
+  "--color-palette-13",
+  "--color-palette-14",
+  "--color-palette-15",
+  "--color-palette-16",
+  "--color-palette-17",
+  "--color-palette-18",
+  "--color-palette-19",
+  "--color-palette-20",
+  "--color-palette-21",
+  "--color-palette-22",
+  "--color-palette-23",
+  "--color-palette-24",
+  "--color-palette-25",
+  "--color-palette-26",
+  "--color-palette-27",
+  "--color-palette-28",
+  "--color-palette-29",
+  "--color-palette-30",
+  "--color-palette-31",
+  "--color-palette-32",
+  "--color-palette-33",
+  "--color-palette-34",
+  "--color-palette-35",
+  "--color-palette-36",
+  "--color-palette-37",
+  "--color-palette-38",
+];
+---
+
+<section class="max-w-7xl mx-auto p-4">
+  <h2 class="text-3xl font-semibold mb-8">Sistema de Colores</h2>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-6 gap-6">
+    {colors.map((name) => (
+      <div class="rounded-2xl overflow-hidden shadow-lg border border-neutral-200 bg-white">
+        <div
+          class="h-28 w-full"
+          style={`background: var(${name});`}
+        ></div>
+
+        <div class="p-4 text-sm">
+          <p class="font-medium">{name}</p>
+          <p class="text-neutral-500">var({name})</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
