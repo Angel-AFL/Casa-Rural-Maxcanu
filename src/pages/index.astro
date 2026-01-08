@@ -9,6 +9,9 @@ import Anuncio from "../components/home/Anuncio.astro";
 import BannerHero from "../components/home/BannerHero.astro";
 import Destacados from "../components/home/Destacados.astro";
 import MapaUbicacion from "../components/home/MapaUbicacion.astro";
+import Welcome from "../components/home/Welcome.astro";
+
+ 
 const faqItems = [
   {
     question: "¿Cuál es el horario de check-in y check-out?",
@@ -37,9 +40,7 @@ const faqItems = [
 <Layout title="Casa Rural Maxcanú">
       
      <BannerHero/> 
-       <h2 class="text-3xl md:text-4xl text-center my-8 font-bold tracking-widest text-palette-2 bg-palette-4 py-6 mt-12">
-       Bienvenidos a <br> CASA RURAL MAXCANÚ
-       </h2>
+      <Welcome/>
       <Destacados>
        <Button label="Más de nosotros" href="/../nosotros"/>
       </Destacados>
@@ -49,10 +50,10 @@ const faqItems = [
       text="Este lugar es, en su totalidad, un pedazo de historia, cuyo encanto se manifiesta desde su cocina tradicional, que evoca la típica casa del Yucatán más antiguo, hasta su decoración, que resalta vivamente la cultura yucateca y otras influencias dejadas por personas internas y externas. Además, su jardín botánico alberga plantas locales con usos tradicionales de gran importancia para la herencia maya. En esencia, cada rincón de la casa tiene una historia que contar."
       imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/historia.png"
       imageSide="right"
-      bgColor="bg-palette-12"
-      textColor="text-palette-9"
-      headingColor="text-palette-1"
-      subheadingColor="text-palette-8"
+      bgColor="bg-palette-13"
+      textColor="text-palette-5"
+      headingColor="text-palette-9"
+      subheadingColor="text-palette-1"
       />
       
       <Room>
@@ -63,10 +64,10 @@ const faqItems = [
       text="En la Casa Rural Maxcanú, cada habitación y cabaña ha sido diseñada para ofrecer comodidad, tranquilidad y un toque artístico único. Todas cuentan con cama matrimonial, hamaca, ventilador, aire acondicionado, mesa de trabajo, clóset o ropero y pantalla con aplicaciones de entretenimiento como Netflix y YouTube, Cada espacio tiene una personalidad propia reflejada en su decoración artística, con colecciones temáticas que van desde mitos mayas y retratos, hasta flores, plantas y aves tropicales."
       imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_cabana_habitacion/Oxkintok.png"
       imageSide="right"
-      bgColor="bg-palette-4"
+      bgColor="bg-palette-12"
       textColor="text-palette-5"
-      headingColor="text-palette-9"
-      subheadingColor="text-palette-8"
+      headingColor="text-palette-18"
+      subheadingColor="text-palette-7"
       />
       <Anuncio/>
        <MapaUbicacion/>
@@ -88,6 +89,6 @@ const faqItems = [
       <Testimonios/>
    
       <FaqAccordion items={faqItems}/>
-      
+     
 
 </Layout>

@@ -3,20 +3,47 @@
 
 /* Extender o configurar el tema de Tailwind CSS */
 @theme {
-  /* Ejemplo de un color personalizado 'primary' */
-  --color-palette-1: #7f2e2c; /*<-principal*/
-  --color-palette-2: #a38613; /*<-principal*/
-  --color-palette-3: #c1ae10; /*<-principal*/
-  --color-palette-4: #f8f4ed;
-  --color-palette-5: #3a2e2a;
-  --color-palette-6: #e8ddc8;
-  --color-palette-7: #5b7c5a;
-  --color-palette-8: #335a65;
-  --color-palette-9: #047857;
-  --color-palette-10: #10b981;
-  --color-palette-11: #f1efe8;
-  --color-palette-12: #dde8d5;
-  --color-palette-13: #efe1b8;
+  /* =========================================================
+   🎨 SISTEMA CROMÁTICO — CASA RURAL (ORDENADO POR NÚMERO)
+   ========================================================= */
+
+  --color-palette-1: #7f2e2c; /* vino rústico — principal */
+  --color-palette-2: #a38613; /* oro envejecido — principal */
+  --color-palette-3: #c1ae10; /* amarillo campo — principal */
+  --color-palette-4: #f8f4ed; /* marfil */
+  --color-palette-5: #3a2e2a; /* café tierra oscuro */
+  --color-palette-6: #e8ddc8; /* arena cálida */
+  --color-palette-7: #5b7c5a; /* verde hoja */
+  --color-palette-8: #335a65; /* azul petróleo */
+  --color-palette-9: #047857; /* verde esmeralda */
+  --color-palette-10: #10b981; /* verde fresco */
+  --color-palette-11: #f1efe8; /* crema clara */
+  --color-palette-12: #dde8d5; /* verde crema */
+  --color-palette-13: #efe1b8; /* trigo claro */
+  --color-palette-14: #eee2d2; /* latte claro */
+  --color-palette-15: #e3d3bd; /* vainilla tostada */
+  --color-palette-16: #a7865e; /* caramelo tostado */
+  --color-palette-17: #8f6e4f; /* café medio */
+  --color-palette-18: #3f5f4a; /* verde musgo profundo */
+  --color-palette-19: #6f8f6b; /* verde oliva suave */
+  --color-palette-20: #b9d3b5; /* verde niebla */
+  --color-palette-21: #d8c65a; /* dorado sol */
+  --color-palette-22: #bfa43a; /* mostaza rústica */
+  --color-palette-23: #f3e6a0; /* paja clara */
+  --color-palette-25: #c3ae8d; /* avellana */
+  --color-palette-26: #9b7d5a; /* canela tostada */
+  --color-palette-27: #5c1f1d; /* vino oscuro */
+  --color-palette-28: #9a3a38; /* granate suave */
+  --color-palette-29: #b24a42; /* terracota vino */
+  --color-palette-30: #742927; /* borgoña campo */
+  --color-palette-31: #7a5a3a; /* madera rústica */
+  --color-palette-32: #d0b58f; /* trigo tostado */
+  --color-palette-33: #2f4f3b; /* verde bosque */
+  --color-palette-34: #8fb89a; /* menta campo */
+  --color-palette-35: #2c4a54; /* azul lago */
+  --color-palette-36: #6b8e9b; /* azul cielo rural */
+  --color-palette-37: #f5efe6; /* lino natural */
+  --color-palette-38: #f0e6d8; /* algodón crudo */
 }
 
 @layer utilities {
@@ -32,4 +59,67 @@
   .animate-slide {
     animation: slide 18s linear infinite;
   }
+}
+
+/* ===== PIEDRA RÚSTICA REAL ===== */
+.rustic-paper {
+  background-color: #f1efe8;
+
+  background-image:
+    /* Poros grandes */ radial-gradient(
+      circle at 10% 20%,
+      rgba(0, 0, 0, 0.08) 0%,
+      transparent 35%
+    ),
+    radial-gradient(circle at 80% 30%, rgba(0, 0, 0, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 30% 70%, rgba(0, 0, 0, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 60% 85%, rgba(0, 0, 0, 0.05) 0%, transparent 40%),
+    /* Manchas minerales */
+      radial-gradient(
+        circle at 25% 40%,
+        rgba(120, 100, 60, 0.07) 0%,
+        transparent 50%
+      ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(90, 110, 80, 0.05) 0%,
+      transparent 55%
+    ),
+    /* Grano fino */
+      repeating-radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0.03) 0,
+        rgba(0, 0, 0, 0.03) 1px,
+        transparent 1px,
+        transparent 4px
+      ),
+    /* Sombra de profundidad */
+      linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.02));
+}
+
+/* Capa de envejecido */
+.rustic-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+      120deg,
+      rgba(0, 0, 0, 0.05),
+      transparent 40%,
+      rgba(0, 0, 0, 0.05)
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.025) 0,
+      rgba(0, 0, 0, 0.025) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  opacity: 0.9;
+}
+
+/* Profundidad pétrea */
+.rustic-shadow {
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05),
+    inset 0 12px 20px rgba(0, 0, 0, 0.12), 0 18px 40px rgba(0, 0, 0, 0.14);
 }
