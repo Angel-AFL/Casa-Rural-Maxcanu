@@ -3,6 +3,8 @@ const features = [
   {
     title: "Cocina equipada",
     image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/cocina-maya.jpg",
+    page: "/nosotros", 
+    section: "seguridad-en-la-casa"
   },
   {
     title: "biblioteca",
@@ -37,37 +39,45 @@ const features = [
 ];
 ---
 
-<section class="w-full py-4 bg-white mt-8">
-  <div class="max-w-7xl mx-auto px-4 text-center">
+<section 
+  class="w-full py-6 sm:py-10 bg-white mt-6 sm:mt-10"
+  aria-labelledby="features-title"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
     
-    <h2 class="text-3xl md:text-4xl font-semibold tracking-wide mb-2">
-      Lo que ofrecemos 
+    <h2 
+      id="features-title"
+      class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide mb-4"
+    >
+      Lo que ofrecemos
     </h2>
-    
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 p-8">
-      {features.map((item) => (
-        <div class="group cursor-pointer">
+   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 py-6 sm:py-8">
+  {features.map((item) => (
+      
+     <a href={item.page && item.section ? `${item.page}#${item.section}` : "#"}
+        class="group cursor-pointer focus:outline-none">
 
-          <!-- CONTENEDOR DE TAMAÑO FIJO -->
-          <div class="w-full h-36 md:h-40 flex items-center justify-center mb-5 overflow-hidden rounded-xl bg-gray-50">
-            <img
-              src={item.image}
-              alt={item.title}
-              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
+      <div class="w-full h-28 sm:h-32 md:h-40 flex items-center justify-center mb-4 sm:mb-5 overflow-hidden rounded-xl bg-gray-50 shadow-sm transition-shadow group-hover:shadow-md">
+        <img
+          src={item.image}
+          alt={item.title}
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          
+        />
+        
+      </div>
 
-          <h3 class="text-sm tracking-widest font-medium text-gray-800">
-            {item.title.toUpperCase()}
-          </h3>
+      <h3 class="text-xs sm:text-sm tracking-widest font-medium text-gray-800">
+        {item.title.toUpperCase()}
+      </h3>
+    </a>
 
-        </div>
-      ))}
-    </div>
-  </div>
+  ))}
+</div>
 
-  <div class="flex items-center justify-center gap-4 m-14">
+  <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-10 px-4">
     <slot/>
   </div>
 </section>
