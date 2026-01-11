@@ -64,12 +64,18 @@ export const POST: APIRoute = async ({ request }) => {
     const startY = height - 290;
     const lineHeight = 24;
 
+    const formatearFecha = (fecha: string) => {
+  if (!fecha) return '';
+  const [year, month, day] = fecha.split('-');
+  return `${day}/${month}/${year}`;
+};
+
     const fields = [
       `Folio: ${folio}`,
       `Nombre: ${nombre} ${apellido}`,
       `Cabaña / Habitación: ${habitacion_cabana}`,
-      `Fecha de entrada: ${new Date(fecha_entrada).toLocaleString()}`,
-      `Fecha de salida: ${new Date(fecha_salida).toLocaleString()}`,
+      `Fecha de entrada: ${formatearFecha(fecha_entrada)}`,
+      `Fecha de salida: ${formatearFecha(fecha_salida)}`,
       ``,
       `(Nos podremos en contacto con usted muy pronto).`
     ];
