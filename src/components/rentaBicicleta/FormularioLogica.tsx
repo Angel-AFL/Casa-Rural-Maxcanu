@@ -65,37 +65,41 @@ export function useRentaBiciLogic() {
     return true;
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setError(null);
-    setIsSuccess(false);
-    setIsSubmitting(true);
+  setError(null);
+  setIsSuccess(false);
 
-    try {
-      const renta = await insertarRentaBicicleta(
-        nombre,
-        apellido,
-        telefono
-      );
+  if (!validarCampos()) return;
 
-      if (!renta) {
-        throw new Error('Respuesta invalida del servidor');
-      }
+  setIsSubmitting(true);
 
-      await sendAdminEmailBici(renta);
-      await descargarPdfBici(renta);
+  try {
+    const renta = await insertarRentaBicicleta(
+      nombre,
+      apellido,
+      telefono
+    );
 
-      setIsSuccess(true);
-
-      setNombre('');
-      setApellido('');
-      setTelefono('');
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setIsSubmitting(false);
+    if (!renta) {
+      throw new Error('Respuesta inválida del servidor');
     }
-  };
+
+    await sendAdminEmailBici(renta);
+    await descargarPdfBici(renta);
+
+    setIsSuccess(true);
+
+    setNombre('');
+    setApellido('');
+    setTelefono('');
+  } catch (err) {
+    setError((err as Error).message);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return {
     nombre,
