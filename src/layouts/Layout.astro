@@ -4,13 +4,21 @@ import "../styles/global.css";
 export interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = "Casa Rural Maxcanú",
   description = "Disfruta de la tranquilidad en Casa Rural Maxcanú. Hospedaje, renta de bicicletas, galería de arte y jardín botánico en el corazón de Yucatán.",
+  image = "/logo-casa-rural-horizontal-variante.jpg",
 } = Astro.props;
 const currentPath = Astro.url.pathname;
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : Astro.url;
+const keywords =
+  "Casa Rural Maxcanú, hospedaje en Yucatán, renta de bicicletas Maxcanú, turismo rural México, jardín botánico Yucatán, galería de arte Maxcanú, ecoturismo";
+const author = "Casa Rural Maxcanú";
 ---
 
 <!doctype html>
@@ -19,17 +27,54 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <meta name="publisher" content={author} />
+    <meta name="robots" content="index, follow" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="/logo-casa-rural-icono-negativo.png"
     />
+    <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content={image} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BedAndBreakfast",
+        "name": "Casa Rural Maxcanú",
+        "description": "Hospedaje, renta de bicicletas y jardín botánico en Yucatán.",
+        "image": "https://casa-rural-maxcanu.vercel.app/logo-casa-rural-horizontal-variante.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "C. 25 84, Centro",
+          "addressLocality": "Maxcanú",
+          "addressRegion": "Yucatán",
+          "postalCode": "97800",
+          "addressCountry": "MX"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 20.5833,
+          "longitude": -90.0
+        },
+        "url": "https://casa-rural-maxcanu.vercel.app/",
+        "telephone": "+529999062536"
+      }
+    </script>
     <ClientRouter />
 
     <style>
