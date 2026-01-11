@@ -141,7 +141,7 @@ export default function FormularioReact({ cabanas }: Props) {
                   Fecha de entrada
                 </label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   value={fechaEntrada}
                   onChange={(e) => setFechaEntrada(e.target.value)}
                   required
@@ -155,7 +155,7 @@ export default function FormularioReact({ cabanas }: Props) {
                   Fecha de salida
                 </label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   value={fechaSalida}
                   onChange={(e) => setFechaSalida(e.target.value)}
                   required
