@@ -96,15 +96,17 @@ export default function FormularioBici() {
               <input
                 type="tel"
                 inputMode="numeric"
-                pattern="[0-9]*"
+                pattern="[0-9]{10}"
+                minLength={10}
                 maxLength={10}
-                placeholder="Teléfono"
+                placeholder="Teléfono (10 dígitos)"
                 value={telefono}
-                onChange={(e) =>
-                  setTelefono(e.target.value.replace(/\D/g, ''))
-                }
-                required
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C1AE10]"
+                onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+                setTelefono(val);
+               }}
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C1AE10]"
               /></div>
 
               <button
