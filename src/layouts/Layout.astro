@@ -329,18 +329,18 @@ const author = "Casa Rural Maxcanú";
 
     <footer class="bg-palette-2 p-2 md:p-4 lg:p-8">
       <div class="flex flex-col md:flex-row justify-evenly md:gap-8 lg:gap-1">
-        <ul class="flex flex-col gap-2 flex-1 items-center">
+        <div class="flex flex-col gap-2 flex-1 items-center">
           <div class="flex flex-col gap-2">
-            <li>
+            <div>
               <img
                 src="/logo-casa-rural-texto-negativo.png"
                 alt="Logotipo de la Casa Rural Maxcanú"
                 width="100"
                 height="100"
               />
-            </li>
-            <li><span class="text-lg">Casa Rural Maxcanú</span></li>
-            <address class="not-italic">
+            </div>
+            <span class="text-lg">Casa Rural Maxcanú</span>
+            <ul>
               <li>
                 <span
                   ><a
@@ -368,31 +368,31 @@ const author = "Casa Rural Maxcanú";
                   ></span
                 >
               </li>
-            </address>
+            </ul>
           </div>
-        </ul>
+        </div>
 
-        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
-          <div class="flex flex-col gap-2">
+        <div class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Acerca de</span></li>
             <li><a href="/nosotros">Nosotros</a></li>
             <li><a href="/hospedaje">Hospedaje</a></li>
             <li><a href="/renta-de-bicicletas">Renta de bicicletas</a></li>
             <li><a href="/galeria-de-arte">Galería de arte</a></li>
             <li><a href="/galeria-virtual">Galería virtual</a></li>
-          </div>
-        </ul>
+          </ul>
+        </div>
 
-        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
-          <div class="flex flex-col gap-2">
+        <div class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Ayuda</span></li>
             <li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li>
             <li><a href="/mas-servicios">Atractivos turísticos</a></li>
-          </div>
-        </ul>
+          </ul>
+        </div>
 
-        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
-          <div class="flex flex-col gap-2">
+        <div class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Políticas</span></li>
             <li>
               <a href="/politicas/terminos-y-condiciones"
@@ -404,71 +404,78 @@ const author = "Casa Rural Maxcanú";
                 >Política de privacidad</a
               >
             </li>
-          </div>
-        </ul>
-        <ul class="pt-6 flex flex-col gap-4 flex-1 md:items-center">
-          <li>
-            <span class="text-lg">Redes Sociales</span>
-          </li>
-          <div class="flex gap-4 md:w-36 lg:w-48">
-            <a
-              href="https://wa.me/+529999062536
+          </ul>
+        </div>
+
+        <div class="pt-6 flex flex-col gap-4 flex-1 md:items-center">
+          <span class="text-lg">Redes Sociales</span>
+          <ul class="flex gap-4 md:w-36 lg:w-48">
+            <li>
+              <a
+                href="https://wa.me/+529999062536
             "
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              ><img
-                src="/whatsapp-icon.png"
-                alt="ícono de whatsapp"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              /></a
-            >
-            <a
-              href="https://www.facebook.com/share/17ZH6uVrJm/?mibextid=wwXIfr"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <img
-                src="/facebook-icon.png"
-                alt="ícono de facebook"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/casarural.maxcanu"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <img
-                src="/instagram-icon.png"
-                alt="ícono de instagram"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              />
-            </a>
-            <a
-              href="https://www.tiktok.com/@casarural.maxcanu"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Tiktok"
-            >
-              <img
-                src="/tiktok-icon.png"
-                alt="ícono de tiktok"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              />
-            </a>
-          </div>
-        </ul>
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                ><img
+                  src="/whatsapp-icon.png"
+                  alt="ícono de whatsapp"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                /></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/share/17ZH6uVrJm/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <img
+                  src="/facebook-icon.png"
+                  alt="ícono de facebook"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/casarural.maxcanu"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <img
+                  src="/instagram-icon.png"
+                  alt="ícono de instagram"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@casarural.maxcanu"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Tiktok"
+              >
+                <img
+                  src="/tiktok-icon.png"
+                  alt="ícono de tiktok"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </footer>
   </body>
