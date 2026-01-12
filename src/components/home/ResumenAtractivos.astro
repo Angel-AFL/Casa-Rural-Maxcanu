@@ -1,0 +1,30 @@
+---
+import Card from "../atractivos/Card.astro";
+const { atractivos, colores } = Astro.props;
+---
+
+<section class="py-16">
+    <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold ${colorClasses.cultura.text} mb-4">
+       Atractivos de Maxcanú
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        "Vive las tradiciones, su encanto natural y la historia de Maxcanú."
+      </p>
+    </div>
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+     {Object.entries(atractivos).map(([key, item]) => (
+  <Card
+    item={item}
+    colorClass={colores[key]}
+  />
+))}
+
+    </div>
+  </div>
+ <div class="flex items-center justify-center gap-4 mt-8">
+      <slot>
+    </div>
+</section>
