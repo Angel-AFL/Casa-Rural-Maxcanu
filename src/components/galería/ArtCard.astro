@@ -5,7 +5,7 @@ export interface Props {
   técnica: string;
   categoría: string;
   dimensiones: string;
-  año: string;
+  anio: string;
   procedencia: string;
   uso: string;
   imagen: string;
@@ -17,7 +17,7 @@ const {
   técnica = "No disponible",
   categoría = "Sin categoría",
   dimensiones = "No disponible",
-  año = "Sin año",
+  anio = "Sin año",
   procedencia = "Desconocido",
   uso = "Sin uso",
   imagen,
@@ -39,7 +39,7 @@ const {
     <button
       id="openModal"
       type="submit"
-      class="open-modal-btn bg-palette-2 px-4 py-1 rounded-2xl cursor-pointer text-white hover:text-black"
+      class="open-modal-btn bg-palette-2 text-white px-4 py-1 rounded-2xl cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
     >
       Ver más
     </button>
@@ -48,7 +48,7 @@ const {
 
   <!-- Ventana Modal -->
   <dialog
-    class="art-card-dialog p-6 rounded-lg shadow-xl w-11/12 max-w-lg m-auto"
+    class="art-card-dialog p-6 rounded-lg shadow-xl w-11/12 max-w-lg m-auto backdrop:bg-black/60"
   >
     <div class="flex flex-col gap-4">
       <img
@@ -57,26 +57,26 @@ const {
         class="w-full h-auto max-h-[50vh] object-contain rounded-lg"
       />
       <h3 class="text-2xl font-bold">{nombre}</h3>
-      <h3 class="text-lg"><span class="font-bold">Autor:</span> {autor}</h3>
-      <h3 class="text-lg"><span class="font-bold">Técnica:</span> {técnica}</h3>
-      <h3 class="text-lg">
+      <p class="text-lg"><span class="font-bold">Autor:</span> {autor}</p>
+      <p class="text-lg"><span class="font-bold">Técnica:</span> {técnica}</p>
+      <p class="text-lg">
         <span class="font-bold">Categoría:</span>
         {categoría}
-      </h3>
-      <h3 class="text-lg">
+      </p>
+      <p class="text-lg">
         <span class="font-bold">Dimensiones:</span>
         {dimensiones}
-      </h3>
-      <h3 class="text-lg"><span class="font-bold">Año:</span> {año}</h3>
-      <h3 class="text-lg">
+      </p>
+      <p class="text-lg"><span class="font-bold">Año:</span> {anio}</p>
+      <p class="text-lg">
         <span class="font-bold">Procedencia:</span>
         {procedencia}
-      </h3>
-      <h3 class="text-lg"><span class="font-bold">Uso:</span> {uso}</h3>
+      </p>
+      <p class="text-lg"><span class="font-bold">Uso:</span> {uso}</p>
 
       <button
         type="button"
-        class="close-modal-btn mt-4 bg-palette-1 hover:bg-red-700 text-white px-4 py-1 rounded-2xl cursor-pointer self-end"
+        class="close-modal-btn mt-4 bg-palette-1 hover:bg-red-700 text-white px-4 py-1 rounded-2xl cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 self-end"
       >
         Cerrar
       </button>
@@ -89,9 +89,7 @@ const {
     const cards = document.querySelectorAll(".card-with-modal");
 
     cards.forEach((card) => {
-      if (card.hasAttribute("data-modal-setup")) {
-        return;
-      }
+      if (card.hasAttribute("data-modal-setup")) return;
 
       const openButtons = card.querySelectorAll(".open-modal-btn");
       const closeButton = card.querySelector(".close-modal-btn");
@@ -99,21 +97,36 @@ const {
         ".art-card-dialog"
       ) as HTMLDialogElement;
 
+      const openModal = () => {
+        dialog.showModal();
+        document.body.classList.add("overflow-hidden");
+      };
+
+      const closeModal = () => {
+        dialog.close();
+        // Solo quitamos la clase si no hay otros modales abiertos
+        if (document.querySelectorAll("dialog[open]").length === 0) {
+          document.body.classList.remove("overflow-hidden");
+        }
+      };
+
       if (openButtons.length > 0 && dialog && closeButton) {
         openButtons.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            dialog.showModal();
-          });
+          btn.addEventListener("click", openModal);
         });
 
-        closeButton.addEventListener("click", () => {
-          dialog.close();
-        });
+        closeButton.addEventListener("click", closeModal);
 
+        // Cerrar al hacer click en el backdrop
         dialog.addEventListener("click", (event) => {
           if (event.target === dialog) {
-            dialog.close();
+            closeModal();
           }
+        });
+
+        // Manejar el cierre con la tecla Escape (nativo de dialog)
+        dialog.addEventListener("cancel", () => {
+          document.body.classList.remove("overflow-hidden");
         });
 
         card.setAttribute("data-modal-setup", "true");
@@ -121,14 +134,8 @@ const {
     });
   }
 
+  // Ejecutar en carga inicial y en transiciones de Astro
   setupModals();
-
   document.addEventListener("astro:page-load", setupModals);
 </script>
-<style>
-  .art-card-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(3px);
-  }
-</style>
 <!-- Fin Vetana Modal -->

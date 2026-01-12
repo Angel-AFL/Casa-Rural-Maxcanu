@@ -4,13 +4,21 @@ import "../styles/global.css";
 export interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = "Casa Rural Maxcanú",
   description = "Disfruta de la tranquilidad en Casa Rural Maxcanú. Hospedaje, renta de bicicletas, galería de arte y jardín botánico en el corazón de Yucatán.",
+  image = "/logo-casa-rural-horizontal-variante.jpg",
 } = Astro.props;
 const currentPath = Astro.url.pathname;
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : Astro.url;
+const keywords =
+  "Casa Rural Maxcanú, hospedaje en Yucatán, renta de bicicletas Maxcanú, turismo rural México, jardín botánico Yucatán, galería de arte Maxcanú, ecoturismo";
+const author = "Casa Rural Maxcanú";
 ---
 
 <!doctype html>
@@ -19,17 +27,54 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <meta name="publisher" content={author} />
+    <meta name="robots" content="index, follow" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="/logo-casa-rural-icono-negativo.png"
     />
+    <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content={image} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BedAndBreakfast",
+        "name": "Casa Rural Maxcanú",
+        "description": "Hospedaje, renta de bicicletas y jardín botánico en Yucatán.",
+        "image": "https://casa-rural-maxcanu.vercel.app/logo-casa-rural-horizontal-variante.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "C. 25 84, Centro",
+          "addressLocality": "Maxcanú",
+          "addressRegion": "Yucatán",
+          "postalCode": "97800",
+          "addressCountry": "MX"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 20.5833,
+          "longitude": -90.0
+        },
+        "url": "https://casa-rural-maxcanu.vercel.app/",
+        "telephone": "+529999062536"
+      }
+    </script>
     <ClientRouter />
 
     <style>
@@ -135,9 +180,7 @@ const currentPath = Astro.url.pathname;
       });
     </script>
   </head>
-  <body
-    class="font-[montserrat] font-medium pt-[84px] md:pt-[70px] lg:pt-[84px]"
-  >
+  <body class="font-medium pt-[84px] md:pt-[70px] lg:pt-[84px]">
     <header class="bg-palette-1 fixed top-0 w-full z-50 text-white">
       <div
         class="flex md:flex md:gap-4 lg:gap-0 justify-around items-center text-center"
@@ -206,6 +249,7 @@ const currentPath = Astro.url.pathname;
         <!--Menú Móvil-->
         <div id="mobileMenuBtn" class="md:hidden">
           <img
+            class="invert"
             src="/MaterialSymbolsMenu.svg"
             alt="menú móvil"
             width="36"
@@ -284,18 +328,18 @@ const currentPath = Astro.url.pathname;
 
     <footer class="bg-palette-2 p-2 md:p-4 lg:p-8">
       <div class="flex flex-col md:flex-row justify-evenly md:gap-8 lg:gap-1">
-        <ul class="flex flex-col gap-2 flex-1 items-center">
+        <div class="flex flex-col gap-2 flex-1 items-center">
           <div class="flex flex-col gap-2">
-            <li>
+            <div>
               <img
                 src="/logo-casa-rural-texto-negativo.png"
                 alt="Logotipo de la Casa Rural Maxcanú"
                 width="100"
                 height="100"
               />
-            </li>
-            <li><span class="text-lg">Casa Rural Maxcanú</span></li>
-            <address class="not-italic">
+            </div>
+            <span class="text-lg">Casa Rural Maxcanú</span>
+            <ul>
               <li>
                 <span
                   ><a
@@ -323,31 +367,31 @@ const currentPath = Astro.url.pathname;
                   ></span
                 >
               </li>
-            </address>
+            </ul>
           </div>
-        </ul>
+        </div>
 
-        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
-          <div class="flex flex-col gap-2">
+        <div class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Acerca de</span></li>
             <li><a href="/nosotros">Nosotros</a></li>
             <li><a href="/hospedaje">Hospedaje</a></li>
             <li><a href="/renta-de-bicicletas">Renta de bicicletas</a></li>
             <li><a href="/galeria-de-arte">Galería de arte</a></li>
             <li><a href="/galeria-virtual">Galería virtual</a></li>
-          </div>
-        </ul>
+          </ul>
+        </div>
 
-        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
-          <div class="flex flex-col gap-2">
+        <div class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Ayuda</span></li>
             <li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li>
             <li><a href="/mas-servicios">Atractivos turísticos</a></li>
-          </div>
-        </ul>
+          </ul>
+        </div>
 
-        <ul class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
-          <div class="flex flex-col gap-2">
+        <div class="pt-6 flex flex-col gap-2 flex-1 md:items-center">
+          <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Políticas</span></li>
             <li>
               <a href="/politicas/terminos-y-condiciones"
@@ -359,71 +403,78 @@ const currentPath = Astro.url.pathname;
                 >Política de privacidad</a
               >
             </li>
-          </div>
-        </ul>
-        <ul class="pt-6 flex flex-col gap-4 flex-1 md:items-center">
-          <li>
-            <span class="text-lg">Redes Sociales</span>
-          </li>
-          <div class="flex gap-4 md:w-36 lg:w-48">
-            <a
-              href="https://wa.me/+529999062536
+          </ul>
+        </div>
+
+        <div class="pt-6 flex flex-col gap-4 flex-1 md:items-center">
+          <span class="text-lg">Redes Sociales</span>
+          <ul class="flex gap-4 md:w-36 lg:w-48">
+            <li>
+              <a
+                href="https://wa.me/+529999062536
             "
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              ><img
-                src="/whatsapp-icon.png"
-                alt="ícono de whatsapp"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              /></a
-            >
-            <a
-              href="https://www.facebook.com/share/17ZH6uVrJm/?mibextid=wwXIfr"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <img
-                src="/facebook-icon.png"
-                alt="ícono de facebook"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/casarural.maxcanu"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <img
-                src="/instagram-icon.png"
-                alt="ícono de instagram"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              />
-            </a>
-            <a
-              href="https://www.tiktok.com/@casarural.maxcanu"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Tiktok"
-            >
-              <img
-                src="/tiktok-icon.png"
-                alt="ícono de tiktok"
-                width="38"
-                height="38"
-                class="hover:invert transition-all duration-300"
-              />
-            </a>
-          </div>
-        </ul>
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                ><img
+                  src="/whatsapp-icon.png"
+                  alt="ícono de whatsapp"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                /></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/share/17ZH6uVrJm/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <img
+                  src="/facebook-icon.png"
+                  alt="ícono de facebook"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/casarural.maxcanu"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <img
+                  src="/instagram-icon.png"
+                  alt="ícono de instagram"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@casarural.maxcanu"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Tiktok"
+              >
+                <img
+                  src="/tiktok-icon.png"
+                  alt="ícono de tiktok"
+                  width="38"
+                  height="38"
+                  class="hover:invert transition-all duration-300"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </footer>
   </body>

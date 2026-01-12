@@ -42,7 +42,7 @@ export interface CatGaleriaArte {
   técnica: string;
   categoría: string;
   dimensiones: string;
-  año: string;
+  anio: string;
   procedencia: string;
   uso: string;
   imagen: string;
@@ -82,7 +82,7 @@ export interface DevolucionBiciResponse {
   folio_actualizado: string;
   nombre_cliente: string;
   estatus_nuevo: string;
-  fecha_devolucion_actualizada: string; 
+  fecha_devolucion_actualizada: string;
 }
 
 export interface CabanaHabitacion {

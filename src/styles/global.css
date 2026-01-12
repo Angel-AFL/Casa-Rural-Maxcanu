@@ -1,6 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
+@font-face {
+  font-family: "Montserrat";
+  src: url("/Montserrat-VariableFont_wght.ttf") format(truetype);
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+}
 
+body {
+  font-family: "Montserrat", sans-serif;
+}
 /* Extender o configurar el tema de Tailwind CSS */
 @theme {
   /* =========================================================

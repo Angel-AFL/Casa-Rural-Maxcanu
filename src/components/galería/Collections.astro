@@ -6,8 +6,7 @@ import SalaCard from "../galería/SalaCard.astro";
 const catSala = await getCatSalas();
 ---
 
-<section class="p-2 md:p-4 lg:p-8 grid place-items-center">
-  <h2 class="text-3xl font-medium p-2 mb-4 tracking-widest">Salas de Arte</h2>
+<section class="p-2 md:p-4 lg:p-8 grid place-items-cente bg-palette-4">
   <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2">
     {
       catSala?.map((sala) => (

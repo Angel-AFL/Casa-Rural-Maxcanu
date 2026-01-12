@@ -33,7 +33,7 @@ export default function FormularioDevolucion() {
         </label>
       <input
         type="text"
-        placeholder="ejemplo: BICI0001"
+        placeholder="ejemplo: BICI001"
         value={folio}
         onChange={(e) => setFolio(e.target.value)}
         required
