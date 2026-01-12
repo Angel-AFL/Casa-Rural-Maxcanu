@@ -11,7 +11,72 @@ import Destacados from "../components/home/Destacados.astro";
 import MapaUbicacion from "../components/home/MapaUbicacion.astro";
 import Welcome from "../components/home/Welcome.astro";
 
- 
+import Resumen from "../components/home/ResumenAtractivos.astro";
+
+
+const atractivosResumen = {
+  arqueologia: {
+    title: "Arqueología",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/20220810_za_oxkintok_head.jpg",
+    description: "Sumérgete en el pasado maya y colonial de Maxcanú. Descubre antiguas ciudades, juegos rituales y el rico patrimonio histórico."
+  },
+
+  naturaleza: {
+    title: "Naturaleza",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/maxcanu_grutas.jpg",
+    description: "Explora el lado salvaje de Maxcanú. Desde cuevas milenarias hasta miradores espectaculares y cenotes sagrados."
+  },
+
+  cultura: {
+    title: "Cultura",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/fiesta_san_arcangel.jpg",
+    description: "Vive las tradiciones vivas de Maxcanú. Festividades, rituales ancestrales y expresiones culturales que perduran."
+  },
+
+  pueblos: {
+    title: "Pueblos y Haciendas",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/hacienda_santa_rosa.jpg",
+    description: "Descubre el legado henequenero y los pueblos con encanto que rodean Maxcanú. Historia, arquitectura y experiencias únicas."
+  }
+};
+
+const colorClasses = {
+  'arqueologia': {
+    bg: 'from-white to-emerald-50',
+    border: 'border-emerald-100',
+    text: 'text-emerald-800',
+    badge: 'bg-emerald-100 text-emerald-700'
+  },
+  'naturaleza': {
+    bg: 'from-white to-blue-50',
+    border: 'border-blue-100',
+    text: 'text-blue-800',
+    badge: 'bg-blue-100 text-blue-700'
+  },
+  'cultura': {
+    bg: 'from-white to-yellow-50',
+    border: 'border-yellow-100',
+    text: 'text-yellow-800',
+    badge: 'bg-yellow-100 text-yellow-700'
+  },
+  'pueblos': {
+    bg: 'from-white to-orange-50',
+    border: 'border-orange-100',
+    text: 'text-orange-800',
+    badge: 'bg-orange-100 text-orange-700'
+  }
+};
+// 🔧 
+const atractivosParaCard = Object.fromEntries(
+  Object.entries(atractivosResumen).map(([key, item]) => [
+    key,
+    {
+      ...item,
+      description: "",
+      tags: []
+    }
+  ])
+);
 const faqItems = [
   {
     question: "¿Cuál es el horario de check-in y check-out?",
@@ -34,6 +99,8 @@ const faqItems = [
       "Sí, ofrecemos conexión Wi-Fi gratuita de alta velocidad en todas las habitaciones y áreas comunes de la casa.",
   },
 ];
+
+
 
 ---
 
@@ -89,6 +156,8 @@ const faqItems = [
       <Testimonios/>
    
       <FaqAccordion items={faqItems}/>
-     
+    <Resumen atractivos={atractivosParaCard} colores={colorClasses}>
+      <Button label="Explorar Atractivos" href="/mas-servicios"/>
+    </Resumen>
 
 </Layout>
