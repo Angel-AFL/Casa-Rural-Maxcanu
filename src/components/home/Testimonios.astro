@@ -29,10 +29,11 @@ const testimonios = [
     }
 ];
 ---
-<section class="w-full py-12 md:py-16">
+<section class="w-full py-12 md:py-16" aria-labelledby="testimonios-title">
 
-  <h2 class="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-palette-5 
-             mb-10 tracking-wide  py-4">
+  <h2 id="testimonios-title"
+      class="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-palette-5 
+             mb-10 tracking-wide py-4">
     Testimonios de Nuestros Visitantes
   </h2>
 
@@ -40,25 +41,33 @@ const testimonios = [
 
     <!-- Flecha izquierda -->
     <button id="prevBtn"
-  class="absolute left-4 top-1/2 -translate-y-1/2 z-20
-         w-11 h-11 rounded-full bg-white/70 backdrop-blur
-         text-neutral-700 shadow-lg
-         hover:bg-white hover:scale-105 transition
-         flex items-center justify-center">
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-    <path d="M15 18l-6-6 6-6"/>
-  </svg>
-</button>
+      aria-label="Ver testimonios anteriores"
+      class="absolute left-4 top-1/2 -translate-y-1/2 z-20
+             w-11 h-11 rounded-full bg-white/70 backdrop-blur
+             text-neutral-700 shadow-lg
+             hover:bg-white hover:scale-105 transition
+             flex items-center justify-center">
+      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
 
     <!-- Carrusel -->
     <div id="carousel"
-      class="flex gap-8 overflow-hidden py-6">
+      class="flex gap-8 overflow-hidden py-6"
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="Testimonios de clientes">
 
-      {testimonios.map((t) => (
+      {testimonios.map((t, i) => (
         <article
+          role="group"
+          aria-roledescription="tarjeta"
+          aria-label={`Testimonio ${i + 1}`}
           class="flex-shrink-0 w-[260px] lg:w-[280px] xl:w-[300px]
                  text-palette-5 p-7 rounded-2xl border border-neutral-700
                  shadow-md hover:shadow-xl transition-all duration-300">
+
           <p class="text-sm sm:text-base leading-relaxed opacity-90">
             “{t.texto}”
           </p>
@@ -67,52 +76,98 @@ const testimonios = [
           </p>
         </article>
       ))}
-
     </div>
 
     <!-- Flecha derecha -->
     <button id="nextBtn"
-  class="absolute right-4 top-1/2 -translate-y-1/2 z-20
-         w-11 h-11 rounded-full bg-white/70 backdrop-blur
-         text-neutral-700 shadow-lg
-         hover:bg-white hover:scale-105 transition
-         flex items-center justify-center">
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-    <path d="M9 6l6 6-6 6"/>
-  </svg>
-</button>
+      aria-label="Ver más testimonios"
+      class="absolute right-4 top-1/2 -translate-y-1/2 z-20
+             w-11 h-11 rounded-full bg-white/70 backdrop-blur
+             text-neutral-700 shadow-lg
+             hover:bg-white hover:scale-105 transition
+             flex items-center justify-center">
+      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M9 6l6 6-6 6"/>
+      </svg>
+    </button>
 
   </div>
 
 </section>
+
 <script is:inline>
   const carousel = document.getElementById("carousel");
   const next = document.getElementById("nextBtn");
   const prev = document.getElementById("prevBtn");
 
   const gap = 32;
-  const cardWidth = carousel.querySelector("article").offsetWidth + gap;
+  const card = carousel.querySelector("article");
+  const cardWidth = card.offsetWidth + gap;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let autoScroll;
+  let isAnimating = false;
 
-  function startAutoScroll() {
-    autoScroll = setInterval(moveNext, 3800);
+  /* Easing suave */
+  function easeInOutCubic(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
-  function stopAutoScroll() {
-    clearInterval(autoScroll);
+  function smoothScrollBy(distance, duration = 700) {
+    if (prefersReducedMotion) {
+      carousel.scrollLeft += distance;
+      return;
+    }
+
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const start = carousel.scrollLeft;
+    const startTime = performance.now();
+
+    function animate(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+
+      carousel.scrollLeft = start + distance * eased;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        isAnimating = false;
+      }
+    }
+
+    requestAnimationFrame(animate);
   }
 
   function moveNext() {
-    carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
 
-    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - cardWidth) {
-      setTimeout(() => carousel.scrollLeft = 0, 700);
+    if (carousel.scrollLeft + cardWidth >= maxScroll) {
+      smoothScrollBy(maxScroll - carousel.scrollLeft, 500);
+      setTimeout(() => {
+        carousel.scrollLeft = 0;
+      }, 520);
+    } else {
+      smoothScrollBy(cardWidth);
     }
   }
 
   function movePrev() {
-    carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    smoothScrollBy(-cardWidth);
+  }
+
+  function startAutoScroll() {
+    autoScroll = setInterval(moveNext, 4200);
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScroll);
   }
 
   next.addEventListener("click", () => {
@@ -127,6 +182,8 @@ const testimonios = [
     startAutoScroll();
   });
 
+  carousel.addEventListener("mouseenter", stopAutoScroll);
+  carousel.addEventListener("mouseleave", startAutoScroll);
+
   startAutoScroll();
 </script>
-
