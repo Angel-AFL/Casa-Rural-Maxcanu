@@ -1,0 +1,25 @@
+---
+import ArtCard from "../../components/galería/ArtCard.astro";
+import type { CatGaleriaArte } from "../../types/global";
+interface Props {
+  arts: CatGaleriaArte[];
+}
+
+const { arts } = Astro.props;
+---
+
+<section class="grid place-items-center p-2 md:p-4 lg:p-8">
+  <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
+    {
+      arts && arts.length > 0 ? (
+        arts.map((art) => <ArtCard {...art} />)
+      ) : (
+        <div class="col-span-full text-center py-10">
+          <p class="text-gray-500 italic">
+            No se encontraron obras disponibles.
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>

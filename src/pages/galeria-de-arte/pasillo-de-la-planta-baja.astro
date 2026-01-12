@@ -1,9 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import ArtCard from "../../components/galería/ArtCard.astro";
-import { getArtsBySala } from "../api/cat_galeria_arte";
-const catPasilloDeLaPlantaBaja = await getArtsBySala("Pasillo de planta baja");
+import GridCards from "../../components/galería/GridCards.astro";
+import { getArtsBySala } from "../../pages/api/cat_galeria_arte";
+import type { CatGaleriaArte } from "../../types/global";
+
+const catPasilloDeLaPlantaBaja: CatGaleriaArte[] = await getArtsBySala(
+  "Pasillo de planta baja"
+);
 ---
 
 <Layout title="Pasillo de la planta baja">
@@ -12,9 +16,5 @@ const catPasilloDeLaPlantaBaja = await getArtsBySala("Pasillo de planta baja");
     subtitle="Pinturas, esculturas y dibujos de distintos artístas y artesanos del sureste"
     imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/cat_sala/pasillo%20de%20la%20planta%20baja.png"
   />
-  <section class="grid place-items-center p-2 md:p-4 lg:p-8">
-    <div class="grid lg:grid-cols-4 md:grid-cols-3 gap-8 p-4">
-      {catPasilloDeLaPlantaBaja?.map((art) => <ArtCard {...art} />)}
-    </div>
-  </section>
+  <GridCards arts={catPasilloDeLaPlantaBaja} />
 </Layout>
