@@ -223,6 +223,47 @@ const author = "Casa Rural Maxcanú";
                   : ""}>Renta de bicicletas</a
               >
             </li>
+            <li class="relative group">
+              <button
+                class={`flex items-center gap-1 hover:text-[#a38613] transition-colors ${currentPath.includes("galeria") ? "text-[#a38613]" : ""}`}
+              >
+                Galerías
+                <svg
+                  class="w-4 h-4 transition-transform group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <ul
+                class="absolute left-0 mt-2 w-48 bg-palette-1 border border-white/10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[60] p-2 text-left"
+              >
+                <li>
+                  <a
+                    href="/galeria-de-arte"
+                    class={`block px-4 py-2 hover:bg-white/10 rounded-md ${currentPath === "/galeria-de-arte" ? "text-[#a38613]" : ""}`}
+                  >
+                    Galería de arte
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/galeria-virtual"
+                    class={`block px-4 py-2 hover:bg-white/10 rounded-md ${currentPath === "/galeria-virtual" ? "text-[#a38613]" : ""}`}
+                  >
+                    Galería virtual
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- 
             <li>
               <a
                 href="/galeria-de-arte"
@@ -237,6 +278,48 @@ const author = "Casa Rural Maxcanú";
                 >Galería virtual</a
               >
             </li>
+          -->
+            <li class="relative group">
+              <button
+                class={`flex items-center gap-1 hover:text-[#a38613] transition-colors ${currentPath === "/jardin-botanico" || currentPath === "/atractivos-turisticos" ? "text-[#a38613]" : ""}`}
+              >
+                Experiencias
+                <svg
+                  class="w-4 h-4 transition-transform group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <ul
+                class="absolute left-0 mt-2 w-48 bg-palette-1 border border-white/10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[60] p-2 text-left"
+              >
+                <li>
+                  <a
+                    href="/jardin-botanico"
+                    class={`block px-4 py-2 hover:bg-white/10 rounded-md ${currentPath === "/jardin-botanico" ? "text-[#a38613]" : ""}`}
+                  >
+                    Jardín botánico
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/atractivos-turisticos"
+                    class={`block px-4 py-2 hover:bg-white/10 rounded-md ${currentPath === "/atractivos-turisticos" ? "text-[#a38613]" : ""}`}
+                  >
+                    Atractivos turísticos
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!--
             <li>
               <a
                 href="/jardin-botanico"
@@ -244,6 +327,7 @@ const author = "Casa Rural Maxcanú";
                 >Jardín botánico</a
               >
             </li>
+          -->
           </ul>
         </nav>
         <!--Menú Móvil-->
@@ -326,7 +410,7 @@ const author = "Casa Rural Maxcanú";
       <slot />
     </main>
 
-    <footer class="bg-palette-2 p-2 md:p-4 lg:p-8">
+    <footer class="bg-palette-2 p-2 md:pt-4 lg:pt-8">
       <div class="flex flex-col md:flex-row justify-evenly md:gap-8 lg:gap-1">
         <div class="flex flex-col gap-2 flex-1 items-center">
           <div class="flex flex-col gap-2">
@@ -375,10 +459,9 @@ const author = "Casa Rural Maxcanú";
           <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Acerca de</span></li>
             <li><a href="/nosotros">Nosotros</a></li>
-            <li><a href="/hospedaje">Hospedaje</a></li>
-            <li><a href="/renta-de-bicicletas">Renta de bicicletas</a></li>
             <li><a href="/galeria-de-arte">Galería de arte</a></li>
             <li><a href="/galeria-virtual">Galería virtual</a></li>
+            <li><a href="/jardin-botanico">Jardín botánico</a></li>
           </ul>
         </div>
 
@@ -386,6 +469,8 @@ const author = "Casa Rural Maxcanú";
           <ul class="flex flex-col gap-2">
             <li><span class="text-lg">Ayuda</span></li>
             <li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li>
+            <li><a href="/hospedaje">Hospedaje</a></li>
+            <li><a href="/renta-de-bicicletas">Renta de bicicletas</a></li>
             <li><a href="/atractivos-turisticos">Atractivos turísticos</a></li>
           </ul>
         </div>
@@ -475,6 +560,12 @@ const author = "Casa Rural Maxcanú";
             </li>
           </ul>
         </div>
+      </div>
+      <div class="text-center pt-4">
+        <p>
+          Página web desarrollada por: Angel Ferráez, Gerardo Gutiérrez, Jesús
+          Pisté, Anderson Suárez.
+        </p>
       </div>
     </footer>
   </body>
