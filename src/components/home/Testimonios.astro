@@ -1,32 +1,17 @@
-;0p\=---
+---
 const testimonios = [
   {
-    texto: "El lugar es espectacular, rodeado de naturaleza y con espacios acogedores. Pasé un fin de semana increíble y sin duda regresaré pronto. La atención personalizada y el ambiente cálido hicieron toda la diferencia.",
-    autor: "María López"
+    texto: "LA BUENA ATENCIÓN ES FUNDAMENTAL. Adolfo es una persona encantadora, así como su familia; siempre estuvo al pendiente de nuestra estancia y nuestras necesidades. Nos tomamos un cafecito con él y la charla fue maravillosa. Sin duda volveré a hospedarme con él. Ya estoy esperando que sea la Feria de Jícama en Maxcanú para regresar a su estancia. Lo recomiendo ampliamente",
+    autor: "evaluación pública en Airbnb )"
   },
   {
-    texto: "Una experiencia maravillosa. Las habitaciones tienen un estilo rústico muy elegante, y todo está impecable. Me encantó poder descansar en un sitio tan tranquilo.",
-    autor: "Carlos Pérez"
+    texto: "DORMIR EN UNA GALERÍA DE ARTE O EN UN JARDÍN BOTÁNICO. ¿Estoy durmiendo en una galería de arte? ¿O es un jardín botánico? ¿O un laboratorio de elaboración de vinos? Mi anfitrión en Maxcanú, Adolfo, es un investigador universitario jubilado. Es ingeniero de agronomía, pero tiene varios pasatiempos que le apasionan, siempre centrado principalmente en la cultura y las tierras de los mayas.",
+    autor: "evaluación pública en Airbnb"
   },
   {
-    texto: "El sitio es perfecto para desconectarse. La decoración, la limpieza y el trato fueron excepcionales. Lo recomiendo a todas las personas que buscan paz y comodidad.",
-    autor: "Ana Martínez"
-  },
-    {
-        texto: "Me encantó la combinación de lo rústico con lo moderno. La casa tiene mucho encanto y los alrededores son ideales para pasear y relajarse. Definitivamente volveré.",
-        autor: "Luis García"
-    },
-    {
-        texto: "Un lugar lleno de historia y cultura. Cada rincón tiene su propia historia, y el ambiente es muy acogedor. La atención del personal fue excelente.",
-        autor: "Sofía Ramírez"
-    },
-    {
-        texto: "La Casa Rural Maxcanú superó todas mis expectativas. La tranquilidad del lugar, la belleza de los jardines y la comodidad de las habitaciones hicieron que mi estancia fuera inolvidable.",
-        autor: "Jorge Hernández"
-    },{
-        texto: "Un refugio perfecto para escapar del bullicio de la ciudad. La casa es hermosa y el entorno natural es impresionante. Me sentí renovada después de mi estancia.",
-        autor: "Elena Torres"
-    }
+    texto: "Adolfo! Ha pasado mucho tiempo. Mi familia se hospedó con ustedes en 2021 y todavía recordamos con gratitud el tiempo que pasamos en Maxcanú. ¿Te acuerdas de nosotros?",
+    autor: "anonimo"},
+   
 ];
 ---
 <section class="w-full py-12 md:py-16" aria-labelledby="testimonios-title">
@@ -37,41 +22,32 @@ const testimonios = [
     Testimonios de Nuestros Visitantes
   </h2>
 
-  <div class="relative max-w-[92rem] mx-auto px-8 sm:px-12 lg:px-16">
+  <div class="relative max-w-6xl mx-auto px-6">
 
     <!-- Flecha izquierda -->
     <button id="prevBtn"
-      aria-label="Ver testimonios anteriores"
-      class="absolute left-4 top-1/2 -translate-y-1/2 z-20
-             w-11 h-11 rounded-full bg-white/70 backdrop-blur
-             text-neutral-700 shadow-lg
-             hover:bg-white hover:scale-105 transition
-             flex items-center justify-center">
-      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
+      class="absolute -left-2 top-1/2 -translate-y-1/2 z-20
+             w-10 h-10 rounded-full bg-white shadow
+             hover:scale-105 transition flex items-center justify-center">
+      ‹
     </button>
 
     <!-- Carrusel -->
     <div id="carousel"
-      class="flex gap-8 overflow-hidden py-6"
-      role="region"
-      aria-roledescription="carrusel"
-      aria-label="Testimonios de clientes">
+      class="flex overflow-hidden gap-6">
 
       {testimonios.map((t, i) => (
         <article
-          role="group"
-          aria-roledescription="tarjeta"
-          aria-label={`Testimonio ${i + 1}`}
-          class="flex-shrink-0 w-[260px] lg:w-[280px] xl:w-[300px]
-                 text-palette-5 p-7 rounded-2xl border border-neutral-700
-                 shadow-md hover:shadow-xl transition-all duration-300">
+          class="card flex-shrink-0
+                 w-[85%] sm:w-[48%]
+                 h-[300px] p-6 rounded-2xl border border-neutral-300
+                 shadow-md flex flex-col">
 
-          <p class="text-sm sm:text-base leading-relaxed opacity-90">
+          <div class="flex-1 overflow-y-auto pr-2 text-sm leading-relaxed">
             “{t.texto}”
-          </p>
-          <p class="mt-6 font-semibold text-right">
+          </div>
+
+          <p class="mt-4 font-semibold text-right">
             — {t.autor}
           </p>
         </article>
@@ -80,110 +56,31 @@ const testimonios = [
 
     <!-- Flecha derecha -->
     <button id="nextBtn"
-      aria-label="Ver más testimonios"
-      class="absolute right-4 top-1/2 -translate-y-1/2 z-20
-             w-11 h-11 rounded-full bg-white/70 backdrop-blur
-             text-neutral-700 shadow-lg
-             hover:bg-white hover:scale-105 transition
-             flex items-center justify-center">
-      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M9 6l6 6-6 6"/>
-      </svg>
+      class="absolute -right-2 top-1/2 -translate-y-1/2 z-20
+             w-10 h-10 rounded-full bg-white shadow
+             hover:scale-105 transition flex items-center justify-center">
+      ›
     </button>
 
   </div>
 
 </section>
-
 <script is:inline>
   const carousel = document.getElementById("carousel");
   const next = document.getElementById("nextBtn");
   const prev = document.getElementById("prevBtn");
 
-  const gap = 32;
-  const card = carousel.querySelector("article");
-  const cardWidth = card.offsetWidth + gap;
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  let autoScroll;
-  let isAnimating = false;
-
-  /* Easing suave */
-  function easeInOutCubic(t) {
-    return t < 0.5
-      ? 4 * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  function smoothScrollBy(distance, duration = 700) {
-    if (prefersReducedMotion) {
-      carousel.scrollLeft += distance;
-      return;
-    }
-
-    if (isAnimating) return;
-    isAnimating = true;
-
-    const start = carousel.scrollLeft;
-    const startTime = performance.now();
-
-    function animate(time) {
-      const elapsed = time - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeInOutCubic(progress);
-
-      carousel.scrollLeft = start + distance * eased;
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        isAnimating = false;
-      }
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  function moveNext() {
-    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-
-    if (carousel.scrollLeft + cardWidth >= maxScroll) {
-      smoothScrollBy(maxScroll - carousel.scrollLeft, 500);
-      setTimeout(() => {
-        carousel.scrollLeft = 0;
-      }, 520);
-    } else {
-      smoothScrollBy(cardWidth);
-    }
-  }
-
-  function movePrev() {
-    smoothScrollBy(-cardWidth);
-  }
-
-  function startAutoScroll() {
-    autoScroll = setInterval(moveNext, 4200);
-  }
-
-  function stopAutoScroll() {
-    clearInterval(autoScroll);
+  function getCardWidth() {
+    const card = carousel.querySelector(".card");
+    const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+    return card.offsetWidth + gap;
   }
 
   next.addEventListener("click", () => {
-    stopAutoScroll();
-    moveNext();
-    startAutoScroll();
+    carousel.scrollBy({ left: getCardWidth(), behavior: "smooth" });
   });
 
   prev.addEventListener("click", () => {
-    stopAutoScroll();
-    movePrev();
-    startAutoScroll();
+    carousel.scrollBy({ left: -getCardWidth(), behavior: "smooth" });
   });
-
-  carousel.addEventListener("mouseenter", stopAutoScroll);
-  carousel.addEventListener("mouseleave", startAutoScroll);
-
-  startAutoScroll();
 </script>

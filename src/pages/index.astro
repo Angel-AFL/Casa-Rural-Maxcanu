@@ -10,32 +10,31 @@ import BannerHero from "../components/home/BannerHero.astro";
 import Destacados from "../components/home/Destacados.astro";
 import MapaUbicacion from "../components/home/MapaUbicacion.astro";
 import Welcome from "../components/home/Welcome.astro";
-
 import Resumen from "../components/home/ResumenAtractivos.astro";
 
 
 const atractivosResumen = {
   arqueologia: {
     title: "Arqueología",
-    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/20220810_za_oxkintok_head.jpg",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivo(1)/Oxkintok.jpg",
     description: "Sumérgete en el pasado maya y colonial de Maxcanú. Descubre antiguas ciudades, juegos rituales y el rico patrimonio histórico."
   },
 
   naturaleza: {
     title: "Naturaleza",
-    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/maxcanu_grutas.jpg",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivo(1)/maxcanu_grutas.jpg",
     description: "Explora el lado salvaje de Maxcanú. Desde cuevas milenarias hasta miradores espectaculares y cenotes sagrados."
   },
 
   cultura: {
     title: "Cultura",
-    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/fiesta_san_arcangel.jpg",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivo(1)/hanal_pixan.jpg",
     description: "Vive las tradiciones vivas de Maxcanú. Festividades, rituales ancestrales y expresiones culturales que perduran."
   },
 
   pueblos: {
     title: "Pueblos y Haciendas",
-    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/hacienda_santa_rosa.jpg",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivo(1)/hacienda_santa_rosa.jpg",
     description: "Descubre el legado henequenero y los pueblos con encanto que rodean Maxcanú. Historia, arquitectura y experiencias únicas."
   }
 };
@@ -117,10 +116,10 @@ const faqItems = [
       text="Este lugar es, en su totalidad, un pedazo de historia, cuyo encanto se manifiesta desde su cocina tradicional, que evoca la típica casa del Yucatán más antiguo, hasta su decoración, que resalta vivamente la cultura yucateca y otras influencias dejadas por personas internas y externas. Además, su jardín botánico alberga plantas locales con usos tradicionales de gran importancia para la herencia maya. En esencia, cada rincón de la casa tiene una historia que contar."
       imageUrl="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/home/historia.png"
       imageSide="right"
-      bgColor="bg-palette-13"
+      bgColor="bg-palette-15"
       textColor="text-palette-5"
       headingColor="text-palette-9"
-      subheadingColor="text-palette-1"
+      subheadingColor="text-palette-18"
       />
       
       <Room>
@@ -133,9 +132,12 @@ const faqItems = [
       imageSide="right"
       bgColor="bg-palette-12"
       textColor="text-palette-5"
-      headingColor="text-palette-18"
-      subheadingColor="text-palette-7"
+      headingColor="text-palette-8"
+      subheadingColor="text-palette-18"
       />
+      <Resumen atractivos={atractivosParaCard} colores={colorClasses} description="descripcion de prueba">
+      <Button label="Explorar Atractivos" href="/mas-servicios"/>
+      </Resumen>
       <Anuncio/>
        <MapaUbicacion/>
       <ImageWithText
@@ -149,15 +151,8 @@ const faqItems = [
       headingColor="text-palette-5"
       subheadingColor="text-palette-8"
       />
-     
-      
-      
-     
       <Testimonios/>
-   
       <FaqAccordion items={faqItems}/>
-    <Resumen atractivos={atractivosParaCard} colores={colorClasses}>
-      <Button label="Explorar Atractivos" href="/mas-servicios"/>
-    </Resumen>
-
+    
+    
 </Layout>
