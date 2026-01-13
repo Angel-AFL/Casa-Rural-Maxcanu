@@ -208,47 +208,6 @@ const author = "Casa Rural Maxcanú";
                 >Nosotros</a
               >
             </li>
-            <li class="relative group">
-              <button
-                class={`flex items-center gap-1 hover:text-[#a38613] transition-colors ${currentPath.includes("galeria") ? "text-[#a38613]" : ""}`}
-              >
-                Servicios
-                <svg
-                  class="w-4 h-4 transition-transform group-hover:rotate-180"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-
-              <ul
-                class="absolute left-0 mt-2 w-48 bg-palette-1 border border-white/10 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[60] p-2 text-left"
-              >
-                <li>
-                  <a
-                    href="/hospedaje"
-                    class={`block px-4 py-2 hover:bg-white/10 rounded-md ${currentPath === "/hospedaje" ? "text-[#a38613]" : ""}`}
-                  >
-                    Hospedaje
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/renta-de-bicicletas"
-                    class={`block px-4 py-2 hover:bg-white/10 rounded-md ${currentPath === "/renta-de-bicicletas" ? "text-[#a38613]" : ""}`}
-                  >
-                    Renta de bicicletas
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <!-- 
             <li>
               <a
                 href="/hospedaje"
@@ -264,7 +223,6 @@ const author = "Casa Rural Maxcanú";
                   : ""}>Renta de bicicletas</a
               >
             </li>
-          -->
             <li class="relative group">
               <button
                 class={`flex items-center gap-1 hover:text-[#a38613] transition-colors ${currentPath.includes("galeria") ? "text-[#a38613]" : ""}`}
@@ -323,7 +281,7 @@ const author = "Casa Rural Maxcanú";
           -->
             <li class="relative group">
               <button
-                class={`flex items-center gap-1 hover:text-[#a38613] transition-colors ${currentPath.includes("galeria") ? "text-[#a38613]" : ""}`}
+                class={`flex items-center gap-1 hover:text-[#a38613] transition-colors ${currentPath === "/jardin-botanico" || currentPath === "/atractivos-turisticos" ? "text-[#a38613]" : ""}`}
               >
                 Experiencias
                 <svg
