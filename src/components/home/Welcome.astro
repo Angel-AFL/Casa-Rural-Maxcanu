@@ -2,6 +2,7 @@
 const title = "CASA RURAL MAXCANÚ";
 const subtitle = "Bienvenidos a";
 const texto="Un refugio auténtico donde la tradición maya, la naturaleza y la tranquilidad se encuentran para brindarte una experiencia inolvidable.";
+const src="https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/logos-png/logo-casa-rural-icono-negativo.png";
 ---
 
 <section class="relative bg-palette-11 overflow-hidden py-20 rustic-paper rustic-shadow">
@@ -15,7 +16,7 @@ const texto="Un refugio auténtico donde la tradición maya, la naturaleza y la 
             max-sm:px-4">
 
   <img 
-    src="/logo-casa-rural-icono-negativo.png" 
+   {src}
     alt="logo-negativo"
     aria-hidden="true"
     class="w-auto opacity-20
@@ -28,8 +29,8 @@ const texto="Un refugio auténtico donde la tradición maya, la naturaleza y la 
   />
 
   <img 
-    src="/logo-casa-rural-icono-negativo.png" 
-   alt="logo-negativo"
+    {src}
+    alt="logo-negativo"
     aria-hidden="true"
     class="w-auto opacity-20
            max-sm:max-h-[20px]
