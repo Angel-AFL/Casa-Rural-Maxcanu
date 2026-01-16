@@ -8,7 +8,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: "https://casa-rural-maxcanu.vercel.app",
+  site: "https://casaruralmaxcanu.com",
   integrations: [react()],
   output: "server",
   adapter: vercel({}),
