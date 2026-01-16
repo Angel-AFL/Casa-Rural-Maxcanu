@@ -4,6 +4,33 @@ const {
   subtitle = "Explora grutas milenarias, haciendas históricas y la riqueza cultural de la región.", 
   imageUrl = "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/images/atractivos/entrada_maxcanu.png" 
 } = Astro.props;
+
+const zonasInteres = [
+  {
+    id: "zonas-maxcanu",
+    title: "Zonas de interés en Maxcanú",
+    description: "Descubre los atractivos más importantes dentro de Maxcanú, desde sitios arqueológicos hasta tradiciones culturales vivas que definen la identidad de este pueblo mágico.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/palacio-maxcanu.webp",
+    link: "/zonas-maxcanu",
+    imageSide: "right"
+  },
+  {
+    id: "zonas-alrededor", 
+    title: "Zonas de interés alrededor de Maxcanú",
+    description: "Explora los pueblos y haciendas cercanas a Maxcanú, testimonios del pasado henequenero y joyas arquitectónicas que rodean este destino turístico.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/hacienda-santa-rosa.webp",
+    link: "/zonas-alrededor",
+    imageSide: "left"
+  },
+  {
+    id: "ruta-puuc",
+    title: "Ruta Puuc",
+    description: "Adéntrate en la famosa Ruta Puuc, corredor arqueológico y cultural que inicia en Maxcanú y conecta con algunos de los sitios mayas más impresionantes de Yucatán.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/oxkintok.webp",
+    link: "/ruta-puuc",
+    imageSide: "right"
+  }
+];
 ---
 
 <section
@@ -15,39 +42,120 @@ const {
 
   <div class="relative z-[2] text-white px-4 w-full">
     <h2 class="text-4xl md:text-5xl font-bold mb-2">{title}</h2>
-    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed text-center">{subtitle}</p>
+    
+    <slot />
+  </div>
+</section>
 
-    <div class="flex flex-col items-center justify-center mt-6">
-      <div class="flex flex-row flex-wrap justify-center gap-3 md:gap-4 mt-8 w-full max-w-4xl mx-auto">
-        <a 
-          href="#arqueologia" 
-          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
-        >
-          Arqueología e historia
-        </a>
-
-        <a 
-          href="#naturaleza" 
-          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
-        >
-          Naturaleza y aventura
-        </a>
-
-        <a 
-          href="#cultura" 
-          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
-        >
-          Cultura y Tradición
-        </a>
-
-        <a 
-          href="#pueblos" 
-          class="nav-link px-5 py-3 md:px-6 md:py-3 rounded-xl bg-white/10 backdrop-blur-md text-white font-medium hover:font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white/20 hover:border-white/40"
-        >
-          Pueblos y haciendas cercanos
-        </a>
+<section id="zonas-maxcanu" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+      <!-- Imagen a la derecha en desktop -->
+      <div class="lg:w-1/2 lg:order-2">
+        <div class="h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
+          <img 
+            src={zonasInteres[0].image}
+            alt={zonasInteres[0].title}
+            class="w-full h-full object-cover hover:scale-105 transition duration-500"
+            loading="lazy"
+          />
+        </div>
       </div>
-      <slot />
+      
+      <div class="lg:w-1/2 lg:order-1">
+        <div class="max-w-2xl mx-auto lg:mx-0">
+          <h2 class="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
+            {zonasInteres[0].title}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
+            {zonasInteres[0].description}
+          </p>
+          <a 
+            href={zonasInteres[0].link}
+            class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-700 text-white font-semibold rounded-lg hover:bg-yellow-800 hover:shadow-lg transition-all duration-300"
+          >
+            <span>Descubrir más</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zonas-alrededor" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+      <div class="lg:w-1/2">
+        <div class="h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
+          <img 
+            src={zonasInteres[1].image}
+            alt={zonasInteres[1].title}
+            class="w-full h-full object-cover hover:scale-105 transition duration-500"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      
+      <div class="lg:w-1/2">
+        <div class="max-w-2xl mx-auto lg:mx-0">
+          <h2 class="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
+            {zonasInteres[1].title}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
+            {zonasInteres[1].description}
+          </p>
+          <a 
+            href={zonasInteres[1].link}
+            class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-700 text-white font-semibold rounded-lg hover:bg-yellow-800 hover:shadow-lg transition-all duration-300"
+          >
+            <span>Descubrir más</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ruta-puuc" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+      <div class="lg:w-1/2 lg:order-2">
+        <div class="h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
+          <img 
+            src={zonasInteres[2].image}
+            alt={zonasInteres[2].title}
+            class="w-full h-full object-cover hover:scale-105 transition duration-500"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      
+      <div class="lg:w-1/2 lg:order-1">
+        <div class="max-w-2xl mx-auto lg:mx-0">
+          <h2 class="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
+            {zonasInteres[2].title}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
+            {zonasInteres[2].description}
+          </p>
+          <a 
+            href={zonasInteres[2].link}
+            class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-700 text-white font-semibold rounded-lg hover:bg-yellow-800 hover:shadow-lg transition-all duration-300"
+          >
+            <span>Descubrir más</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -63,18 +171,21 @@ const {
 </button>
 
 <script>
-  function smoothScrollTo(targetPosition: number, duration: number = 1000): void {
-    const startPosition: number = window.pageYOffset;
-    const distance: number = targetPosition - startPosition;
-    let startTime: number | null = null;
+  // @ts-nocheck - Deshabilitar comprobación de TypeScript 
+  function smoothScrollTo(targetPosition, duration = 1000) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
     
-    function animation(currentTime: number): void {
+    function animation(currentTime) {
       if (startTime === null) startTime = currentTime;
-      const timeElapsed: number = currentTime - startTime;
-      const progress: number = Math.min(timeElapsed / duration, 1);
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
       
-      const easeOutCubic = (t: number): number => 1 - Math.pow(1 - t, 3);
-      const easedProgress: number = easeOutCubic(progress);
+      const easeOutCubic = function(t) {
+        return 1 - Math.pow(1 - t, 3);
+      };
+      const easedProgress = easeOutCubic(progress);
       
       window.scrollTo(0, startPosition + (distance * easedProgress));
       
@@ -87,7 +198,7 @@ const {
   }
   
   document.addEventListener('DOMContentLoaded', function() {
-    const scrollToTopBtn: HTMLElement | null = document.getElementById('scrollToTopBtn');
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     
     if (scrollToTopBtn) {
       window.addEventListener('scroll', function() {
@@ -100,52 +211,10 @@ const {
         }
       });
       
-      scrollToTopBtn.addEventListener('click', function(this: HTMLElement) {
+      scrollToTopBtn.addEventListener('click', function() {
         smoothScrollTo(0, 1000);
       });
     }
-    
-    const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach((link: HTMLAnchorElement) => {
-      link.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
-        e.preventDefault(); 
-        
-        const targetId: string = this.getAttribute('href')?.substring(1) || '';
-        const targetElement: HTMLElement | null = document.getElementById(targetId);
-        
-        if (targetElement) {
-          this.classList.add('active');
-          setTimeout(() => this.classList.remove('active'), 300);
-          
-          const offset: number = 80;
-          const targetPosition: number = targetElement.offsetTop - offset;
-          
-          smoothScrollTo(targetPosition, 1200);
-        }
-      });
-    });
-    
-    const allHashLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href^="#"]');
-    
-    allHashLinks.forEach((anchor: HTMLAnchorElement) => {
-      if (!anchor.classList.contains('nav-link')) {
-        anchor.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
-          const href: string | null = this.getAttribute('href');
-          if (href && href !== '#') {
-            e.preventDefault();
-            const targetId: string = href.substring(1);
-            const targetElement: HTMLElement | null = document.getElementById(targetId);
-            
-            if (targetElement) {
-              const offset: number = 80;
-              const targetPosition: number = targetElement.offsetTop - offset;
-              smoothScrollTo(targetPosition, 1200);
-            }
-          }
-        });
-      }
-    });
   });
 </script>
 
@@ -170,13 +239,11 @@ const {
     transform: translateY(0);
   }
   
-  .nav-link.active {
-    transform: translateY(0) scale(0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  .overflow-hidden img {
+    transition: transform 0.5s ease;
   }
   
-  .nav-link {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+  .overflow-hidden:hover img {
+    transform: scale(1.05);
   }
 </style>
