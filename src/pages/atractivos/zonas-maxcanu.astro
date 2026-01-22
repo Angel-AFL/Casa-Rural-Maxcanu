@@ -1,0 +1,149 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const atractivosMaxcanu = [
+  {
+    id: 1,
+    title: "Zona Arqueológica de Oxkintok",
+    subtitle: "La Ciudad de los Tres Soles",
+    description: "Ciudad maya ocupada desde el siglo I hasta el XVI. Destaca el laberinto ceremonial subterráneo Satunsat, único en su tipo, diseñado para rituales de iniciación y observación astronómica.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/oxkintok.webp",
+    tags: ["Arqueología", "Maya", "Misticismo"],
+    imageSide: "left"
+  },
+  {
+    id: 2,
+    title: "Palacio Municipal",
+    subtitle: "Arquitectura con Historia",
+    description: "Edificio del siglo XVIII que originalmente sirvió como cuartel militar. Su famoso reloj de tres carátulas, instalado en 1921, es el corazón del pulso urbano de Maxcanú.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/palacio-maxcanu.webp",
+    tags: ["Historia", "Colonial", "Cívico"],
+    imageSide: "right"
+  },
+  {
+    id: 3,
+    title: "Iglesia de San Miguel Arcángel",
+    subtitle: "Patrimonio Religioso",
+    description: "Un templo del siglo XVII con un retablo de cedro tallado y detalles dorados. Sus cinco campanas han marcado el ritmo de la vida local por generaciones.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/Iglesia-san-miguel-arcangel.webp",
+    tags: ["Religioso", "Arte Sacro", "Siglo XVII"],
+    imageSide: "left"
+  },
+  {
+    id: 4,
+    title: "Grutas de Maxcanú",
+    subtitle: "Aventura en el Inframundo Maya",
+    description: "Puerta al mundo subterráneo del Puuc. Estas grutas no solo ofrecen formaciones naturales impresionantes, sino que guardan vestigios de barro y agua sagrada usada por ancestros.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/maxcanu-grutas.webp",
+    tags: ["Naturaleza", "Aventura", "Espeleología"],
+    imageSide: "right"
+  },
+  {
+    id: 5,
+    title: "Cerro de las Tres Cruces",
+    subtitle: "El Mejor Mirador del Poniente",
+    description: "En la cima de este cerro Puuc se encuentra la capilla de la Santa Cruz. Es el punto ideal para apreciar la transición entre la selva baja y el asentamiento urbano.",
+    image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/cerro-tres.cruces.webp",
+    tags: ["Mirador", "Panorámico", "Tradición"],
+    imageSide: "left"
+  }
+];
+---
+
+<Layout title="Zonas de Interés | Maxcanú">
+  <section
+    class="min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[100px] overflow-hidden"
+    style="background-image: url('https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/zona-interes-maxcanu.webp');"
+  >
+    <div class="bg-black/60 absolute inset-0"></div>
+
+    <div class="relative z-[2] text-white px-4 w-full">
+      <span class="uppercase tracking-widest text-yellow-500 font-semibold text-sm mb-4 block animate-fade-in">Pueblo Mágico</span>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Zonas de Interés en Maxcanú
+      </h1>
+      <div class="w-24 h-1 bg-yellow-600 mx-auto mb-8"></div>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed opacity-90">
+        Descubre la riqueza histórica y cultural que aguarda en cada rincón de este municipio estratégico en la Ruta Puuc.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 italic">
+        "Donde la historia maya y el esplendor colonial se encuentran."
+      </h2>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Maxcanú combina identidad, tradición y naturaleza. Aquí te presentamos los sitios emblemáticos que definen el corazón de este pueblo.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-12">
+    {atractivosMaxcanu.map((atractivo, index) => (
+      <div class={`py-20 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
+        <div class="container mx-auto px-4">
+          <div class={`flex flex-col lg:flex-row items-center gap-12 ${atractivo.imageSide === 'right' ? 'lg:flex-row-reverse' : ''}`}>
+            
+            <div class="w-full lg:w-1/2">
+              <div class="relative group">
+                <div class="absolute -inset-2 bg-yellow-700/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div class="relative h-80 md:h-[450px] overflow-hidden rounded-2xl shadow-2xl border border-gray-100">
+                  <img 
+                    src={atractivo.image} 
+                    alt={atractivo.title}
+                    class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 space-y-6">
+              <div class="flex flex-wrap gap-2">
+                {atractivo.tags.map(tag => (
+                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-[10px] font-bold uppercase tracking-widest rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <div>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{atractivo.title}</h3>
+                <p class="text-yellow-700 font-medium text-lg italic">{atractivo.subtitle}</p>
+              </div>
+
+              <p class="text-gray-600 text-lg leading-relaxed text-justify">
+                {atractivo.description}
+              </p>
+
+              <div class="pt-6 border-t border-gray-200 flex items-center gap-4 text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-700/50" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+                </svg>
+                <span class="text-xs font-bold uppercase tracking-[0.2em]">Maxcanú • Destino Turístico</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+</style>
