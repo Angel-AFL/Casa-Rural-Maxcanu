@@ -1,4 +1,11 @@
 ---
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  imageUrl?: string;
+}
+
 const { 
   title = "Descubre los secretos de Maxcanú y la Ruta Puuc", 
   subtitle = "Explora grutas milenarias, haciendas históricas y la riqueza cultural de la región.", 
@@ -8,242 +15,154 @@ const {
 const zonasInteres = [
   {
     id: "zonas-maxcanu",
+    kicker: "Pueblo Mágico",
     title: "Zonas de interés en Maxcanú",
     description: "Descubre los atractivos más importantes dentro de Maxcanú, desde sitios arqueológicos hasta tradiciones culturales vivas que definen la identidad de este pueblo mágico.",
     image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/palacio-maxcanu.webp",
-    link: "/zonas-maxcanu",
-    imageSide: "right"
+    link: "/atractivos/zonas-maxcanu",
   },
   {
     id: "zonas-alrededor", 
-    title: "Zonas de interés alrededor de Maxcanú",
+    kicker: "Legado Henequenero",
+    title: "Zonas de interés alrededor", 
     description: "Explora los pueblos y haciendas cercanas a Maxcanú, testimonios del pasado henequenero y joyas arquitectónicas que rodean este destino turístico.",
     image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/hacienda-santa-rosa.webp",
     link: "/zonas-alrededor",
-    imageSide: "left"
   },
   {
     id: "ruta-puuc",
+    kicker: "Aventura Maya",
     title: "Ruta Puuc",
     description: "Adéntrate en la famosa Ruta Puuc, corredor arqueológico y cultural que inicia en Maxcanú y conecta con algunos de los sitios mayas más impresionantes de Yucatán.",
     image: "https://jrrwlqhzxlfcsbaanzzq.supabase.co/storage/v1/object/public/imagenes/atractivos/oxkintok.webp",
     link: "/ruta-puuc",
-    imageSide: "right"
   }
 ];
 ---
 
 <section
   id="inicio"
-  class="min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[200px]"
-  style={`background-image: url('${imageUrl}');`}
+  class="min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center relative pt-[100px] overflow-hidden"
+  style={{ backgroundImage: `url('${imageUrl}')` }}
 >
-  <div class="bg-black/50 absolute inset-0"></div>
+  <div class="bg-black/60 absolute inset-0 z-0"></div>
 
-  <div class="relative z-[2] text-white px-4 w-full">
-    <h2 class="text-4xl md:text-5xl font-bold mb-2">{title}</h2>
-    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed text-center">{subtitle}</p>
+  <div class="relative z-[2] text-white px-4 w-full max-w-5xl mx-auto">
+    <span class="uppercase tracking-[0.4em] text-yellow-500 font-bold text-xs mb-6 block animate-fade-in">Bienvenido a Yucatán</span>
+    <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight animate-slide-up">
+      {title}
+    </h1>
+    <p class="text-lg md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed opacity-90 font-light">
+      {subtitle}
+    </p>
     
     <slot />
   </div>
+  
+  <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-[1]"></div>
 </section>
 
-<section id="zonas-maxcanu" class="py-16 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-      <!-- Imagen a la derecha en desktop -->
-      <div class="lg:w-1/2 lg:order-2">
-        <div class="h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
-          <img 
-            src={zonasInteres[0].image}
-            alt={zonasInteres[0].title}
-            class="w-full h-full object-cover hover:scale-105 transition duration-500"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      
-      <div class="lg:w-1/2 lg:order-1">
-        <div class="max-w-2xl mx-auto lg:mx-0">
-          <h2 class="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
-            {zonasInteres[0].title}
-          </h2>
-          <p class="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
-            {zonasInteres[0].description}
-          </p>
-          <a 
-            href={zonasInteres[0].link}
-            class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-700 text-white font-semibold rounded-lg hover:bg-yellow-800 hover:shadow-lg transition-all duration-300"
-          >
-            <span>Descubrir más</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="bg-white">
+  {zonasInteres.map((zona, index) => (
+    <section 
+      id={zona.id} 
+      class={`py-24 ${index % 2 !== 0 ? 'bg-gray-50' : 'bg-white'}`}
+    >
+      <div class="container mx-auto px-4">
+        <div class={`flex flex-col lg:flex-row items-center gap-16 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+          
+          <div class="w-full lg:w-1/2">
+            <div class="relative group">
+              <div class="absolute -inset-3 bg-yellow-700/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+              <div class="relative h-80 md:h-[500px] overflow-hidden rounded-3xl shadow-2xl border border-gray-100">
+                <img 
+                  src={zona.image} 
+                  alt={zona.title}
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div class="space-y-2">
+              <span class="text-yellow-700 font-bold uppercase tracking-[0.3em] text-xs">
+                {zona.kicker}
+              </span>
+              <h2 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+                {zona.title}
+              </h2>
+            </div>
+            
+            <p class="text-gray-600 text-lg md:text-xl leading-relaxed text-justify">
+              {zona.description}
+            </p>
+            
+            <div class="pt-6">
+              <a 
+                href={zona.link}
+                class="group inline-flex items-center gap-3 px-8 py-4 bg-yellow-700 text-white font-bold rounded-full hover:bg-yellow-800 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <span>Descubrir más</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
 
-<section id="zonas-alrededor" class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-      <div class="lg:w-1/2">
-        <div class="h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
-          <img 
-            src={zonasInteres[1].image}
-            alt={zonasInteres[1].title}
-            class="w-full h-full object-cover hover:scale-105 transition duration-500"
-            loading="lazy"
-          />
         </div>
       </div>
-      
-      <div class="lg:w-1/2">
-        <div class="max-w-2xl mx-auto lg:mx-0">
-          <h2 class="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
-            {zonasInteres[1].title}
-          </h2>
-          <p class="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
-            {zonasInteres[1].description}
-          </p>
-          <a 
-            href={zonasInteres[1].link}
-            class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-700 text-white font-semibold rounded-lg hover:bg-yellow-800 hover:shadow-lg transition-all duration-300"
-          >
-            <span>Descubrir más</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="ruta-puuc" class="py-16 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-      <div class="lg:w-1/2 lg:order-2">
-        <div class="h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
-          <img 
-            src={zonasInteres[2].image}
-            alt={zonasInteres[2].title}
-            class="w-full h-full object-cover hover:scale-105 transition duration-500"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      
-      <div class="lg:w-1/2 lg:order-1">
-        <div class="max-w-2xl mx-auto lg:mx-0">
-          <h2 class="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
-            {zonasInteres[2].title}
-          </h2>
-          <p class="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
-            {zonasInteres[2].description}
-          </p>
-          <a 
-            href={zonasInteres[2].link}
-            class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-700 text-white font-semibold rounded-lg hover:bg-yellow-800 hover:shadow-lg transition-all duration-300"
-          >
-            <span>Descubrir más</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+  ))}
+</div>
 
 <button
   id="scrollToTopBtn"
-  class="fixed bottom-8 right-8 w-14 h-14 bg-white/10 backdrop-blur-lg text-white rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:scale-110 active:scale-95 z-50 group border border-white/20 hover:border-white/40"
-  aria-label="Volver al inicio lentamente"
+  class="fixed bottom-8 right-8 w-14 h-14 bg-slate-900/80 backdrop-blur-md text-white rounded-full shadow-2xl opacity-0 invisible transition-all duration-500 hover:scale-110 active:scale-95 z-50 flex items-center justify-center border border-white/10 hover:bg-yellow-700 pointer-events-none"
+  aria-label="Subir"
 >
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
   </svg>
 </button>
 
 <script>
-  // @ts-nocheck - Deshabilitar comprobación de TypeScript 
-  function smoothScrollTo(targetPosition, duration = 1000) {
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-    
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      
-      const easeOutCubic = function(t) {
-        return 1 - Math.pow(1 - t, 3);
-      };
-      const easedProgress = easeOutCubic(progress);
-      
-      window.scrollTo(0, startPosition + (distance * easedProgress));
-      
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
-    }
-    
-    requestAnimationFrame(animation);
-  }
+  const btn = document.getElementById('scrollToTopBtn');
   
-  document.addEventListener('DOMContentLoaded', function() {
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    
-    if (scrollToTopBtn) {
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-          scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-          scrollToTopBtn.classList.add('opacity-100', 'visible');
-        } else {
-          scrollToTopBtn.classList.remove('opacity-100', 'visible');
-          scrollToTopBtn.classList.add('opacity-0', 'invisible');
-        }
-      });
-      
-      scrollToTopBtn.addEventListener('click', function() {
-        smoothScrollTo(0, 1000);
-      });
-    }
-  });
+  if (btn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        btn.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        btn.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+      } else {
+        btn.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+        btn.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 </script>
 
 <style>
-  html {
-    scroll-behavior: smooth;
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   
-  section:target {
-    scroll-margin-top: 80px;
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  
-  #scrollToTopBtn {
-    transform: translateY(20px);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                opacity 0.4s ease,
-                visibility 0.4s ease,
-                background-color 0.3s ease;
-  }
-  
-  #scrollToTopBtn.visible {
-    transform: translateY(0);
-  }
-  
-  .overflow-hidden img {
-    transition: transform 0.5s ease;
-  }
-  
-  .overflow-hidden:hover img {
-    transform: scale(1.05);
+
+  .animate-fade-in { animation: fadeIn 1.2s ease-out forwards; }
+  .animate-slide-up { animation: slideUp 1s ease-out forwards; }
+
+  h1, h2 {
+    text-wrap: balance;
   }
 </style>
