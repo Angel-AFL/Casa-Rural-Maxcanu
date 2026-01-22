@@ -23,25 +23,15 @@ const testimonios = [
   </h2>
 
   <div class="relative max-w-6xl mx-auto px-6">
-
-    <!-- Flecha izquierda -->
-    <button id="prevBtn"
-      class="absolute -left-2 top-1/2 -translate-y-1/2 z-20
-             w-10 h-10 rounded-full bg-white shadow
-             hover:scale-105 transition flex items-center justify-center">
-      ‹
-    </button>
-
     <!-- Carrusel -->
     <div id="carousel"
-      class="flex overflow-hidden gap-6">
+  class="flex gap-6 overflow-x-auto overflow-y-hidden
+ scroll-smooth touch-pan-x overscroll-x-contain snap-x snap-mandatory">
 
       {testimonios.map((t, i) => (
-        <article
-          class="card flex-shrink-0
-                 w-[85%] sm:w-[48%]
-                 h-[300px] p-6 rounded-2xl border border-neutral-300
-                 shadow-md flex flex-col">
+        <article class="card snap-start flex-shrink-0 w-[85%] sm:w-[70%] 
+         lg:w-[48%] h-[300px] p-6 rounded-2xl border border-neutral-300
+         shadow-md flex flex-col">
 
           <div class="flex-1 overflow-y-auto pr-2 text-sm leading-relaxed">
             “{t.texto}”
@@ -54,14 +44,22 @@ const testimonios = [
       ))}
     </div>
 
-    <!-- Flecha derecha -->
-    <button id="nextBtn"
-      class="absolute -right-2 top-1/2 -translate-y-1/2 z-20
-             w-10 h-10 rounded-full bg-white shadow
-             hover:scale-105 transition flex items-center justify-center">
-      ›
-    </button>
+    <!-- Flecha izquierda -->
+<button id="prevBtn"
+  class="hidden lg:flex absolute -left-2 top-1/2 -translate-y-1/2 z-20
+         w-10 h-10 rounded-full bg-white shadow
+         hover:scale-105 transition items-center justify-center">
+  ‹
+</button>
 
+<!-- Flecha derecha -->
+<button id="nextBtn"
+  class="hidden lg:flex absolute -right-2 top-1/2 -translate-y-1/2 z-20
+         w-10 h-10 rounded-full bg-white shadow
+         hover:scale-105 transition items-center justify-center">
+  ›
+</button>
+    
   </div>
 
 </section>
@@ -70,17 +68,41 @@ const testimonios = [
   const next = document.getElementById("nextBtn");
   const prev = document.getElementById("prevBtn");
 
-  function getCardWidth() {
+  let cardWidth = 0;
+
+  function calculateCardWidth() {
     const card = carousel.querySelector(".card");
+    if (!card) return;
+
     const gap = parseInt(getComputedStyle(carousel).gap) || 0;
-    return card.offsetWidth + gap;
+    cardWidth = card.getBoundingClientRect().width + gap;
   }
 
-  next.addEventListener("click", () => {
-    carousel.scrollBy({ left: getCardWidth(), behavior: "smooth" });
-  });
+  function isDesktop() {
+    return window.matchMedia("(min-width: 1024px)").matches;
+  }
 
-  prev.addEventListener("click", () => {
-    carousel.scrollBy({ left: -getCardWidth(), behavior: "smooth" });
+  function initDesktopControls() {
+    if (!isDesktop()) return;
+
+    calculateCardWidth();
+
+    next.onclick = () => {
+      carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
+    };
+
+    prev.onclick = () => {
+      carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    };
+  }
+
+  // Inicialización
+  initDesktopControls();
+
+  // Recalcular cuando cambia el tamaño
+  window.addEventListener("resize", () => {
+    if (isDesktop()) {
+      calculateCardWidth();
+    }
   });
 </script>
